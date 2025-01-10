@@ -1,7 +1,7 @@
 import express from 'express';
 import { registerSpecialist } from '../controllers/specialistController.js';
 import { specialistValidation } from '../validations/specialistValidation.js';
-import { uploadFiles } from '../controllers/photoController.js';
+import { uploadFiles } from '../middlewares/uploadFiles.js';
 
 const router = express.Router();
 

@@ -8,7 +8,7 @@ const { OAuth2 } = google.auth;
 const oauth2Client = new OAuth2(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET,
-    "https://developers.google.com/oauthplayground"
+    "https://wellbeing.com/oauth2callback"
 );
 
 oauth2Client.setCredentials({

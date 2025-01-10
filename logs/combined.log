@@ -22,3 +22,122 @@
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T01:17:09.115Z"}
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T01:17:11.009Z"}
 {"level":"info","message":"::1 - - [10/Jan/2025:01:17:14 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 131 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T01:17:14.509Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T01:44:19.747Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T01:44:21.273Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:01:44:54 +0000] \"GET /api/greeting HTTP/1.1\" 404 151 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","timestamp":"2025-01-10T01:44:54.076Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T01:45:20.505Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T01:45:21.878Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T01:50:01.877Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T01:50:03.318Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T01:53:04.511Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T01:53:05.892Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T02:01:21.000Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T02:01:22.394Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:40:06.944Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:40:09.002Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:41:12 +0000] \"GET /api/greeting HTTP/1.1\" 404 151 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\"","timestamp":"2025-01-10T12:41:12.654Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:41:41 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 131 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:41:41.382Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:41:55 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 35 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:41:55.857Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:42:59.747Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:43:01.253Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:43:07.340Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:43:08.921Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:43:12 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 35 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:43:12.512Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:44:22.263Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:44:23.842Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:44:29 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 35 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:44:29.260Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:45:24.874Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:45:26.653Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:45:31 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 1245 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:45:31.858Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:47:02.151Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:47:03.665Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:47:12 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 35 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:47:12.804Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:50:38.609Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:50:41.526Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:50:47 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 35 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:50:47.255Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:52:18.670Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:52:21.863Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:52:48 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 35 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:52:48.210Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T12:57:32.011Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T12:57:33.481Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:12:57:36 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 35 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T12:57:36.414Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T13:04:10.157Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T13:04:20.174Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T13:09:56.580Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T13:09:59.030Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:10:05 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 132 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:10:05.901Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T13:31:40.924Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T13:31:44.023Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:31:46 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 133 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:31:46.170Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:31:56 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 33 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:31:56.590Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:32:03 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 133 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:32:03.747Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:32:21 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 33 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:32:21.227Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T13:34:42.350Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T13:34:43.714Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:35:49 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 135 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:35:49.426Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:38:34 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 134 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:38:34.794Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T13:39:56.266Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T13:39:58.242Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T13:42:12.616Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T13:42:22.737Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T13:44:15.160Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T13:44:16.653Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:46:44 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 135 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:46:44.363Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:49:35 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 134 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:49:35.228Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:49:59 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 134 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:49:59.306Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:51:19 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 135 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:51:19.436Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:53:52 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 136 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:53:52.247Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:54:59 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 137 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:54:59.071Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:55:19 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 163 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:55:19.259Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:13:55:44 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 163 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T13:55:44.661Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:01:57.385Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:02:00.252Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:03:24.981Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:03:29.007Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:05:35.408Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:05:37.038Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:14:05:47 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 266 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T14:05:47.871Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:07:14.586Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:07:16.011Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:14:07:46 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 243 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T14:07:46.576Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:08:56.713Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:08:58.160Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:14:09:04 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 266 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T14:09:04.429Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:14:09:55 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 266 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T14:09:55.853Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:11:10.767Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:11:12.313Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:14:11:40 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 266 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T14:11:40.480Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:12:34.174Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:12:35.611Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:15:53.997Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:15:55.770Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:16:21.205Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:16:22.688Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:17:02.258Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:17:03.594Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:14:17:07 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 124 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T14:17:07.549Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:14:35:45 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 125 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T14:35:45.301Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:37:49.868Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:37:51.487Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:45:23.727Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:45:25.425Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:46:45.687Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:46:47.504Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:49:04.543Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:49:06.069Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:49:34.784Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:49:36.323Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:53:23.397Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:53:26.836Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T14:58:42.264Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T14:58:43.803Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:14:58:52 +0000] \"POST /api/specialist/register HTTP/1.1\" 500 240 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T14:58:52.858Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T15:00:08.302Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T15:00:09.716Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T15:01:54.386Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T15:02:04.134Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T15:02:05.442Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T15:02:21.611Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T15:02:22.964Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:15:02:25 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 130 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T15:02:25.608Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:15:02:47 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 127 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T15:02:47.509Z"}
