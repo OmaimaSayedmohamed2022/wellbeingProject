@@ -1,0 +1,24 @@
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-09T19:00:11.750Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-09T19:00:13.133Z"}
+{"level":"info","message":"New session created: 67801ccf72de493467d6550e","timestamp":"2025-01-09T19:00:31.232Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-09T19:00:33.939Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-09T19:00:35.724Z"}
+{"level":"info","message":"::1 - - [09/Jan/2025:19:00:51 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 130 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-09T19:00:51.498Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T00:31:32.529Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T00:31:34.077Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T00:32:12.026Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T00:32:13.632Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T00:34:26.939Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T00:34:28.431Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T00:38:38.470Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T00:38:39.838Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T00:47:13.926Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T00:47:15.297Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T01:02:26.256Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T01:02:27.562Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T01:03:05.410Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T01:03:06.795Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:01:06:02 +0000] \"POST /api/resetPassword/forget-password HTTP/1.1\" 404 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T01:06:02.733Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-10T01:17:09.115Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-10T01:17:11.009Z"}
+{"level":"info","message":"::1 - - [10/Jan/2025:01:17:14 +0000] \"POST /api/specialist/register HTTP/1.1\" 400 131 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-10T01:17:14.509Z"}
