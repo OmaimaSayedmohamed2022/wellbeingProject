@@ -14,16 +14,15 @@ const specialistSchema = new mongoose.Schema({
   sessionPrice: { type: Number, required: true },
   yearsExperience: { type: Number, required: true },
   sessionDuration: { type: Number, required: true },
-  files:[
-    {idOrPassport:{ type: String, required: true }} ,
-    {resume :{ type: String, rquired: true } },
-    {certificates :{ type: String, required: true }} ,
-    {ministryLicense:{ type: String,required: true } }, 
-    {associationMembership:{ type: String, required: true }} 
-  ]
- ,
-
-  specialties: {
+  files: {
+    idOrPassport: { type: String, required: true },
+    resume: { type: String, required: true },
+    certificates: { type: [String], required: true },
+    ministryLicense: { type: String, required: true },
+    associationMembership: { type: String, required: true }
+  },
+ 
+specialties: {
     psychologicalDisorders: [
       {
         type: String,
