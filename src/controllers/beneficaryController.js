@@ -79,9 +79,9 @@ export const updateBeneficiary= async(req,res)=>{
         message:"beneficiary is not found"
       })
     } 
-    res.status(200).json({
-     updatedBeneficiary: beneficiary
-    })
+   res.status(200).json({
+    message: 'updated beneficary successfully'
+  })
   } catch(error){
     console.error('Error updating beneficiary:', error.message || error);
     res.status(500).json({ message: error.message || 'Internal server error.' });
@@ -101,7 +101,6 @@ export const deleteBeneficiary=async(req,res)=>{
     const data =await Beneficiary.findByIdAndDelete(id)
     return res.status(200).json({
       message: "Beneficiary deleted successfully",
-      data
     });
 
   }
