@@ -23,9 +23,9 @@ const transporter = nodemailer.createTransport({
  * @param {string} text - Plain text content of the email.
  */
 
-console.log('SMTP Host:', process.env.E_HOST);
-console.log('SMTP Port:', process.env.E_PORT);
-console.log('SMTP User:', process.env.E_USER);
+// console.log('SMTP Host:', process.env.E_HOST);
+// console.log('SMTP Port:', process.env.E_PORT);
+// console.log('SMTP User:', process.env.E_USER);
 console.log('E_PASSWORD:', process.env.E_PASSWORD ? '*****' : 'Missing');
 export const sendMail = async (to, subject, text) => {
     try {

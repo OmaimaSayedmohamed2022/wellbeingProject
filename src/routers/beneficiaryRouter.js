@@ -1,6 +1,6 @@
 // routes/beneficiaryRoutes.js
 import express from 'express';
-import { createBeneficiary } from '../controllers/beneficaryController.js';
+import { createBeneficiary,getBeneficiaryById } from '../controllers/beneficaryController.js';
 import { beneficiaryValidation } from '../validations/beneficiaryValidation.js';
 
 const router = express.Router();
@@ -12,5 +12,8 @@ router.post(
   createBeneficiary
 )
 
+router.get(
+  '/beneficiary/:id',
+   getBeneficiaryById);
 
 export default router;
