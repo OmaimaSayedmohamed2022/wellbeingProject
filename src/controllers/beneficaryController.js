@@ -64,3 +64,50 @@ export const getBeneficiaryById = async (req, res) => {
   }
 };
 
+
+
+export const updateBeneficiary= async(req,res)=>{
+  try {
+   
+    const id =req.params.id  ;
+    const beneficiary = await Beneficiary.findByIdAndUpdate(id, req.body, {
+      new: true, 
+      runValidators: true,
+    })
+    if(!beneficiary|| !id){
+      return res.status(404).json({
+        message:"beneficiary is not found"
+      })
+    } 
+    res.status(200).json({
+     updatedBeneficiary: beneficiary
+    })
+  } catch(error){
+    console.error('Error updating beneficiary:', error.message || error);
+    res.status(500).json({ message: error.message || 'Internal server error.' });
+  }
+}
+
+
+export const deleteBeneficiary=async(req,res)=>{
+  try{
+    const id=req.params.id
+    const x =await Beneficiary.findById(id)
+    if(!x){
+      return res.status(404).json({
+        message:"beneficiary is not found to delete"
+      })
+    }
+    const data =await Beneficiary.findByIdAndDelete(id)
+    return res.status(200).json({
+      message: "Beneficiary deleted successfully",
+      data
+    });
+
+  }
+  catch(error){
+    console.error('Error updating beneficiary:', error.message || error);
+    res.status(500).json({ message: error.message || 'Internal server error.' });
+  }
+}
+
