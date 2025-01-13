@@ -41,3 +41,36 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: 'Server error.' });
   }
 };
+
+
+const blacklist = new Set();
+
+// Middleware to check if the token is blacklisted
+export const isTokenValid = (req, res, next) => {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized. Token is required.' });
+    }
+
+    if (blacklist.has(token)) {
+        return res.status(401).json({ message: 'Token is invalidated. Please log in again.' });
+    }
+
+    next();
+};
+
+export const logOutUser = (req, res) => {
+    try {
+        const token = req.headers.authorization?.split(' ')[1];
+        if (!token) {
+            return res.status(400).json({ message: 'Bad request. Token is missing.' });
+        }
+
+        blacklist.add(token);
+
+        res.status(200).json({ status: true, message: 'Logged out successfully.' });
+    } catch (error) {
+        console.error('Error in logOutUser:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};

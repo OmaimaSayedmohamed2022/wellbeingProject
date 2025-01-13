@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginUser } from '../controllers/authController.js';
+import { isTokenValid, loginUser, logOutUser,  } from '../controllers/authController.js';
 import { loginValidation } from '../validations/loginValidation.js';
 
 const router = express.Router();
@@ -10,6 +10,13 @@ router.post(
  loginValidation,
   loginUser
 )
+
+router.post('/logout',
+  // isLoggedIn,
+  isTokenValid ,
+  logOutUser
+)
+
 
 
 export default router;
