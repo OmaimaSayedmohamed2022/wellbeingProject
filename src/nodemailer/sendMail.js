@@ -26,7 +26,7 @@ const transporter = nodemailer.createTransport({
 // console.log('SMTP Host:', process.env.E_HOST);
 // console.log('SMTP Port:', process.env.E_PORT);
 // console.log('SMTP User:', process.env.E_USER);
-console.log('E_PASSWORD:', process.env.E_PASSWORD ? '*****' : 'Missing');
+// console.log('E_PASSWORD:', process.env.E_PASSWORD ? '*****' : 'Missing');
 export const sendMail = async (to, subject, text) => {
     try {
         const mailOptions = {
@@ -45,6 +45,22 @@ export const sendMail = async (to, subject, text) => {
 };
 
 
+<<<<<<< HEAD
+// transporter.verify((error, success) => {
+//     if (error) {
+//         console.error("SMTP Connection Error:", error);
+//     } else {
+//         console.log("SMTP Connection Successful");
+//     }
+// });
+
+// // Example usage
+// sendMail("omimasmohamed912@gmail.com", "Welcome to Wellbeing Day!", "Thank you for joining us!")
+//     .then(() => console.log("Email operation completed."))
+//     .catch((error) => console.error("Email operation failed:", error));
+// //     // console.log('email sent successfuly')
+
+=======
 transporter.verify((error, success) => {
     if (error) {
         console.error("SMTP Connection Error:", error);
@@ -52,3 +68,4 @@ transporter.verify((error, success) => {
         console.log("SMTP Connection Successful");
     }
 });
+>>>>>>> ba8f5046130994e4d6293f5b9696b089041f42a7

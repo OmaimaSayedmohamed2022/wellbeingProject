@@ -14,7 +14,9 @@ const BeneficiarySchema = new mongoose.Schema({
   nationality: { type: String, required: true },
   gender: { type: String, required: true },
   role: { type: String, enum: ['benificary','specialist' ,'admin'], default: 'benificary' },
+  imageUrl:{ type: String, required: false },
   createdAt: { type: Date, default: Date.now },
+
 
 });
 
