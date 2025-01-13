@@ -9,10 +9,17 @@ export const beneficiaryValidation = [
   body("email")
   .isEmail()
   .withMessage("Invalid email format")
-  .custom(async (value) => {
-    const existingBeneficiary = await Beneficiary.findOne({ email: value });
-    if (existingBeneficiary) {
-      throw new Error("Email already registered");
+  .custom(async (value, { req }) => {
+    const beneficiary = await Beneficiary.findById(req.params.id);
+    if (!beneficiary) {
+      throw new Error("Beneficiary not found");
+    }
+    // Check if the new email is different from the current one
+    if (value !== beneficiary.email) {
+      const existingBeneficiary = await Beneficiary.findOne({ email: value });
+      if (existingBeneficiary) {
+        throw new Error("Email already registered");
+      }
     }
     return true;
   }),
