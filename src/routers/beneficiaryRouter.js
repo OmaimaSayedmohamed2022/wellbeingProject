@@ -21,7 +21,7 @@ router.get(
    getBeneficiaryById);
 
 
-router.patch('/update/:id', updateBeneficiary)
+router.patch('/update/:id',beneficiaryValidation, updateBeneficiary)
 router.delete('/delete/:id',deleteBeneficiary)
 
 export default router;
