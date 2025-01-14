@@ -71,7 +71,7 @@ export const registerSpecialist = async (req, res) => {
     await specialist.save();
 
     res.status(201).json({
-      message: 'Specialist registered successfully.'});
+      message: 'Specialist registered successfully.',specialist});
   } catch (error) {
     console.error('Error registering specialist:', error.message || error);
     res.status(500).json({ message: error.message || 'Internal server error.' });
