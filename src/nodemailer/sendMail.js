@@ -45,7 +45,7 @@ export const sendMail = async (to, subject, text) => {
 };
 
 
-<<<<<<< HEAD
+
 // transporter.verify((error, success) => {
 //     if (error) {
 //         console.error("SMTP Connection Error:", error);
@@ -60,12 +60,5 @@ export const sendMail = async (to, subject, text) => {
 //     .catch((error) => console.error("Email operation failed:", error));
 // //     // console.log('email sent successfuly')
 
-=======
-transporter.verify((error, success) => {
-    if (error) {
-        console.error("SMTP Connection Error:", error);
-    } else {
-        console.log("SMTP Connection Successful");
-    }
-});
->>>>>>> ba8f5046130994e4d6293f5b9696b089041f42a7
+
+

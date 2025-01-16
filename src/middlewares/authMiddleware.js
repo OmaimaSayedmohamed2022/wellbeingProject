@@ -1,28 +1,32 @@
 import jwt from 'jsonwebtoken';
 import { Beneficiary } from '../models/beneficiaryModel.js';
-import logger from '../utils/logger.js';
+import logger from '../config/logger.js';
 
 export async function verifyToken(req, res, next) {
-  const token = req.headers.authorization?.split(' ')[1];
 
-  if (!token) {
-    logger.warn('Access denied - Token not found');
-    return res.status(401).json({ message: 'Token not found' });
-  }
-
-  try {
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await Beneficiary.findById(decodedToken.id);
-
-    if (!user) {
-      logger.warn('Access denied - User not found');
-      return res.status(404).json({ message: 'User not found' });
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+  
+    // console.log('Auth Header:', req.headers.authorization);
+    // console.log('Token:', token);
+    if (!token) {
+      return res.status(401).send({ error: 'No token provided' });
     }
-
-    req.user = user;
-    next();
-  } catch (error) {
-    logger.error('Error in verifyToken:', error);
-    return res.status(403).json({ message: 'Token invalid' });
-  }
-}
+  
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  
+      const beneficiary = await Beneficiary.findById(decoded.id);
+   
+      // console.log('Beneficiary:', beneficiary);
+  
+      if (!beneficiary) {
+        return res.status(403).send({ error: 'Beneficiary not found' });
+      }
+  
+      req.beneficiary = beneficiary;
+      next();
+    } catch (error) {
+      return res.status(403).send({ error: 'Invalid or expired token' });
+    }
+  };

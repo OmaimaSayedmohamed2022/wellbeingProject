@@ -8,7 +8,7 @@ const router = express.Router();
 // Route Beneficiary
 router.post(
   '/register/beneficiary',
-  beneficiaryValidation,
+  beneficiaryValidation(false),
   createBeneficiary
 )
 
@@ -21,7 +21,7 @@ router.get(
    getBeneficiaryById);
 
 
-router.patch('/update/:id', updateBeneficiary)
+router.patch('/update/:id',beneficiaryValidation(true), updateBeneficiary)
 router.delete('/delete/:id',deleteBeneficiary)
 
 export default router;

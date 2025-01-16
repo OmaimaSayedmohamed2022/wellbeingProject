@@ -1,12 +1,16 @@
 import express from 'express';
-import { getSessionTypes, submitSession } from '../controllers/sessionController.js';
+import { getSessionTypes ,createSession} from '../controllers/sessionController.js';
+import { verifyToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
 // Route to fetch session types
 router.get('/', getSessionTypes);
 
-// Route to submit session details
-router.post('/submit', submitSession);
+
+
+// router.post('/submit', submitSession);
+router.post('/create',verifyToken,createSession)
+// router.post('/payment',processPayment)
 
 export default router;
