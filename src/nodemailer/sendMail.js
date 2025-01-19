@@ -40,11 +40,8 @@ export const sendMail = async (to, subject, text) => {
     }
 };
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 98d2062b0e58d86dd2e473e712a4f5c62895e223
 // transporter.verify((error, success) => {
 //     if (error) {
 //         console.error("SMTP Connection Error:", error);
@@ -53,14 +50,10 @@ export const sendMail = async (to, subject, text) => {
 //     }
 // });
 
-<<<<<<< HEAD
+
 // // Example usage
 // sendMail("omimasmohamed912@gmail.com", "Welcome to Wellbeing Day!", "Thank you for joining us!")
 //     .then(() => console.log("Email operation completed."))
 //     .catch((error) => console.error("Email operation failed:", error));
 // //     // console.log('email sent successfuly')
 
-
-
-=======
->>>>>>> 98d2062b0e58d86dd2e473e712a4f5c62895e223

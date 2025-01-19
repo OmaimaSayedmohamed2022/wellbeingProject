@@ -77,3 +77,33 @@ export const registerSpecialist = async (req, res) => {
     res.status(500).json({ message: error.message || 'Internal server error.' });
   }
 };
+
+
+export const getSpecialistsByCategory = async (req, res) => {
+  const { category, subcategory } = req.body;
+
+  try {
+    if (!category || !subcategory) {
+      return res.status(400).json({ message: 'Category and subcategory are required.' });
+    }
+
+    const categoryField = `specialties.${category[0]}`; 
+
+    const matchingSpecialists = await Specialist.find({
+      [categoryField]: { $in: subcategory }}, 
+      '-files'
+    );
+
+    if (matchingSpecialists.length === 0) {
+      return res.status(404).json({ message: 'No specialists found for the selected category and subcategory.' });
+    }
+
+    res.status(200).json({
+      message: 'Specialists fetched successfully.',
+      specialists: matchingSpecialists,
+    });
+  } catch (error) {
+    console.error(`Error fetching specialists: ${error.message}`);
+    res.status(500).json({ message: 'Error fetching specialists.', error: error.message });
+  }
+};

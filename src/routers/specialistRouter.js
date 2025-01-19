@@ -1,5 +1,5 @@
 import express from 'express';
-import { registerSpecialist } from '../controllers/specialistController.js';
+import { registerSpecialist,getSpecialistsByCategory } from '../controllers/specialistController.js';
 import { specialistValidation } from '../validations/specialistValidation.js';
 import { uploadFiles } from '../middlewares/uploadFiles.js';
 
@@ -10,5 +10,7 @@ router.post('/register',
     uploadFiles,
     specialistValidation ,
      registerSpecialist);
+     
+router.get('/getByCategory',getSpecialistsByCategory)
 
 export default router;
