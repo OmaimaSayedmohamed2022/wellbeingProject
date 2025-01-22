@@ -983,3 +983,54 @@
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-01-19T22:07:05.940Z"}
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-01-19T22:07:08.957Z"}
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-19T22:07:10.734Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:12:00.924Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:12:06.888Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:12:09.163Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:12:10 +0000] \"POST /api/sessions/create HTTP/1.1\" 403 36 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:12:10.843Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:12:16.679Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:12:18.790Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:17:29.980Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:17:32.105Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:18:49 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 39 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:18:49.582Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:19:08 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 39 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:19:08.973Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:19:23 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 42 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:19:23.466Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:19:44.435Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:19:47.005Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:19:47 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 48 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:19:47.208Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:25:26.345Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:25:28.360Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:26:30 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 48 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:26:30.006Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:26:33 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 48 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:26:33.411Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:27:29.517Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:27:31.321Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:27:35 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 48 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:27:35.152Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:29:32.052Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:29:33.576Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:35:49.817Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:35:51.451Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:36:07.684Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:36:09.170Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:37:01.146Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:37:10.480Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:37:11.887Z"}
+{"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:37:15.352Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:37:15 +0000] \"POST /api/sessions/create HTTP/1.1\" 500 117 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:37:15.358Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:38:36.333Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:38:38.061Z"}
+{"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:38:45.180Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:38:45 +0000] \"POST /api/sessions/create HTTP/1.1\" 500 117 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:38:45.188Z"}
+{"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:40:11.242Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:40:11 +0000] \"POST /api/sessions/create HTTP/1.1\" 500 117 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:40:11.245Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:40:41.849Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:40:43.357Z"}
+{"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:40:43.542Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:40:43 +0000] \"POST /api/sessions/create HTTP/1.1\" 500 117 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:40:43.549Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:41:15.832Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:41:17.364Z"}
+{"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:41:22.145Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:41:22 +0000] \"POST /api/sessions/create HTTP/1.1\" 500 117 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:41:22.153Z"}
+{"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:41:24.338Z"}
+{"level":"info","message":"::1 - - [22/Jan/2025:15:41:24 +0000] \"POST /api/sessions/create HTTP/1.1\" 500 117 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-01-22T15:41:24.342Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T15:41:54.115Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T15:41:55.798Z"}
+{"level":"info","message":"New session created: 679111c4e45a77f1780c523e","timestamp":"2025-01-22T15:41:56.517Z"}
