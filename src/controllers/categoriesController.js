@@ -11,5 +11,27 @@ export const getSubcategories = (req, res) => {
   if (!categories[category]) {
     return res.status(404).send({ error: 'Category not found' });
   }
-  res.status(200).send(categories[category]);
+  const categoryNames = categories[category].map(item => 
+    typeof item === 'object' ? item.name : item
+  );
+  res.status(200).send(categoryNames);
 };
+
+
+
+export const getsubSubcategories = (req, res) => {
+  const { name } = req.params;
+  if (!name) {
+    return res.status(400).json({ error: "Name parameter is required" });
+  }
+  // console.log('categories',categories)
+  const category= Object.values(categories).flat().find(
+    (item) =>  typeof item === 'object'? item.name === name :item ===name
+  
+  );
+  if (!category) {
+    return res.status(404).send({ error: 'Category not found' });
+  }
+  res.status(200).send(category);
+};
+

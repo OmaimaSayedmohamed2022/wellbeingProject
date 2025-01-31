@@ -40,6 +40,8 @@ export const sendMail = async (to, subject, text) => {
     }
 };
 
+
+
 // transporter.verify((error, success) => {
 //     if (error) {
 //         console.error("SMTP Connection Error:", error);
@@ -47,4 +49,11 @@ export const sendMail = async (to, subject, text) => {
 //         console.log("SMTP Connection Successful");
 //     }
 // });
+
+
+// // Example usage
+// sendMail("omimasmohamed912@gmail.com", "Welcome to Wellbeing Day!", "Thank you for joining us!")
+//     .then(() => console.log("Email operation completed."))
+//     .catch((error) => console.error("Email operation failed:", error));
+// //     // console.log('email sent successfuly')
 

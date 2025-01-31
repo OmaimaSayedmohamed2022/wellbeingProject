@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { trusted } from 'mongoose';
 
 const sessionSchema = new mongoose.Schema(
   {
@@ -9,9 +9,11 @@ const sessionSchema = new mongoose.Schema(
     },
     subcategory: {
       type: String,
-      required: true,
+      required: function() {
+        return ['mentalHealth'].includes(this.category);
       
-    },
+    }
+  },
     sessionType: {
       type: String,
       required: true,
@@ -22,6 +24,29 @@ const sessionSchema = new mongoose.Schema(
       required: true,
       maxlength: 300,
     },
+    sessionDate:{
+      type:Date,
+      required:true
+    },
+    status: {
+      type: String,
+      enum: ['Scheduled', 'Completed', 'Cancelled'],
+      default: 'Scheduled',
+    },
+    beneficiary:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:'Beneficiary',
+      required:true
+
+    },
+  paymentStatus: { type: String, enum: ['Unpaid', 'Pending', 'Paid'], default: 'Unpaid' },
+  paymentDetails: {
+    transactionId: String,
+    amount: Number,
+    method: String, // Visa, MasterCard, Audi Bank
+  },
+
+  
     createdAt: {
       type: Date,
       default: Date.now,
