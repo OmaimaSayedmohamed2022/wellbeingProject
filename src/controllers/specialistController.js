@@ -107,3 +107,21 @@ export const getSpecialistsByCategory = async (req, res) => {
     res.status(500).json({ message: 'Error fetching specialists.', error: error.message });
   }
 };
+
+
+export const getSpecialistById = async(req,res)=>{
+ 
+  const{id}=req.params;
+
+  try{
+   
+    const specialist = await Specialist.findById(id)
+    if (!specialist) {
+      return res.status(404).json({ error: 'Specialist not found.' })
+    }
+      return res.status(201).json({message:'specialist gitting successfully',specialist})
+
+  }catch(error){
+    res.status(500).json({message:"error gitting specialist", error:error.message})
+  }
+};
