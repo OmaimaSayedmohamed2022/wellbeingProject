@@ -14,6 +14,7 @@ const specialistSchema = new mongoose.Schema({
   sessionPrice: { type: Number, required: true },
   yearsExperience: { type: Number, required: true },
   sessionDuration: { type: Number, required: true },
+  availableSlots: {type:[String] } ,
   files: {
     idOrPassport: { type: String, required: true },
     resume: { type: String, required: true },

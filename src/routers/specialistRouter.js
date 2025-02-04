@@ -1,5 +1,5 @@
 import express from 'express';
-import { registerSpecialist,getSpecialistsByCategory,getSpecialistById,getAllSpecialists } from '../controllers/specialistController.js';
+import { registerSpecialist,getSpecialistsByCategory,getSpecialistById, updateSpecialist, deleteSpecialist, addAvailableSlot } from '../controllers/specialistController.js';
 import { specialistValidation } from '../validations/specialistValidation.js';
 import { uploadFiles } from '../middlewares/uploadFiles.js';
 
@@ -13,6 +13,7 @@ router.post('/register',
      
 router.get('/getByCategory',getSpecialistsByCategory)
 router.get('/getById/:id',getSpecialistById)
-router.get('/getSpecialists',getAllSpecialists)
-
+router.put('/update/:id',updateSpecialist)
+router.delete('/delete/:id',deleteSpecialist)
+router.put('/addSlots/:id',addAvailableSlot)
 export default router;
