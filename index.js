@@ -10,8 +10,7 @@ import categoriesRouter from './src/routers/categoriesRouter.js';
 import sessionRouter from './src/routers/sessionRouter.js';
 import logger from './src/config/logger.js';
 import cors from 'cors'
-
-
+import advertisementRouter from './src/routers/advRouter.js'
 dotenv.config();
 
 const app = express();
@@ -37,7 +36,7 @@ app.use('/api/resetPassword', resetPasswordRouter);
 
 app.use('/api/categories', categoriesRouter);
 app.use('/api/sessions', sessionRouter);
-
+app.use('/api/advertisement',advertisementRouter)
 
 const PORT = process.env.PORT || 5005;
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
