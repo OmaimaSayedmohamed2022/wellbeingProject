@@ -1,7 +1,7 @@
 import Admin from'../models/adminModel.js';
 
 exports.registerAdmin = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     const existingAdmin = await Admin.findOne({ email });
@@ -9,7 +9,7 @@ exports.registerAdmin = async (req, res) => {
       return res.status(400).json({ message: 'Admin already exists' });
     }
 
-    const admin = new Admin({ username, email, password });
+    const admin = new Admin({ email, password });
     await admin.save();
 
     const token = admin.generateToken();
