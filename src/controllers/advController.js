@@ -12,6 +12,7 @@ export const addAdvertisement =async (req, res) => {
      adv
     })
     }
+    
     catch (error) {
         console.error('Error adding Advertisment :', error.message || error);
         res.status(500).json({ message: error.message || 'Internal server error.' });

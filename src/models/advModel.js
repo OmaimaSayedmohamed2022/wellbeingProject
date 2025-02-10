@@ -12,6 +12,7 @@ const advSchema= new mongoose.Schema({
     }
 })
 
+
 const Adv = mongoose.model('Adv', advSchema);
 
 export default Adv;
