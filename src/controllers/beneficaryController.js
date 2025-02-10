@@ -160,3 +160,42 @@ export const addImageBeneficiary = async (req, res) => {
     res.status(500).json({ message: error.message || 'Internal server error.' });
   }
 };
+
+export const countBeneficiary = async (req, res) => {
+  try {
+    const count = await Beneficiary.countDocuments(); 
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(500).json({ message: "Error counting specialists", error: error.message });
+  }
+};
+
+
+export const countGender = async (req, res) => {
+  try {
+    const total = await Beneficiary.countDocuments(); // إجمالي عدد المستفيدين
+    if (total === 0) {
+      return res.status(200).json({ message: "No beneficiaries found", male: 0, female: 0, malePercentage: 0, femalePercentage: 0 });
+    }
+
+    const maleCount = await Beneficiary.countDocuments({ gender: { $in: ["Male", "male"] } });
+    const femaleCount = await Beneficiary.countDocuments({ gender: { $in: ["Female", "female"] } });
+
+    const malePercentage = ((maleCount / total) * 100).toFixed(2); 
+    const femalePercentage = ((femaleCount / total) * 100).toFixed(2) 
+
+    res.status(200).json({
+      total,
+      male: maleCount,
+      female: femaleCount,
+      malePercentage: `${malePercentage}%`,
+      femalePercentage: `${femalePercentage}%`
+    });
+    res.status(200).json({
+      male: maleCount,
+      female: femaleCount
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error counting genders", error: error.message });
+  }
+};

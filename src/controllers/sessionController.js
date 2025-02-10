@@ -53,6 +53,14 @@ export const createSession = async (req, res) => {
   }
 };
 
+export const countSessions = async (req, res) => {
+  try {
+    const count = await Session.countDocuments();
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(500).json({ message: "Error counting session", error: error.message });
+  }
+};
 
 
 

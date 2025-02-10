@@ -1,6 +1,6 @@
 // routes/beneficiaryRoutes.js
 import express from 'express';
-import { addImageBeneficiary, createBeneficiary,deleteBeneficiary,getBeneficiaryById, updateBeneficiary } from '../controllers/beneficaryController.js';
+import { addImageBeneficiary, countBeneficiary, countGender, createBeneficiary,deleteBeneficiary,getBeneficiaryById, updateBeneficiary } from '../controllers/beneficaryController.js';
 import { beneficiaryValidation } from '../validations/beneficiaryValidation.js';
 
 const router = express.Router();
@@ -23,5 +23,6 @@ router.get(
 
 router.patch('/update/:id',beneficiaryValidation(true), updateBeneficiary)
 router.delete('/delete/:id',deleteBeneficiary)
-
+router.get('/count', countBeneficiary)
+router.get('/countGender',countGender)
 export default router;
