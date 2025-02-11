@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 // Admin schema - can include additional fields unique to admin users
 const adminSchema = new mongoose.Schema({
@@ -38,4 +38,5 @@ adminSchema.methods.generateToken = function () {
 };
 
 // Export the Admin model as a module
-module.exports = mongoose.model('Admin', adminSchema);
+export default mongoose.model('Admin', adminSchema);
+

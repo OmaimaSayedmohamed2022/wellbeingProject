@@ -1,32 +1,39 @@
 import jwt from 'jsonwebtoken';
 import { Beneficiary } from '../models/beneficiaryModel.js';
-import logger from '../config/logger.js';
+import Specialist from '../models/specialistModel.js';
+import  Admin  from '../models/adminModel.js';
 
-export async function verifyToken(req, res, next) {
-
-    const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(' ')[1];
-  
-    // console.log('Auth Header:', req.headers.authorization);
-    // console.log('Token:', token);
+// Middleware to check if user is authenticated
+export const verifyToken = async (req, res, next) => {
+  try {
+    const token = req.header('Authorization')?.split(' ')[1];
     if (!token) {
-      return res.status(401).send({ error: 'No token provided' });
+      return res.status(401).json({ message: 'Access denied. No token provided.' });
     }
-  
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  
-      const beneficiary = await Beneficiary.findById(decoded.id);
-   
-      // console.log('Beneficiary:', beneficiary);
-  
-      if (!beneficiary) {
-        return res.status(403).send({ error: 'Beneficiary not found' });
-      }
-  
-      req.beneficiary = beneficiary;
-      next();
-    } catch (error) {
-      return res.status(403).send({ error: 'Invalid or expired token' });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // Attach user details to request object
+
+    let user = await Admin.findById(req.user.id);
+    if (!user) user = await Specialist.findById(req.user.id);
+    if (!user) user = await Beneficiary.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
     }
+
+    req.user.role = user.role; // Assign role to request object
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Invalid token.' });
+  }
+};
+
+// Middleware to check if user has a specific role
+export const authorizeRole = (roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({ message: 'Access denied. Insufficient permissions.' });
+    }
+    next();
   };
+};

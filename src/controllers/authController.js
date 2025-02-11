@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { Beneficiary } from '../models/beneficiaryModel.js';
 import Specialist  from '../models/specialistModel.js';
+import Admin from '../models/adminModel.js';
 import logger from '../config/logger.js';
 
 export const loginUser = async (req, res) => {
@@ -15,6 +16,11 @@ export const loginUser = async (req, res) => {
     if (!user) {
       user = await Specialist.findOne({ email });
       userType = 'Specialist';
+    }
+
+    if (!user) {
+      user = await Admin.findOne({ email }); 
+      userType = 'Admin';
     }
 
     if (!user) {
@@ -56,3 +62,4 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: 'Server error.' });
   }
 };
+
