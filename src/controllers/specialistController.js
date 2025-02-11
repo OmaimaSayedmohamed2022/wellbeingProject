@@ -97,6 +97,9 @@ export const getSpecialistById = async(req,res)=>{
 export const getAllSpecialists= async(req,res)=>{
 try{
  const specialists = await Specialist.find()
+ if(!specialists){
+  res.status(400).json("no specialist found")
+ }
  return res.status(201).json({message:'specialists gitting successfully',specialists})
 }catch(error){
   res.status(500).json({message:"error gitting specialists", error:error.message})

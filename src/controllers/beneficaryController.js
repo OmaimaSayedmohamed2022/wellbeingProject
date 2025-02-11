@@ -7,7 +7,7 @@ import { uploadFiles } from '../middlewares/uploadFiles.js';
 
 // Create a new Beneficiary
 export const createBeneficiary = async (req, res) => {
-  const { firstName, lastName, email, password, phone, profession, homeAddress, age, region, nationality, gender } = req.body;
+  const { firstName, lastName, email, password, phone, profession, homeAddress, age, region, nationality, gender, sessions } = req.body;
 
   try {
     const existingBeneficiary = await Beneficiary.findOne({ email });
@@ -31,6 +31,7 @@ export const createBeneficiary = async (req, res) => {
       region,
       nationality,
       gender,
+      sessions,
     });
 
     await newBeneficiary.save();
@@ -44,23 +45,38 @@ export const createBeneficiary = async (req, res) => {
 
 // get benificary profile by id
 export const getBeneficiaryById = async (req, res) => {
-  const id=req.params.id
+  const id = req.params.id
 
-  // Validate ID format
   if (!mongoose.Types.ObjectId.isValid(id)) {
     logger.warn(`Invalid Beneficiary ID: ${id}`);
     return res.status(400).json({ error: 'Invalid ID format' });
   }
 
   try {
-    const beneficiary = await Beneficiary.findById(id, { password: 0,createdAt:0,__v:0 });
+    const beneficiary = await Beneficiary.findById(id, { password: 0,createdAt:0,__v:0 }).populate({
+      path: "sessions",  
+      select: "sessionDate status", 
+    });
     if (!beneficiary) {
       logger.warn(`Beneficiary not found for ID: ${id}`);
       return res.status(404).json({ error: 'Beneficiary not found' });
     }
 
+    const scheduledSessions = beneficiary.sessions.filter(session => session.status === "Scheduled");
+    const completedSessions = beneficiary.sessions.filter(session => session.status === "Completed");
+
     logger.info(`Beneficiary profile retrieved for ID: ${id}`);
-    res.status(200).json(beneficiary);
+    res.status(200).json({
+      firstName: beneficiary.firstName,
+      lastName: beneficiary.lastName,
+      age: beneficiary.age,
+      gender: beneficiary.gender,
+      nationality: beneficiary.nationality,
+      profession: beneficiary.profession,
+      imageUrl: beneficiary.imageUrl, 
+      scheduledSessions,
+      completedSessions
+    });
   } catch (error) {
     logger.error('Error in getBeneficiaryById:', error);
     res.status(500).json({ error: 'Server error' });

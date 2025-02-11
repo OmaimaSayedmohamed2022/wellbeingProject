@@ -8,6 +8,7 @@ import SpecialistRouter from './src/routers/specialistRouter.js';
 import  resetPasswordRouter  from './src/routers/resetPasswordRouter.js';
 import categoriesRouter from './src/routers/categoriesRouter.js';
 import sessionRouter from './src/routers/sessionRouter.js';
+import treatmentProgramRouter from './src/routers/treatmentProgramRouter.js';
 import logger from './src/config/logger.js';
 import cors from 'cors'
 
@@ -37,7 +38,7 @@ app.use('/api/resetPassword', resetPasswordRouter);
 
 app.use('/api/categories', categoriesRouter);
 app.use('/api/sessions', sessionRouter);
-
+app.use('/api/treatmentProgram', treatmentProgramRouter);
 
 const PORT = process.env.PORT || 5005;
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
