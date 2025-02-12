@@ -28,7 +28,7 @@ const BeneficiarySchema = new mongoose.Schema({
     },
   homeAddress: { 
     type: String, 
-    required: true 
+    required: false
   },
   age: {
      type: Number,
@@ -40,17 +40,18 @@ const BeneficiarySchema = new mongoose.Schema({
      },
   nationality: { 
     type: String, 
-    required: true 
+    required: false
   },
   gender: {
      type: String, 
-     required: true 
+     required: false
     },
   role: { 
     type: String, 
     enum: ['benificary','specialist' ,'admin'], 
-    default: 'benificary' },
-  imageUrl:{ 
+    default: 'benificary' 
+  },
+    imageUrl:{ 
     type: String, 
     required: false 
   },

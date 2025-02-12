@@ -1,4 +1,5 @@
 import {Beneficiary} from '../models/beneficiaryModel.js';
+import Specialist from '../models/specialistModel.js';
 import  bcrypt from "bcryptjs"
 import logger from '../config/logger.js';
 import mongoose from 'mongoose';
@@ -143,36 +144,54 @@ export const deleteBeneficiary=async(req,res)=>{
 
 
 // add image to beneficary profile 
-export const addImageBeneficiary = async (req, res) => {
+export const addImageToUser = async (req, res) => {
   try {
     const id = req.params.id;
+    
     uploadFiles(req, res, async (err) => {
       if (err) {
-        console.error('Error uploading files:', err.message);
+        console.error("Error uploading files:", err.message);
         return res.status(400).json({ message: err.message });
       }
-      const beneficiary = await Beneficiary.findById(id);
-      if (!beneficiary) {
-        return res.status(404).json({ message: 'Beneficiary not found.' });
+
+      // Check if the user exists in Beneficiaries or Specialists
+      let user = await Beneficiary.findById(id);
+      let userType = "Beneficiary";
+
+      if (!user) {
+        user = await Specialist.findById(id);
+        userType = "Specialist";
       }
-      // Check and upload image to Cloudinary
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found." });
+      }
+
+      // Upload image to Cloudinary if provided
       if (req.files?.Image?.[0]) {
         const uploadedImageUrl = await uploadToCloudinary(req.files.Image[0]);
-        req.body.imageUrl = uploadedImageUrl; 
+        req.body.imageUrl = uploadedImageUrl;
       }
-      // update beneficiary
-      const updatedBeneficiary = await Beneficiary.findByIdAndUpdate(id, req.body, {
-        new: true,
-        runValidators: true,
-      });
+
+      // Update user (either Beneficiary or Specialist)
+      const updatedUser =
+        userType === "Beneficiary"
+          ? await Beneficiary.findByIdAndUpdate(id, req.body, {
+              new: true,
+              runValidators: true,
+            })
+          : await Specialist.findByIdAndUpdate(id, req.body, {
+              new: true,
+              runValidators: true,
+            });
 
       res.status(200).json({
-        message: 'image added successfully.',
-        updatedBeneficiary,
+        message: `Image added successfully to ${userType}.`,
+        updatedUser,
       });
     });
   } catch (error) {
-    console.error('Error adding image beneficiary:', error.message || error);
-    res.status(500).json({ message: error.message || 'Internal server error.' });
+    console.error("Error adding image to user:", error.message || error);
+    res.status(500).json({ message: error.message || "Internal server error." });
   }
 };

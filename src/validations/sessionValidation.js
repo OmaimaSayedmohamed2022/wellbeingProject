@@ -17,11 +17,15 @@ export const sessionValidation = [
     .withMessage('Session type is required')
     .isIn(['جلسة فورية', 'جلسة مجانية'])
     .withMessage('Invalid session type'),
-
+    body('sessionDate')
+    .notEmpty()
+    .withMessage('Session date is required')
+    .isISO8601()
+    .withMessage('Invalid date'),
   body('description')
     .notEmpty()
     .withMessage('Description is required')
-    .isLength({ min: 300 })
+    .isLength({ max: 300 })
     .withMessage('Description must be at least 10 characters long'),
 
   validateRequest,

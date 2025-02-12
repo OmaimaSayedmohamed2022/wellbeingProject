@@ -1,11 +1,12 @@
-import { metastore } from "googleapis/build/src/apis/metastore/index.js";
+
 import logger from "../config/logger.js";
 import Session from "../models/sessionModel.js";
 import mongoose from "mongoose";
-import moment from "moment";
 import { categories } from "../constants/categories.js";
-import axios from "axios";
-// Mocked session types
+import Specialist from "../models/specialistModel.js";
+import { Beneficiary } from "../models/beneficiaryModel.js";
+import moment from "moment"; 
+
 const sessionTypes = ["جلسة فورية", "جلسة مجانية"];
 
 // Controller to fetch session types
@@ -13,12 +14,6 @@ export const getSessionTypes = (req, res) => {
   res.json(sessionTypes);
 };
 
-const availableSlots = [
-  "2025-01-20T09:00",
-  "2025-01-20T14:30",
-  "2025-01-21T10:00",
-  "2025-01-23T14:30",
-];
 
 export const createSession = async (req, res) => {
   try {
@@ -32,39 +27,90 @@ export const createSession = async (req, res) => {
       specialist,
     } = req.body;
 
-    // Ensure the authenticated Session exists
-    if (!req.Session) {
-      return res
-        .status(403)
-        .send({ error: "Unauthorized request. No Session found." });
+    console.log("Received sessionDate from request:", sessionDate);
+
+    // Check if the specialist exists
+    const specialistDoc = await Specialist.findById(specialist);
+    if (!specialistDoc) {
+      return res.status(404).json({ error: "Specialist not found." });
     }
+
+    console.log("Specialist found. Available slots:", specialistDoc.availableSlots);
+
+    // Function to normalize date format
+    const normalizeDate = (dateString) => {
+      const parsedDate = new Date(dateString);
+      return isNaN(parsedDate) ? null : parsedDate.toISOString();
+    };
+
+    // Convert sessionDate to ISO format
+    const parsedSessionDate = normalizeDate(sessionDate);
+
+    if (!parsedSessionDate) {
+      return res.status(400).json({ error: "Invalid date format" });
+    }
+
+    // Normalize available slots
+    const normalizedSlots = specialistDoc.availableSlots
+      .map(slot => normalizeDate(slot))
+      .filter(slot => slot !== null); // Remove invalid dates
+
+    // Check if the requested date is in available slots
+    if (!normalizedSlots.includes(parsedSessionDate)) {
+      console.log("Comparison failed! Date not found in available slots.");
+      return res.status(400).json({ error: "Selected date is not available." });
+    }
+
+    // Remove booked slot from available slots
+    specialistDoc.availableSlots = specialistDoc.availableSlots.filter(
+      (slot) => normalizeDate(slot) !== parsedSessionDate
+    );
+    await specialistDoc.save();
+
+    // Convert `sessionDate` to a proper Date object for MongoDB storage
+    const sessionDateObj = moment.utc(parsedSessionDate).toDate();
+
+    console.log("Final sessionDate to be saved:", sessionDateObj);
 
     // Create a new session
     const newSession = new Session({
-      Session: req.Session._id,
-      sessionDate,
+      sessionDate: sessionDateObj,
       sessionType,
       category,
       subcategory,
       description,
       beneficiary,
-      specialist
+      specialist,
     });
 
     await newSession.save();
 
-    res.status(201).send({
+    console.log("Session created successfully:", newSession);
+
+    // Add session to specialist's session list
+    await Specialist.findByIdAndUpdate(
+      specialist,
+      { $push: { sessions: newSession._id } },
+      { new: true, runValidators: false }
+    );
+    
+    await Beneficiary.findByIdAndUpdate(
+      beneficiary,
+      { $push: { sessions: newSession._id } },
+      { new: true, runValidators: false }
+    );
+    res.status(201).json({
       message: "Session created successfully.",
       session: newSession,
     });
-    logger.info(`New session created: ${newSession._id}`);
   } catch (error) {
-    logger.error(`Error creating session: ${error.message}`);
-    res
-      .status(500)
-      .send({ error: "Internal server error", details: error.message });
+    console.error("Error creating session:", error);
+    res.status(500).json({ error: "Internal server error", details: error.message });
   }
 };
+
+
+
 
 // get all sessions
 export const getSessions = async (req, res) => {

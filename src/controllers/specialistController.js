@@ -106,3 +106,116 @@ try{
   }
 
 }
+
+export const updateSpecialist = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedData = await Specialist.findByIdAndUpdate(id,req.body,{ new: true });
+
+    if (!updatedData ||!id) {
+      return res.status(404).json({ message: 'Specialist not found' });
+    }
+
+    return res.status(200).json({message:"specilist updated sucessfully ",updatedData});
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const deleteSpecialist = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await Specialist.findByIdAndDelete(id)
+
+    if (!data ||!id) {
+      return res.status(404).json({ message: 'Specialist not found' });
+    }
+
+    return res.status(200).json({
+      message:" specialist deleted successfully " ,
+      data});
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const addAvailableSlot = async (req, res) => {
+  try {
+    const { id } = req.params; 
+    const { date } = req.body; 
+    if (!date) {
+      return res.status(400).json({ message: "Date are required." });
+    }
+
+    const slotString = `${date}`;
+
+    const specialist = await Specialist.findById(id);
+    if (!specialist) {
+      return res.status(404).json({ message: "Specialist not found" });
+    }
+
+    if (specialist.availableSlots.includes(slotString)) {
+      return res.status(400).json({ message: `Slot ${slotString} is already occupied.` });
+    }
+
+    const updatedSpecialist = await Specialist.findByIdAndUpdate(
+      id,
+      { $push: { availableSlots: slotString } },
+      { new: true, runValidators: false } 
+)
+    res.status(200).json({
+      message: "Added Slot ",
+      availableSlots: updatedSpecialist.availableSlots,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error occured", error: error.message });
+  }
+};
+
+
+export const deleteAvailableSlot = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { date, time } = req.body;
+
+    if (!date || !time) {
+      return res.status(400).json({ message: "Date and time are required." });
+    }
+
+    const slotString = `${date} ${time}`;
+
+    const specialist = await Specialist.findById(id);
+    if (!specialist) {
+      return res.status(404).json({ message: "Specialist not found" });
+    }
+
+    if (!specialist.availableSlots.includes(slotString)) {
+      return res.status(400).json({ message: `Slot ${slotString} not found.` });
+    }
+
+    const updatedSpecialist = await Specialist.findByIdAndUpdate(
+      id,
+      { $pull: { availableSlots: slotString } },
+      { new: true, runValidators: false }
+    );
+
+    res.status(200).json({
+      message: "Slot removed successfully",
+      availableSlots: updatedSpecialist.availableSlots,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error occurred", error: error.message });
+  }
+};
+
+
+
+export const countSpecialist = async (req, res) => {
+  try {
+    const count = await Specialist.countDocuments(); 
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(500).json({ message: "Error counting specialists", error: error.message });
+  }
+};
+
