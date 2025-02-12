@@ -199,3 +199,25 @@ export const countGender = async (req, res) => {
     res.status(500).json({ message: "Error counting genders", error: error.message });
   }
 };
+
+
+export const getUsersAtMonth = async (req, res) => {
+  try {
+    const usersPerMonth = await Beneficiary.aggregate([
+      {
+        $group: {
+          _id: { 
+            year: { $year: "$createdAt" }, 
+            month: { $month: "$createdAt" }
+          },
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { "_id.year": 1, "_id.month": 1 } }
+    ]);
+
+    res.status(200).json(usersPerMonth);
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong!" });
+  }
+};
