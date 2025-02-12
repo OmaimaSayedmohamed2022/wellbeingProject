@@ -1,31 +1,27 @@
 import express from 'express';
-import { registerSpecialist,getSpecialistsByCategory, getAllSpecialists,
-    getSpecialistsAttendanceRate, getAttendanceRate, getSpecialtiesComparison,
-    getTopSpecialists, getBottomSpecialists, searchSpecialists, confirmSpecialist,
-    updateSpecialistAvailability, getUnconfirmedSpecialists, getSpecialistById } 
+import { registerSpecialist,getSpecialistsByCategory, getAllSpecialists,getSpecialistById,
+    updateSpecialist,deleteSpecialist,addAvailableSlot,deleteAvailableSlot
+ }
+    // getSpecialistsAttendanceRate, getAttendanceRate, getSpecialtiesComparison,
+    //  searchSpecialists, confirmSpecialist,
+    // updateSpecialistAvailability, } 
     from '../controllers/specialistController.js';
 import { specialistValidation } from '../validations/specialistValidation.js';
-import { verifyToken, authorizeRole } from '../middlewares/authMiddleware.js';
 import { uploadFiles } from '../middlewares/uploadFiles.js';
 
 const router = express.Router();
-const adminRouter = express.Router();
+const adminRouter = express.Router()
+
 
 adminRouter.get('/getAll', getAllSpecialists);
-adminRouter.get('/search', searchSpecialists);
-adminRouter.get('/topSpecialists', getTopSpecialists);
-adminRouter.get('/bottomSpecialists', getBottomSpecialists);
-adminRouter.get('/unConfirmed', getUnconfirmedSpecialists);
-adminRouter.get('/specialistsAttendanceRate', getSpecialistsAttendanceRate);
-adminRouter.get('/overallAttendanceRate', getAttendanceRate);
-adminRouter.get('/specialtiesComparison', getSpecialtiesComparison);
-adminRouter.patch('/confirm/:specialistId', confirmSpecialist);
-adminRouter.put('/isAvailable/:specialistId', updateSpecialistAvailability);
-
-router.use('/admin', authorizeRole(['admin']), adminRouter);
 
 router.post('/register', uploadFiles, specialistValidation, registerSpecialist);
 router.get('/getByCategory', getSpecialistsByCategory);
 router.get('/getById/:id', getSpecialistById);
+router.patch('/update/:id',updateSpecialist)
+router.delete('/delete/:id',deleteSpecialist)
+router.post('/addSlots/:id',addAvailableSlot)
+router.delete('/deleteSlots/:id',deleteAvailableSlot)
 
 export default router;
+

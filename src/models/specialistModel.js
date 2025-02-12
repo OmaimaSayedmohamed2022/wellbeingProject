@@ -88,6 +88,14 @@ specialties: {
       },
     ],
   },
+  imageUrl:{
+    type: String,
+    required: false
+  },
+  availableSlots: {
+    type: [String], 
+    default: [],  
+  },
 });
 
 const Specialist = mongoose.model('Specialist', specialistSchema);

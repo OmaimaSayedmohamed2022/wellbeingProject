@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { Beneficiary } from '../models/beneficiaryModel.js';
 import Specialist from '../models/specialistModel.js';
-import  Admin  from '../models/adminModel.js';
+import { Admin } from '../models/adminModel.js';
 
 // Middleware to check if user is authenticated
 export const verifyToken = async (req, res, next) => {

@@ -1,6 +1,6 @@
 // routes/beneficiaryRoutes.js
 import express from 'express';
-import { addImageBeneficiary, createBeneficiary,deleteBeneficiary,getBeneficiaryById, updateBeneficiary } from '../controllers/beneficaryController.js';
+import { addImageToUser, createBeneficiary,deleteBeneficiary,getBeneficiaryById, updateBeneficiary } from '../controllers/beneficaryController.js';
 import { beneficiaryValidation } from '../validations/beneficiaryValidation.js';
 
 const router = express.Router();
@@ -14,7 +14,7 @@ router.post(
 
 router.patch(
   '/addImage/:id',
-addImageBeneficiary
+addImageToUser
 )
 router.get(
   '/beneficiary/:id',
