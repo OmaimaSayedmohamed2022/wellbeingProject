@@ -176,13 +176,13 @@ export const addAvailableSlot = async (req, res) => {
 export const deleteAvailableSlot = async (req, res) => {
   try {
     const { id } = req.params;
-    const { date, time } = req.body;
+    const { date } = req.body;
 
-    if (!date || !time) {
-      return res.status(400).json({ message: "Date and time are required." });
+    if (!date ) {
+      return res.status(400).json({ message: "Date is required." });
     }
 
-    const slotString = `${date} ${time}`;
+    const slotString = `${date}`;
 
     const specialist = await Specialist.findById(id);
     if (!specialist) {
