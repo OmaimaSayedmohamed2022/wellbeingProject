@@ -237,11 +237,3 @@ export const deleteAvailableSlot = async (req, res) => {
   }
 };
 
-export const countSpecialist = async (req, res) => {
-  try {
-    const count = await Specialist.countDocuments(); 
-    res.status(200).json({ count });
-  } catch (error) {
-    res.status(500).json({ message: "Error counting specialists", error: error.message });
-  }
-};
