@@ -1,5 +1,5 @@
 import { addAdvertisement, deleteAdvertisement, getAllAdvertisements, updateAdvertisement } from '../controllers/advController.js';
-
+import express from 'express'
 const router = express.Router();
 
 // Error here :

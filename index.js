@@ -9,6 +9,7 @@ import  resetPasswordRouter  from './src/routers/resetPasswordRouter.js';
 import categoriesRouter from './src/routers/categoriesRouter.js';
 import sessionRouter from './src/routers/sessionRouter.js';
 import logger from './src/config/logger.js';
+import adminRouter from './src/routers/adminRouter.js'
 import cors from 'cors'
 import advertisementRouter from './src/routers/advRouter.js'
 dotenv.config();
@@ -33,6 +34,8 @@ app.use('/api/beneficiaries', beneficiaryRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/specialist', SpecialistRouter);
 app.use('/api/resetPassword', resetPasswordRouter);
+
+app.use('/api/admin', adminRouter)
 
 app.use('/api/categories', categoriesRouter);
 app.use('/api/sessions', sessionRouter);

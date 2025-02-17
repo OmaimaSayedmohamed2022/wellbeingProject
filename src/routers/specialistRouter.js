@@ -13,7 +13,7 @@ router.post('/register',
      
 router.get('/getByCategory',getSpecialistsByCategory)
 router.get('/getById/:id',getSpecialistById)
-router.put('/update/:id',updateSpecialist)
+router.put('/update',updateSpecialist)
 router.delete('/delete/:id',deleteSpecialist)
 router.put('/addSlots/:id',addAvailableSlot)
 router.delete('/deleteSlots/:id',deleteAvailableSlot)

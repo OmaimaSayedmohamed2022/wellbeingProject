@@ -138,7 +138,7 @@ try{
 
 export const updateSpecialist = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body.id;
     const updatedData = await Specialist.findByIdAndUpdate(id,req.body,{ new: true });
 
     if (!updatedData ||!id) {

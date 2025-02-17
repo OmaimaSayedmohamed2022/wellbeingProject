@@ -1079,3 +1079,11 @@
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T16:18:25.394Z"}
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-01-22T16:18:28.161Z"}
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-01-22T16:18:29.538Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-17T15:28:26.542Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-17T15:28:28.272Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-17T18:06:32.075Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-17T18:06:33.774Z"}
+{"level":"info","message":"::1 - - [17/Feb/2025:18:06:34 +0000] \"GET /api/beneficiary/count HTTP/1.1\" 404 160 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-17T18:06:34.282Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-17T18:09:07.631Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-17T18:09:09.352Z"}
+{"level":"info","message":"::1 - - [17/Feb/2025:18:09:12 +0000] \"GET /api/beneficiary/count HTTP/1.1\" 404 160 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-17T18:09:12.288Z"}
