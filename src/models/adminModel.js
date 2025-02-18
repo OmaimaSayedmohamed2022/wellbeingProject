@@ -11,6 +11,10 @@ import  mongoose from 'mongoose';
     required: true,
     default: 'admin' 
   },
+  imageUrl:{ 
+    type: String, 
+    required: false 
+  },
   dateOfJoining: { type: Date, default: Date.now },
 });
 

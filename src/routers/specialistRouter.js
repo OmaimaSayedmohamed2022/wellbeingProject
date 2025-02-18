@@ -10,10 +10,10 @@ import { specialistValidation } from '../validations/specialistValidation.js';
 import { uploadFiles } from '../middlewares/uploadFiles.js';
 
 const router = express.Router();
-const adminRouter = express.Router()
+// const adminRouter = express.Router()
 
 
-adminRouter.get('/getAll', getAllSpecialists);
+router.get('/getAll', getAllSpecialists);
 
 router.post('/register', uploadFiles, specialistValidation, registerSpecialist);
 router.get('/getByCategory', getSpecialistsByCategory);
