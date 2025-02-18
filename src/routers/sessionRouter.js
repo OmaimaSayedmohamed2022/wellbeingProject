@@ -8,7 +8,9 @@ const router = express.Router();
 // Route to fetch session types
 router.get('/', getSessionTypes);
 
-router.post('/create', verifyToken , sessionMiddleware , createSession)
+router.post('/create', 
+    verifyToken , sessionMiddleware ,
+     createSession)
 // router.post('/payment',processPayment)
 router.get('/count', countSessions)
 export default router;

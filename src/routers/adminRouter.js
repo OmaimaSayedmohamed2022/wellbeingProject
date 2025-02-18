@@ -1,4 +1,4 @@
-import { countBeneficiary, countGender, countSpecialist, getAllUpcomingSessions, getSessionStatistics, getUsersAtMonth } from "../controllers/adminController.js";
+import { calPayments, countAdv, countBeneficiary, countCompletedSessions, countGender, countSpecialist, getAllUpcomingSessions, getSessionStatistics, getUsersAtMonth } from "../controllers/adminController.js";
 import express from 'express'
 
 const router = express.Router();
@@ -14,4 +14,9 @@ router.get('/specialist/count',countSpecialist)
 // statistics 
 router.get('/stat', getSessionStatistics);
 router.get('/all',getAllUpcomingSessions)
+
+router.get('/countComplete',countCompletedSessions)
+router.get('/countAdv', countAdv)
+
+router.get('/calcPayments', calPayments)
 export default router

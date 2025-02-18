@@ -4,3 +4,7 @@
 {"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:40:43.542Z"}
 {"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:41:22.145Z"}
 {"level":"error","message":"Error creating session: Session validation failed: description: Path `description` is required.","timestamp":"2025-01-22T15:41:24.338Z"}
+{"level":"error","message":"Error creating session: Cannot read properties of undefined (reading '_id')","timestamp":"2025-02-18T20:20:11.419Z"}
+{"level":"error","message":"Error creating session: Session validation failed: beneficiary: Path `beneficiary` is required., category: Path `category` is required., sessionType: Path `sessionType` is required., description: Path `description` is required., sessionDate: Path `sessionDate` is required.","timestamp":"2025-02-18T20:20:29.551Z"}
+{"level":"error","message":"Error creating session: Session validation failed: beneficiary: Path `beneficiary` is required., sessionType: `جلسة فورية ` is not a valid enum value for path `sessionType`.","timestamp":"2025-02-18T20:35:23.041Z"}
+{"level":"error","message":"Error creating session: Session validation failed: beneficiary: Path `beneficiary` is required.","timestamp":"2025-02-18T20:35:35.974Z"}

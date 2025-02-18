@@ -23,7 +23,7 @@ const availableSlots = [
 
 export const createSession = async (req, res) => {
   try {
-    const { description, sessionDate, sessionType, category, subcategory } = req.body;
+    const { description, sessionDate, sessionType, category, subcategory,paymentDetails,paymentStatus } = req.body;
 
     // Ensure the authenticated beneficiary exists
     if (!req.beneficiary) {
@@ -37,7 +37,9 @@ export const createSession = async (req, res) => {
       sessionType,
       category,
       subcategory,
-      description
+      description,
+      paymentStatus,
+      paymentDetails
     });
 
     await newSession.save();
@@ -52,6 +54,7 @@ export const createSession = async (req, res) => {
     res.status(500).send({ error: 'Internal server error', details: error.message });
   }
 };
+
 
 export const countSessions = async (req, res) => {
   try {

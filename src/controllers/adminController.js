@@ -1,4 +1,5 @@
 // import Admin from'../models/adminModel.js';
+import Adv from '../models/advModel.js';
 import { Beneficiary } from '../models/beneficiaryModel.js';
 import Session from '../models/sessionModel.js';
 import Specialist from '../models/specialistModel.js';
@@ -151,5 +152,94 @@ export const getAllUpcomingSessions = async (req, res) => {
   } catch (error) {
     console.error('Error fetching sessions:', error);
     res.status(500).json({ error: 'Failed to fetch sessions' });
+  }
+};
+
+
+export const countCompletedSessions =async(req,res)=>{
+
+  try {
+    const result = await Session.aggregate([
+      {
+        $match: { status: 'Completed' }  
+      },
+      {
+        $group: {
+          _id: { year: { $year: "$sessionDate" }, month: { $month: "$sessionDate" } },
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $sort: { "_id.year": 1, "_id.month": 1 } 
+      }
+    ]);
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error('internal server error:', error);
+    res.status(500).json({ message: 'internal server error' });
+  }
+}
+
+
+
+export const countAdv= async(req,res)=>{
+  try {
+    const result = await Adv.aggregate([
+      {
+        $group: {
+          _id: { $month: '$createdAt' }, // استخراج الشهر من تاريخ إنشاء الإعلان
+          count: { $sum: 1 } // عدّ عدد الإعلانات لكل شهر
+        }
+      },
+      { $sort: { _id: 1 } } // ترتيب حسب الأشهر
+    ]);
+
+    // حساب النسبة المئوية لكل شهر بناءً على إجمالي الإعلانات
+    const totalAds = result.reduce((sum, month) => sum + month.count, 0);
+    
+    const formattedResult = result.map(month => ({
+      month: month._id,
+      count: month.count,
+      rate: totalAds ? ((month.count / totalAds) * 100).toFixed(2) + "%" : "0%" // نسبة عدد الإعلانات لهذا الشهر من إجمالي الإعلانات
+    }));
+
+    res.status(200).json(formattedResult);
+  } catch (error) {
+    console.error('Error', error);
+    res.status(500).json({ message: ' Internatl server error' });
+  }
+}
+
+
+export const calPayments = async (req, res) => {
+  try {
+    const result = await Session.aggregate([
+      {
+        $match: {
+          paymentStatus: 'Paid',
+          'paymentDetails.amount': { $gt: 0 },
+          sessionDate: { $exists: true, $ne: null } 
+        }
+      },
+      {
+        $group: {
+          _id: { $month: '$sessionDate' }, 
+          totalEarnings: { $sum: '$paymentDetails.amount' } 
+        }
+      },
+      { $sort: { _id: 1 } }
+    ]);
+
+   
+    const formattedResult = Array.from({ length: 12 }, (_, i) => ({
+      month: i + 1,
+      earnings: result.find(r => r._id === i + 1)?.totalEarnings || 0
+    }));
+
+    res.status(200).json(formattedResult);
+  } catch (error) {
+    console.error('internal server error :', error);
+    res.status(500).json({ message: 'internal server error' });
   }
 };
