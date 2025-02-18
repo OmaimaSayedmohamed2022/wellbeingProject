@@ -6,7 +6,7 @@ import { Admin } from '../models/adminModel.js';
 import logger from '../config/logger.js';
 
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password ,role} = req.body;
 
   try {
     // Check if the user exists in Beneficiary collection

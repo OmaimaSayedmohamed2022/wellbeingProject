@@ -1,6 +1,6 @@
 import { Beneficiary } from '../models/beneficiaryModel.js';
 import Specialist from '../models/specialistModel.js';
-// import { Admin } from '../models/AdminModel.js';
+import { Admin } from '../models/adminModel.js';
 
 export const userMiddleware = async (req, res, next) => {
     const { email } = req.body;
@@ -11,8 +11,8 @@ export const userMiddleware = async (req, res, next) => {
     try {
         const user =
             await Beneficiary.findOne({ email }) ||
-            await Specialist.findOne({ email })
-            // await Admin.findOne({ email });
+            await Specialist.findOne({ email })||
+            await Admin.findOne({ email });
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });

@@ -30,8 +30,8 @@ const sessionSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['Scheduled', 'Completed', 'Cancelled'],
-      default: 'Scheduled',
+      enum: ['Scheduled', 'Completed', 'Cancelled','Pending'],
+      default: 'Pending',
     },
     beneficiary:{
       type: mongoose.Schema.Types.ObjectId,

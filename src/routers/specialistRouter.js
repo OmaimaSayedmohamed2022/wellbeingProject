@@ -1,16 +1,11 @@
 import express from 'express';
 import { registerSpecialist,getSpecialistsByCategory, getAllSpecialists,getSpecialistById,
     updateSpecialist,deleteSpecialist,addAvailableSlot,deleteAvailableSlot
- }
-    // getSpecialistsAttendanceRate, getAttendanceRate, getSpecialtiesComparison,
-    //  searchSpecialists, confirmSpecialist,
-    // updateSpecialistAvailability, } 
-    from '../controllers/specialistController.js';
+       } from '../controllers/specialistController.js';
 import { specialistValidation } from '../validations/specialistValidation.js';
 import { uploadFiles } from '../middlewares/uploadFiles.js';
 
 const router = express.Router();
-
 
 
 router.get('/getAll', getAllSpecialists);

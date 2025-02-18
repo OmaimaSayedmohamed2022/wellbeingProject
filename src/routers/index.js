@@ -8,7 +8,7 @@ import sessionRouter from './sessionRouter.js';
 import adminRouter from './adminRouter.js';
 import advRouter from './advRouters.js';
 import TreatmentProgram from '../routers/treatmentProgramRouter.js';
-import { authorizeRole } from '../middlewares/authMiddleware.js';
+import { verifyToken,authorizeRole } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.use('/specialist', specialistRouter);
 router.use('/resetPassword', resetPasswordRouter);
 router.use('/categories', categoriesRouter);
 router.use('/sessions', sessionRouter);
-router.use('/admin', authorizeRole(['admin']),adminRouter)
+router.use('/admin',verifyToken, authorizeRole(['admin']),adminRouter)
 router.use('/adv',advRouter)
 router.use('/treatment',TreatmentProgram)
 

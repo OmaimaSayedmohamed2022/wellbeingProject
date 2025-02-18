@@ -5,6 +5,7 @@ import logger from '../config/logger.js';
 import mongoose from 'mongoose';
 import { uploadToCloudinary } from '../middlewares/cloudinaryUpload.js';
 import { uploadFiles } from '../middlewares/uploadFiles.js';
+import { Admin } from '../models/adminModel.js';
 
 // Create a new Beneficiary
 export const createBeneficiary = async (req, res) => {
@@ -162,6 +163,10 @@ export const addImageToUser = async (req, res) => {
         user = await Specialist.findById(id);
         userType = "Specialist";
       }
+      if (!user) {
+        user = await Admin.findById(id);
+        userType = "Admin";
+      }
 
       if (!user) {
         return res.status(404).json({ message: "User not found." });
@@ -175,15 +180,11 @@ export const addImageToUser = async (req, res) => {
 
       // Update user (either Beneficiary or Specialist)
       const updatedUser =
-        userType === "Beneficiary"
-          ? await Beneficiary.findByIdAndUpdate(id, req.body, {
-              new: true,
-              runValidators: true,
-            })
-          : await Specialist.findByIdAndUpdate(id, req.body, {
-              new: true,
-              runValidators: true,
-            });
+  userType === "Beneficiary"
+    ? await Beneficiary.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+    : userType === "Specialist"
+    ? await Specialist.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+    : await Admin.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
 
       res.status(200).json({
         message: `Image added successfully to ${userType}.`,
