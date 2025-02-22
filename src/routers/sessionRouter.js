@@ -7,7 +7,8 @@ import {
   getSpecialistSessions,
   getSessionTypes,
   createSession,
-  updateSessionStatus
+  updateSessionStatus,
+  getSessionById
 } from '../controllers/sessionController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 import { sessionMiddleware } from '../middlewares/sessionMiddleware.js';
@@ -17,6 +18,7 @@ const router = express.Router();
 router.get('/types', getSessionTypes);
 
 router.post('/create', verifyToken , sessionMiddleware , createSession)
+router.get("/:id",getSessionById)
 // router.post('/payment',processPayment)
 
 router.get("/", getSessions);

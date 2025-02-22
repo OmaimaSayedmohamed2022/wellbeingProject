@@ -196,3 +196,15 @@ export const addImageToUser = async (req, res) => {
     res.status(500).json({ message: error.message || "Internal server error." });
   }
 };
+
+
+export const getAllBeneficary = async(req,res)=>{
+try{
+  beneficiaries= await Beneficiary.findAll()
+  res.status(200).json({message: "Beneficiaries get successfully",beneficiaries })
+}
+catch(error){
+console.error('Error gatting beneficiary:', error.message || error);
+res.status(500).json({ message: error.message || 'Internal server error.' });
+}
+}
