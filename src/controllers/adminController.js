@@ -502,3 +502,18 @@ export const getSessionsCount = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+// all beneficaries
+export const getAllBeneficiary = async (req, res) => {
+  try {
+    const beneficiaries = await Beneficiary.find().select("-password");
+    // console.log("Beneficiaries:", beneficiaries);
+
+    res.status(200).json({ message: "Beneficiaries fetched successfully", beneficiaries });
+  } catch (error) {
+    console.error('Error getting beneficiaries:', error.message || error);
+
+    // Send an error response
+    res.status(500).json({ message: error.message || 'Internal server error.' });
+  }
+};

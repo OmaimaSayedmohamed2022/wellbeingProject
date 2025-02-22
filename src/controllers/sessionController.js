@@ -109,7 +109,18 @@ export const createSession = async (req, res) => {
   }
 };
 
+// get session by id
+export const getSessionById= async(req,res)=>{
+  const {id} = req.params
+  try{
+  const session = await Session.findById(id)
+  res.status(200).json({message:"session fetched successfuly",session})
+  }catch(error){
+    logger.error("Error in getSession:", error);
+    res.status(500).json({ error: "Server error" });
 
+  }
+}
 
 
 // get all sessions

@@ -481,34 +481,81 @@ export const getAttendanceRate = async (req, res) => {
 export const getSpecialtiesComparison = async (req, res) => {
   try {
     const specialtiesData = await Specialist.aggregate([
-      { $unwind: "$specialties" },
-      { $group: { _id: "$specialties", count: { $sum: 1 } } },
+      {
+        $project: {
+          psychologicalDisordersCount: {
+            $size: { $ifNull: ["$specialties.psychologicalDisorders", []] }
+          },
+          mentalHealthCount: {
+            $size: { $ifNull: ["$specialties.mentalHealth", []] }
+          },
+          physicalHealthCount: {
+            $size: { $ifNull: ["$specialties.physicalHealth", []] }
+          },
+          skillDevelopmentCount: {
+            $size: { $ifNull: ["$specialties.skillDevelopment", []] }
+          }
+        }
+      },
       {
         $group: {
           _id: null,
-          specialties: { $push: { specialty: "$_id", count: "$count" } },
-          total: { $sum: "$count" }
+          totalPsychologicalDisorders: { $sum: "$psychologicalDisordersCount" },
+          totalMentalHealth: { $sum: "$mentalHealthCount" },
+          totalPhysicalHealth: { $sum: "$physicalHealthCount" },
+          totalSkillDevelopment: { $sum: "$skillDevelopmentCount" }
         }
       },
-      { $unwind: "$specialties" },
       {
         $project: {
           _id: 0,
-          specialty: "$specialties.specialty",
-          count: "$specialties.count",
-          percentage: {
+          total: {
+            $add: [
+              "$totalPsychologicalDisorders",
+              "$totalMentalHealth",
+              "$totalPhysicalHealth",
+              "$totalSkillDevelopment"
+            ]
+          },
+          totalPsychologicalDisorders: 1,
+          totalMentalHealth: 1,
+          totalPhysicalHealth: 1,
+          totalSkillDevelopment: 1
+        }
+      },
+      {
+        $project: {
+          psychologicalDisordersPercentage: {
             $round: [
-              { $multiply: [{ $divide: ["$specialties.count", "$total"] }, 100] },
+              { $multiply: [{ $divide: ["$totalPsychologicalDisorders", "$total"] }, 100] },
+              2
+            ]
+          },
+          mentalHealthPercentage: {
+            $round: [
+              { $multiply: [{ $divide: ["$totalMentalHealth", "$total"] }, 100] },
+              2
+            ]
+          },
+          physicalHealthPercentage: {
+            $round: [
+              { $multiply: [{ $divide: ["$totalPhysicalHealth", "$total"] }, 100] },
+              2
+            ]
+          },
+          skillDevelopmentPercentage: {
+            $round: [
+              { $multiply: [{ $divide: ["$totalSkillDevelopment", "$total"] }, 100] },
               2
             ]
           }
         }
-      },
+      }
     ]);
-    
+
     res.status(200).json({ message: 'Specialties comparison fetched successfully.', specialtiesData });
   } catch (error) {
-    logger.error(Error `fetching specialties comparison: ${error.message}`);
+    logger.error(`Error fetching specialties comparison: ${error.message}`);
     res.status(500).json({ message: 'Error fetching specialties comparison.', error: error.message });
   }
 };
