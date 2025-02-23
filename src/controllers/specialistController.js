@@ -3,6 +3,7 @@ import Specialist from '../models/specialistModel.js';
 import { uploadToCloudinary } from '../middlewares/cloudinaryUpload.js';
 import logger from '../config/logger.js';
 import { pagination } from '../middlewares/pagination.js';
+import jwt from "jsonwebtoken"
 
 
 export const registerSpecialist = async (req, res) => {
@@ -76,9 +77,14 @@ export const registerSpecialist = async (req, res) => {
     });
 
     await specialist.save();
+     const token = jwt.sign(
+          { userId: specialist._id, email: specialist.email }, 
+          process.env.JWT_SECRET,
+          { expiresIn: '1h' } 
+        );
 
     res.status(201).json({
-      message: 'Specialist registered successfully.',specialist});
+      message: 'Specialist registered successfully.',specialist,token});
   } catch (error) {
     console.error('Error registering specialist:', error.message || error);
     res.status(500).json({ message: error.message || 'Internal server error.' });

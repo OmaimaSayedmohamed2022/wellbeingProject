@@ -93,3 +93,61 @@
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-02-22T21:15:15.467Z"}
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-02-22T21:15:18.570Z"}
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-22T21:15:23.016Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T17:48:05.855Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T17:48:08.331Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T17:48:09.933Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:17:49:21 +0000] \"GET /api/beneficiaries/sessions HTTP/1.1\" 404 165 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T17:49:21.145Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:17:49:26 +0000] \"GET /api/beneficiaries/sessions/ HTTP/1.1\" 404 166 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T17:49:26.219Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:17:50:32 +0000] \"GET /api/beneficiaries/sessions/67a9f7f55f1a1323e9f7936a HTTP/1.1\" 200 3053 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T17:50:32.960Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T17:53:15.573Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T17:53:17.693Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:17:53:18 +0000] \"POST /api/specialist/addSlots/67a4a7a716033e66a957deb6 HTTP/1.1\" 400 64 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T17:53:18.764Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:17:53:29 +0000] \"POST /api/specialist/addSlots/67a4a7a716033e66a957deb6 HTTP/1.1\" 200 141 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T17:53:29.343Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:17:54:05 +0000] \"GET /api/sessions/specialist/67a4a7a716033e66a957deb6 HTTP/1.1\" 200 6496 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T17:54:05.766Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:01:50.956Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:01:52.708Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:02:32.834Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:02:34.519Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:03:39.328Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:03:41.342Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:04:10.718Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:04:12.332Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:04:21.620Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:04:25.819Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:04:27.581Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:04:35.827Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:04:43.946Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:04:46.820Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:04:54.830Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:04:56.368Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:04:59.975Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:05:02.805Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:05:06.266Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:05:08.218Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:06:07.358Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:06:13.972Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:06:17.076Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:06:29.518Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:06:32.719Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:07:20 +0000] \"GET /api/admin/getAdv HTTP/1.1\" 401 47 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:07:20.917Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:08:00 +0000] \"GET /api/admin/getAdv HTTP/1.1\" 201 1971 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:08:00.575Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:18:52 +0000] \"POST /api/specialist/addSlots/67a4a7a716033e66a957deb6 HTTP/1.1\" 200 168 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:18:52.114Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:26:03.147Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:26:05.917Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:26:13.151Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:26:20.239Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:26:21.796Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:26:57 +0000] \"POST /api/beneficiaries/register/beneficiary HTTP/1.1\" 400 131 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:26:57.108Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:26:59 +0000] \"POST /api/beneficiaries/register/beneficiary HTTP/1.1\" 400 131 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:26:59.815Z"}
+{"level":"info","message":"New Beneficiary registered: omaimasayed2028@gmail.com","timestamp":"2025-02-23T18:27:07.455Z"}
+{"level":"error","message":"Error in createBeneficiary: jwt is not defined","stack":"ReferenceError: jwt is not defined\n    at createBeneficiary (file:///C:/Users/%D8%A7%D9%85%D9%8A%D9%85%D8%A9/Desktop/wellbeingProject-master/wellbeingProject/src/controllers/beneficaryController.js:42:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-02-23T18:27:07.456Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:27:07 +0000] \"POST /api/beneficiaries/register/beneficiary HTTP/1.1\" 500 24 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:27:07.458Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:27:45.384Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:27:47.142Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:27:51 +0000] \"POST /api/beneficiaries/register/beneficiary HTTP/1.1\" 400 131 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:27:51.386Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:27:54 +0000] \"POST /api/beneficiaries/register/beneficiary HTTP/1.1\" 400 131 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:27:54.421Z"}
+{"level":"info","message":"New Beneficiary registered: omaimasayed2029@gmail.com","timestamp":"2025-02-23T18:28:02.576Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:28:02 +0000] \"POST /api/beneficiaries/register/beneficiary HTTP/1.1\" 201 694 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:28:02.581Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-23T18:35:47.007Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-23T18:35:49.244Z"}
+{"level":"info","message":"::1 - - [23/Feb/2025:18:37:09 +0000] \"POST /api/specialist/register HTTP/1.1\" 201 1479 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-23T18:37:09.043Z"}

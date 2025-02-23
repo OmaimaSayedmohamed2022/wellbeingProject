@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import { uploadToCloudinary } from '../middlewares/cloudinaryUpload.js';
 import { uploadFiles } from '../middlewares/uploadFiles.js';
 import { Admin } from '../models/adminModel.js';
+import jwt from 'jsonwebtoken'
 
 // Create a new Beneficiary
 export const createBeneficiary = async (req, res) => {
@@ -38,7 +39,13 @@ export const createBeneficiary = async (req, res) => {
 
     await newBeneficiary.save();
     logger.info(`New Beneficiary registered: ${email}`);
-    res.status(201).json({ message: 'Beneficiary created successfully',newBeneficiary});
+
+    const token = jwt.sign(
+      { userId: newBeneficiary._id, email: newBeneficiary.email }, 
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' } 
+    );
+    res.status(201).json({ message: 'Beneficiary created successfully',newBeneficiary ,token});
   } catch (error) {
     logger.error('Error in createBeneficiary:', error);
     res.status(500).json({ error: 'Server error' });
@@ -208,3 +215,39 @@ console.error('Error gatting beneficiary:', error.message || error);
 res.status(500).json({ message: error.message || 'Internal server error.' });
 }
 }
+
+
+export const getBeneficiarySessions = async (req, res) => {
+  try {
+      const id = req.params.id;
+      if (!id) {
+          return res.status(400).json({ message: "ID is required" });
+      }
+
+      const beneficiary = await Beneficiary.findById(id).populate("sessions");
+      if (!beneficiary) {
+          return res.status(404).json({ message: "Beneficiary not found" });
+      }
+
+      const sessions = beneficiary.sessions || [];
+      const totalSessions = sessions.length;
+      const scheduledSessions = sessions.filter(s => s.status === "Scheduled");
+      const completedSessions = sessions.filter(s => s.status === "Completed");
+      const canceledSessions = sessions.filter(s => s.status === "Canceled");
+
+      // Get upcoming sessions (future dates)
+      const currentDate = new Date();
+      const upcomingSessions = scheduledSessions.filter(s => new Date(s.sessionDate) > currentDate);
+
+      res.status(200).json({
+          totalSessions,
+          scheduledSessions,
+          completedSessions,
+          canceledSessions,
+          upcomingSessions
+      });
+
+  } catch (error) {
+      res.status(500).json({ message: "Internal Server Error", error: error.message });
+  }
+};
