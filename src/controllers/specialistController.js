@@ -214,6 +214,7 @@ export const addAvailableSlot = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: "Error occured", error: error.message });
+    logger.error({message: "Error occured", error: error.message })
   }
 };
 
