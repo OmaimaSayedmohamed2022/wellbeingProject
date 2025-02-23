@@ -13,6 +13,8 @@ import {registerAdmin, countBeneficiary, countGender, calPayments, countAdv, cou
         getBeneficiaryReviews,getSessionsCount,getAllBeneficiary
 } from "../controllers/adminController.js";
 
+import { getAllAdv } from '../controllers/advController.js';
+
 
 const router=express.Router()
 
@@ -54,5 +56,7 @@ router.get("/statistics/:id", getSessiosBeneficiary);
 router.get("/upcomingSessions/:id", getUpcomingSessions);
 router.get("/allBeneficary",getAllBeneficiary)
 // router.get("/completedSessions/:id", getCompletedSessions);
+
+router.get('/getAdv',getAllAdv)
 
 export default router
