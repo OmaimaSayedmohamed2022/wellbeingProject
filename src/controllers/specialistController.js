@@ -222,13 +222,13 @@ export const addAvailableSlot = async (req, res) => {
 export const deleteAvailableSlot = async (req, res) => {
   try {
     const { id } = req.params;
-    const { date, time } = req.body;
+    const { date } = req.body;
 
-    if (!date || !time) {
-      return res.status(400).json({ message: "Date and time are required." });
+    if (!date ) {
+      return res.status(400).json({ message: "Date is required." });
     }
 
-    const slotString = `${date} ${time}`;
+    const slotString = `${date}`;
 
     const specialist = await Specialist.findById(id);
     if (!specialist) {
@@ -238,6 +238,21 @@ export const deleteAvailableSlot = async (req, res) => {
     if (!specialist.availableSlots.includes(slotString)) {
       return res.status(400).json({ message: `Slot ${slotString} not found.` });
     }
+
+    const updatedSpecialist = await Specialist.findByIdAndUpdate(
+      id,
+      { $pull: { availableSlots: slotString } },
+      { new: true, runValidators: false }
+    );
+
+    res.status(200).json({
+      message: "Slot removed successfully",
+      availableSlots: updatedSpecialist.availableSlots,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error occurred", error: error.message });
+  }
+};
 
     const updatedSpecialist = await Specialist.findByIdAndUpdate(
       id,
