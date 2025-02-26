@@ -11,8 +11,14 @@ const advSchema= new mongoose.Schema({
     type:{
         type:String ,
         required:true
-    }
-})
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+    { timestamps: true } 
+  );
 
 const Adv = mongoose.model('Adv', advSchema);
 

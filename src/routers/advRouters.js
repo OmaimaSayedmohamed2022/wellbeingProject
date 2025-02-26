@@ -1,7 +1,9 @@
 import { addAdvertisement, 
-        //  deleteAdvertisement,
-        //  getAllAdvertisements, 
-        //  updateAdvertisement 
+         deleteAdvertisement,
+         getAllAdv,
+         updateAdvertisement ,
+         getAdvertisementById
+
        }
 from '../controllers/advController.js';
 import express from 'express';
@@ -10,7 +12,6 @@ import uploadImageMiddleware from '../middlewares/uploadImageMiddleware.js';
 import{ verifyToken,authorizeRole} from '../middlewares/authMiddleware.js'
 const router = express.Router();
 
-// Error here :
 
 router.post('/add',
     verifyToken, authorizeRole(['admin']),
@@ -18,12 +19,19 @@ router.post('/add',
       uploadImageMiddleware, 
       addAdvertisement);
 
-// router.get(
-//   '/getAll' , getAllAdvertisements
-// )
+router.get(
+  '/getAll' , getAllAdv
+)
+router.get(
+    '/get/:id' , getAdvertisementById
+  )
+  
+router.put('/update/:id',verifyToken, 
+          authorizeRole(['admin']),
+          upload.single('photo'),
+          uploadImageMiddleware, 
+          updateAdvertisement)
 
-// router.put('/update/:id',updateAdvertisement)
-
-// router.delete('/delete/:id',deleteAdvertisement)
+router.delete('/delete/:id',deleteAdvertisement)
 
 export default router;

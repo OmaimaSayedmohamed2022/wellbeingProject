@@ -4,3 +4,4 @@
 {"level":"error","message":"Error: Unexpected token '}', \"{\r\n    \"email\":\r\n}\" is not valid JSON","timestamp":"2025-02-25T21:58:20.127Z"}
 {"level":"error","message":"Error: Unexpected end of JSON input","timestamp":"2025-02-25T21:58:26.701Z"}
 {"level":"error","message":"Error: Expected ',' or '}' after property value in JSON at position 27 (line 2 column 25)","timestamp":"2025-02-26T18:37:18.629Z"}
+{"level":"error","message":"Error: Expected double-quoted property name in JSON at position 50 (line 5 column 2)","timestamp":"2025-02-26T20:02:10.862Z"}
