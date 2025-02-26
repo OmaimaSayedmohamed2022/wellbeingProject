@@ -254,21 +254,6 @@ export const deleteAvailableSlot = async (req, res) => {
   }
 };
 
-    const updatedSpecialist = await Specialist.findByIdAndUpdate(
-      id,
-      { $pull: { availableSlots: slotString } },
-      { new: true, runValidators: false }
-    );
-
-    res.status(200).json({
-      message: "Slot removed successfully",
-      availableSlots: updatedSpecialist.availableSlots,
-    });
-  } catch (error) {
-    res.status(500).json({ message: "Error occurred", error: error.message });
-  }
-};
-
 
 
 
