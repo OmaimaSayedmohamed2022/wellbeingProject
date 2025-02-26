@@ -214,6 +214,7 @@ export const addAvailableSlot = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: "Error occured", error: error.message });
+    logger.error({message: "Error occured", error: error.message })
   }
 };
 
@@ -563,5 +564,28 @@ export const getSpecialtiesComparison = async (req, res) => {
   } catch (error) {
     logger.error(`Error fetching specialties comparison: ${error.message}`);
     res.status(500).json({ message: 'Error fetching specialties comparison.', error: error.message });
+  }
+};
+
+export const updateLanguage = async (req, res) => {
+  try {
+    const { id } = req.params; 
+    const { language } = req.body;
+    const allowedLanguages = ["Arabic", "English"];
+
+    if (!allowedLanguages.includes(language)) {
+      return res.status(400).json({ message: "Invalid language. Arabic or English only!" });
+    }
+
+    const specialist = await Specialist.findByIdAndUpdate(id, { language }, { new: true });
+
+    if (!specialist) {
+      return res.status(404).json({ message: "Specialist not found." });
+    }
+
+    res.status(200).json({ message: "Language updated successfully.", language: specialist.language });
+  } catch (error) {
+    logger.error(Error `updating language: ${error.message}`);
+    res.status(500).json({ message: "Server error.", error: error.message });
   }
 };

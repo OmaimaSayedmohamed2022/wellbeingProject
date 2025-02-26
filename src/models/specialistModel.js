@@ -21,11 +21,11 @@ const specialistSchema = new mongoose.Schema({
     ref:'Session'
   }],
   files: {
-    idOrPassport: { type: String, required: true },
-    resume: { type: String, required: true },
-    certificates: { type: [String], required: true },
-    ministryLicense: { type: String, required: true },
-    associationMembership: { type: String, required: true }
+    idOrPassport: { type: String, required: false },
+    resume: { type: String, required: false },
+    certificates: { type: [String], required: false },
+    ministryLicense: { type: String, required: false },
+    associationMembership: { type: String, required: false }
   },
  
 specialties: {
@@ -96,6 +96,17 @@ specialties: {
     type: [String], 
     default: [],  
   },
+  language: {
+    type: String,
+    enum: ["Arabic", "English"],
+    default: "Arabic" 
+    },
+    reviews: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review', // Reference to the Review model
+      },
+    ],
 });
 
 const Specialist = mongoose.model('Specialist', specialistSchema);
