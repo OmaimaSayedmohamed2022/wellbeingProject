@@ -10,25 +10,24 @@ const specialistSchema = new mongoose.Schema({
   work: { type: String, required: true },
   workAddress: { type: String, required: true },
   homeAddress: { type: String, required: true },
-  bio: { type: String, rوequired: true },
+  bio: { type: String, required: true }, // Fixed typo
   sessionPrice: { type: Number, required: true },
   yearsExperience: { type: Number, required: true },
   sessionDuration: { type: Number, required: true },
-  isConfirmed: { type: Boolean, default: false },   // new
-  isAvailable: { type: Boolean, default: false},    // new
-  sessions:[{
-    type: mongoose.Schema.Types.ObjectId,     
-    ref:'Session'
+  isConfirmed: { type: Boolean, default: false },
+  isAvailable: { type: Boolean, default: false },
+  sessions: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Session',
   }],
   files: {
     idOrPassport: { type: String, required: false },
     resume: { type: String, required: false },
-    certificates: { type: [String], required: false },
+    certificates: { type: [String], required: false }, // Optional array of strings
     ministryLicense: { type: String, required: false },
-    associationMembership: { type: String, required: false }
+    associationMembership: { type: String, required: false },
   },
- 
-specialties: {
+  specialties: {
     psychologicalDisorders: [
       {
         type: String,
@@ -41,7 +40,7 @@ specialties: {
           'اضطرابات الأكل',
           'اضطراب الشخص',
           'الإدمان',
-         'اضطراب الصدمة'
+          'اضطراب الصدمة',
         ],
       },
     ],
@@ -55,8 +54,8 @@ specialties: {
           'اضطرابات الأطفال',
           'حل مشكلات',
           'إرشاد وتوجيه',
-         'وقاية ومتابعة نفسية',
-         'اعادة تأهيل ودعم'
+          'وقاية ومتابعة نفسية',
+          'اعادة تأهيل ودعم',
         ],
       },
     ],
@@ -64,49 +63,42 @@ specialties: {
       {
         type: String,
         enum: [
-              'نظام غذائي',
-              'نظام رياضي',
-              'فحوص دورية',
-              'عناية صحية'
-            ],
+          'نظام غذائي',
+          'نظام رياضي',
+          'فحوص دورية',
+          'عناية صحية',
+        ],
       },
     ],
     skillDevelopment: [
       {
         type: String,
         enum: [
-            'الاسترخاء',
-            'تحمل الضغوط',
-            'ضبط المشاعر',
-            'استراجيات جدلية حل',
-            'تحقيق التوازن',
-            'تحسين الثقة',
-            'تحقيق الأهداف',
-            'تحقيق النجاح',
-            'اضطراب الصدمة',
+          'الاسترخاء',
+          'تحمل الضغوط',
+          'ضبط المشاعر',
+          'استراجيات جدلية حل',
+          'تحقيق التوازن',
+          'تحسين الثقة',
+          'تحقيق الأهداف',
+          'تحقيق النجاح',
+          'اضطراب الصدمة',
         ],
       },
     ],
   },
-  imageUrl:{
-    type: String,
-    required: false
-  },
-  availableSlots: {
-    type: [String], 
-    default: [],  
-  },
+  imageUrl: { type: String, required: false },
+  availableSlots: { type: [String], default: [] },
   language: {
-    type: String,
-    enum: ["Arabic", "English"],
-    default: "Arabic" 
+    type: [String],
+    default: ["Arabic"], 
+  },
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Review',
     },
-    reviews: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Review', // Reference to the Review model
-      },
-    ],
+  ],
 });
 
 const Specialist = mongoose.model('Specialist', specialistSchema);

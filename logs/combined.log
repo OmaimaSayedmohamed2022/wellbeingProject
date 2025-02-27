@@ -452,3 +452,58 @@
 {"level":"info","message":"::1 - - [26/Feb/2025:21:54:12 +0000] \"GET /api/adv/getAll HTTP/1.1\" 201 11789 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-26T21:54:12.932Z"}
 {"level":"info","message":"::1 - - [26/Feb/2025:21:55:11 +0000] \"GET /api/adv/get/67a5467f0c3fdcb46acf079a HTTP/1.1\" 200 183 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-26T21:55:11.472Z"}
 {"level":"info","message":"::1 - - [26/Feb/2025:21:56:57 +0000] \"DELETE /api/adv/delete/67a5469d0c3fdcb46acf079c HTTP/1.1\" 200 49 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-26T21:56:57.997Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-26T22:20:41.091Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-26T22:20:44.208Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-26T22:20:45.995Z"}
+{"level":"error","timestamp":"2025-02-26T22:21:16.521Z"}
+{"level":"info","message":"::1 - - [26/Feb/2025:22:21:16 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 582 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-26T22:21:16.540Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-26T22:21:19.113Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-26T22:21:20.881Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-26T22:21:44.558Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-26T22:21:46.325Z"}
+{"level":"error","timestamp":"2025-02-26T22:21:48.509Z"}
+{"level":"info","message":"::1 - - [26/Feb/2025:22:21:48 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 70 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-26T22:21:48.515Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-26T22:22:06.644Z"}
+{"level":"error","timestamp":"2025-02-26T22:22:07.256Z"}
+{"level":"info","message":"::1 - - [26/Feb/2025:22:22:07 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 71 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-26T22:22:07.264Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-26T22:22:08.103Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-26T22:22:24.362Z"}
+{"level":"error","timestamp":"2025-02-26T22:22:24.945Z"}
+{"level":"info","message":"::1 - - [26/Feb/2025:22:22:24 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 308 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-26T22:22:24.955Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-26T22:22:25.792Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:22:29.523Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:22:34.224Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-27T20:22:36.202Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:26:39.826Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-27T20:26:41.785Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:27:26 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 400 38 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:27:26.719Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:27:30.387Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-27T20:27:31.997Z"}
+{"level":"error","timestamp":"2025-02-27T20:27:40.678Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:27:40 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 80 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:27:40.685Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:28:39.579Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:28:44.659Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-27T20:28:46.398Z"}
+{"level":"error","timestamp":"2025-02-27T20:28:46.551Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:28:46 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 80 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:28:46.559Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:29:06.208Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-27T20:29:07.855Z"}
+{"level":"error","timestamp":"2025-02-27T20:29:10.648Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:29:10 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 211 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:29:10.656Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:31:44.106Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-27T20:31:45.611Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:31:48.092Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:31:48 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 211 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:31:48.107Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:31:50.168Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:31:50 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 211 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:31:50.178Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:34:29.815Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-27T20:34:31.553Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-02-27T20:34:37.509Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-02-27T20:34:39.089Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:34:40.342Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:34:40 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 211 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:34:40.359Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:34:42.937Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:34:42 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 211 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:34:42.946Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:34:48.952Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:34:48 +0000] \"PATCH /api/specialist/updateLanguage/67802550a98d448169c208ef HTTP/1.1\" 500 211 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:34:48.960Z"}
+{"level":"info","message":"::1 - - [27/Feb/2025:20:36:57 +0000] \"PATCH /api/specialist/updateLanguage/6787d16e6caf5ad5692ccabe HTTP/1.1\" 200 75 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-02-27T20:36:57.311Z"}
