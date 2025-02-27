@@ -123,35 +123,6 @@ export const getSpecialistsByCategory = async (req, res) => {
 };
 
 
-// export const getSpecialistById = async(req,res)=>{
- 
-//   const{ id }=req.params;
-//   try{
-//     const specialist = await Specialist.findById(id)
-//     if (!specialist) {
-//       return res.status(400).json({ error: 'Specialist not found.' })
-//     }
-//       return res.status(200).json({message:'specialist gitting successfully',specialist})
-
-//   }catch(error){
-//     res.status(500).json({message:"error gitting specialist", error:error.message})
-//   }
-// };
-
-
-// export const getAllSpecialists= async(req,res)=>{
-// try{
-//  const specialists = await Specialist.find()
-//  if(!specialists){
-//   res.status(400).json("no specialist found")
-//  }
-//  return res.status(201).json({message:'specialists gitting successfully',specialists})
-// }catch(error){
-//   res.status(500).json({message:"error gitting specialists", error:error.message})
-//   }
-
-// }
-
 export const updateSpecialist = async (req, res) => {
   try {
     const { id } = req.params;
@@ -567,9 +538,11 @@ export const getSpecialtiesComparison = async (req, res) => {
   }
 };
 
+
+
 export const updateLanguage = async (req, res) => {
   try {
-    const { id } = req.params; 
+    const { id } = req.params;
     const { language } = req.body;
     const allowedLanguages = ["Arabic", "English"];
 
@@ -577,15 +550,21 @@ export const updateLanguage = async (req, res) => {
       return res.status(400).json({ message: "Invalid language. Arabic or English only!" });
     }
 
-    const specialist = await Specialist.findByIdAndUpdate(id, { language }, { new: true });
-
+    const specialist = await Specialist.findById(id);
     if (!specialist) {
       return res.status(404).json({ message: "Specialist not found." });
     }
 
-    res.status(200).json({ message: "Language updated successfully.", language: specialist.language });
+    if (specialist.language.includes(language)) {
+      return res.status(400).json({ message: "Language already exists." });
+    }
+
+    specialist.language.push(language);
+    await specialist.save();
+
+    res.status(200).json({ message: "Language added successfully.", languages: specialist.language });
   } catch (error) {
-    logger.error(Error `updating language: ${error.message}`);
+    logger.error(`Error updating language: ${error.message}`);
     res.status(500).json({ message: "Server error.", error: error.message });
   }
 };

@@ -4,3 +4,16 @@
 {"level":"error","message":"Error: Unexpected token '}', \"{\r\n    \"email\":\r\n}\" is not valid JSON","timestamp":"2025-02-25T21:58:20.127Z"}
 {"level":"error","message":"Error: Unexpected end of JSON input","timestamp":"2025-02-25T21:58:26.701Z"}
 {"level":"error","message":"Error: Expected ',' or '}' after property value in JSON at position 27 (line 2 column 25)","timestamp":"2025-02-26T18:37:18.629Z"}
+{"level":"error","message":"Error: Expected double-quoted property name in JSON at position 50 (line 5 column 2)","timestamp":"2025-02-26T20:02:10.862Z"}
+{"level":"error","timestamp":"2025-02-26T22:21:16.521Z"}
+{"level":"error","timestamp":"2025-02-26T22:21:48.509Z"}
+{"level":"error","timestamp":"2025-02-26T22:22:07.256Z"}
+{"level":"error","timestamp":"2025-02-26T22:22:24.945Z"}
+{"level":"error","timestamp":"2025-02-27T20:27:40.678Z"}
+{"level":"error","timestamp":"2025-02-27T20:28:46.551Z"}
+{"level":"error","timestamp":"2025-02-27T20:29:10.648Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:31:48.092Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:31:50.168Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:34:40.342Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:34:42.937Z"}
+{"level":"error","message":"Error updating language: Cannot create field 'certificates' in element {files: [ { idOrPassport: \"uploads\\idOrPassport-1736451408444-598695211.jpg\", _id: ObjectId('67802550a98d448169c208f0') } ]}","timestamp":"2025-02-27T20:34:48.952Z"}
