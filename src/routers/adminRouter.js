@@ -5,7 +5,7 @@ import {countSpecialist,confirmSpecialist,updateSpecialistAvailability,
     getSpecialistsAttendanceRate,getAttendanceRate,getSpecialtiesComparison
 }from '../controllers/specialistController.js'
 
-import {registerAdmin, countBeneficiary, countGender, calPayments, countAdv, countCompletedSessions,
+import {registerAdmin,getAdminById, countBeneficiary, countGender, calPayments, countAdv, countCompletedSessions,
        getAllUpcomingSessions, getSessionStatistics, getUsersAtMonth ,
        getSessiosBeneficiary,getUpcomingSessions, getBeneficiaryCountForSpecialist,
         getSpecialistEarnings, getAvailableSlotsForSpecialist,
@@ -19,6 +19,7 @@ import { getAllAdv } from '../controllers/advController.js';
 const router=express.Router()
 
 router.post('/register',registerAdmin)
+router.get('/getAdmin/:id',getAdminById)
 //specialist
 router.get('/countSpecialist',countSpecialist)
 router.get('/beneficiaryCount/:specialistId', getBeneficiaryCountForSpecialist);
@@ -41,6 +42,7 @@ router.put('/isAvailable/:specialistId', updateSpecialistAvailability);
 router.get('/countComplete',countCompletedSessions)
 router.get('/countAdv', countAdv)
 router.get('/calcPayments', calPayments)
+
 
 // statistics 
 router.get('/stat', getSessionStatistics);

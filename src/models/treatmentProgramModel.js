@@ -9,15 +9,6 @@ const treatmentProgramSchema = new mongoose.Schema(
     stages: { type: [String], default: [], trim: true },
     techniques: { type: [String], default: [], trim: true },
     skillTraining: { type: [String], default: [], trim: true },
-    sessions: [{ 
-      type: mongoose.Schema.Types.ObjectId, 
-      ref: "Session",
-    }],
-    beneficiary: { 
-      type: mongoose.Schema.Types.ObjectId, 
-      ref: "Beneficiary", 
-      required: true,
-    }, 
   },
   { timestamps: true }
 );

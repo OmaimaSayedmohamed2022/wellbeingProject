@@ -11,12 +11,7 @@ export const addTreatmentProgram = async (req, res) => {
             return res.status(400).json({ error: "Validation error", details: errors });
         }
 
-        const { name, importance, treatmentPlan, goals, stages, techniques, sessions, skillTraining, beneficiary } = req.body;
-
-        if (!mongoose.Types.ObjectId.isValid(beneficiary)) {
-            logger.warn(`Invalid Beneficiary ID: ${beneficiary}`);
-            return res.status(400).json({ error: "Invalid Beneficiary ID format" });
-        }
+        const { name, importance, treatmentPlan, goals, stages, techniques, skillTraining } = req.body;
 
         const newProgram = new TreatmentProgram({
             name, 
@@ -25,9 +20,7 @@ export const addTreatmentProgram = async (req, res) => {
             goals, 
             stages, 
             techniques, 
-            sessions, 
             skillTraining,
-            beneficiary
         });
 
         await newProgram.save();
