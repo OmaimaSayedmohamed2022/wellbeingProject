@@ -58,3 +58,4 @@
 {"level":"error","message":"Error adding treatment program: TreatmentProgram validation failed: beneficiary: Path `beneficiary` is required.","timestamp":"2025-03-03T00:03:14.719Z"}
 {"level":"error","message":"Error adding treatment program: TreatmentProgram validation failed: beneficiary: Path `beneficiary` is required.","timestamp":"2025-03-03T00:03:16.315Z"}
 {"level":"error","message":"Error adding treatment program: TreatmentProgram validation failed: beneficiary: Path `beneficiary` is required.","timestamp":"2025-03-03T00:04:01.748Z"}
+{"level":"error","message":"Error: categories[category].map is not a function","timestamp":"2025-03-03T14:17:22.493Z"}

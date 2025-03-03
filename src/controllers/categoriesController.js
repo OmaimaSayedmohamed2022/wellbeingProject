@@ -1,37 +1,71 @@
 import {categories} from '../constants/categories.js';
 
-// Controller to fetch main categories
+import { sessionTypes } from '../constants/categories.js';
+
+export const getSessionTypes = (req, res) => {
+  const { lang } = req.params;
+
+  if (!sessionTypes[lang]) {
+    return res.status(400).json({ error: 'Unsupported language ' });
+  }
+
+  // Return the session types for the requested language
+  res.status(200).json(sessionTypes[lang]);
+};
+
 export const getCategories = (req, res) => {
-  res.status(200).send(Object.keys(categories));
+  const mainCategories = Object.keys(categories).map((key) => ({
+    en: key,
+  }));
+  res.status(200).send(mainCategories);
 };
 
 // Controller to fetch subcategories for a specific category
 export const getSubcategories = (req, res) => {
-  const { category } = req.params;
+  const { category, lang } = req.params;
   if (!categories[category]) {
-    return res.status(404).send({ error: 'Category not found' });
+    return res.status(404).send({ error: 'Category not found ' });
   }
-  const categoryNames = categories[category].map(item => 
-    typeof item === 'object' ? item.name : item
-  );
-  res.status(200).send(categoryNames);
+
+  const subcategories = categories[category][lang].map((item) => {
+    if (typeof item === 'object' && item.name) {
+      return {
+        name: item.name,
+        subcategory: item.subcategory,
+      };
+    } else {
+      return {
+        name: item,
+      };
+    }
+  });
+
+  res.status(200).send(subcategories);
 };
 
+// get sub sub category
 
 
 export const getsubSubcategories = (req, res) => {
-  const { name } = req.params;
-  if (!name) {
-    return res.status(400).json({ error: "Name parameter is required" });
-  }
-  // console.log('categories',categories)
-  const category= Object.values(categories).flat().find(
-    (item) =>  typeof item === 'object'? item.name === name :item ===name
-  
-  );
+  const { name, lang } = req.params;
+  const category = Object.values(categories)
+    .flatMap((category) => category[lang])
+    .find((item) => {
+      if (typeof item === 'object' && item.name) {
+        return item.name === name;
+      } else {
+        return item === name;
+      }
+    });
+
   if (!category) {
-    return res.status(404).send({ error: 'Category not found' });
+    return res.status(404).send({ error: 'Subcategory not found'});
   }
+
+  // Return sub-subcategories if they exist
+  if (category.subcategory) {
+    return res.status(200).send(category.subcategory);
+  }
+
   res.status(200).send(category);
 };
-
