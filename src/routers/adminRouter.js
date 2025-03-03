@@ -10,7 +10,8 @@ import {registerAdmin,getAdminById, countBeneficiary, countGender, calPayments, 
        getSessiosBeneficiary,getUpcomingSessions, getBeneficiaryCountForSpecialist,
         getSpecialistEarnings, getAvailableSlotsForSpecialist,
        getSessionStatusRatio, getScheduledSessionsForSpecialist,
-        getBeneficiaryReviews,getSessionsCount,getAllBeneficiary
+        getBeneficiaryReviews,getSessionsCount,getAllBeneficiary,
+        getNewBeneficiaries
 } from "../controllers/adminController.js";
 
 import { getAllAdv } from '../controllers/advController.js';
@@ -57,6 +58,7 @@ router.get('/beneficiary/byMonth',getUsersAtMonth)
 router.get("/statistics/:id", getSessiosBeneficiary);
 router.get("/upcomingSessions/:id", getUpcomingSessions);
 router.get("/allBeneficary",getAllBeneficiary)
+router.get("/newBeneficary",getNewBeneficiaries)
 // router.get("/completedSessions/:id", getCompletedSessions);
 
 router.get('/getAdv',getAllAdv)

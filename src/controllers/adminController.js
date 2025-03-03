@@ -536,16 +536,13 @@ export const getAllBeneficiary = async (req, res) => {
 // get new beneficary 
 export const getNewBeneficiaries = async (req, res) => {
   try {
-    const { days = 7 } = req.query; // Default to last 7 days
-
-    // Calculate the date `days` ago
+    const { days = 30 } = req.query; 
     const dateThreshold = new Date();
     dateThreshold.setDate(dateThreshold.getDate() - days);
 
-    // Find beneficiaries created in the last `days`
     const newBeneficiaries = await Beneficiary.find({
-      createdAt: { $gte: dateThreshold }, // Created after the threshold date
-    }).sort({ createdAt: -1 }); // Sort by creation date (newest first)
+      createdAt: { $gte: dateThreshold }, 
+    }).sort({ createdAt: -1 }); 
 
     res.status(200).json({
       message: `New beneficiaries from the last ${days} days fetched successfully.`,
