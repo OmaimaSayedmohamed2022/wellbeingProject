@@ -1,14 +1,14 @@
 import express from 'express';
 import { 
-    getSessions,
-  getScheduledSessions,
-  getCompletedSessions,
   getBeneficiarySessions,
   getSpecialistSessions,
   getSessionTypes,
   createSession,
   updateSessionStatus,
-  getSessionById
+  getSessionById,
+  updatePendingToScheduled,
+ getSessionsByStatus,
+ cancelSession
 } from '../controllers/sessionController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 import { sessionMiddleware } from '../middlewares/sessionMiddleware.js';
@@ -21,14 +21,17 @@ router.post('/create', verifyToken , sessionMiddleware , createSession)
 router.get("/:id",getSessionById)
 // router.post('/payment',processPayment)
 
-router.get("/", getSessions);
-router.get("/scheduled", getScheduledSessions);
-router.get("/completed", getCompletedSessions);
+
+router.put("/cancel/:id",cancelSession)
+
+router.get('/status/:status',getSessionsByStatus)
+
 
 router.get("/beneficiary/:beneficiaryId", getBeneficiarySessions);  
 
 router.get("/specialist/:specialistId", getSpecialistSessions);     
 
-router.patch("/update/:sessionId", updateSessionStatus)
+router.patch("/update/:sessionId", updateSessionStatus),
+router.patch("/update/pendingToScheduled/:sessionId",updatePendingToScheduled)
 
 export default router;

@@ -33,6 +33,21 @@ export const registerAdmin = async (req, res) => {
 };
 
 
+export const getAdminById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const admin = await Admin.findById(id);
+    if (!admin) {
+      return res.status(404).json({ message: 'Admin not found' });
+    }
+
+    res.status(200).json({ message: 'Admin retrieved successfully', admin });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
 
 export const countBeneficiary = async (req, res) => {
   try {
@@ -515,5 +530,29 @@ export const getAllBeneficiary = async (req, res) => {
 
     // Send an error response
     res.status(500).json({ message: error.message || 'Internal server error.' });
+  }
+};
+
+// get new beneficary 
+export const getNewBeneficiaries = async (req, res) => {
+  try {
+    const { days = 7 } = req.query; // Default to last 7 days
+
+    // Calculate the date `days` ago
+    const dateThreshold = new Date();
+    dateThreshold.setDate(dateThreshold.getDate() - days);
+
+    // Find beneficiaries created in the last `days`
+    const newBeneficiaries = await Beneficiary.find({
+      createdAt: { $gte: dateThreshold }, // Created after the threshold date
+    }).sort({ createdAt: -1 }); // Sort by creation date (newest first)
+
+    res.status(200).json({
+      message: `New beneficiaries from the last ${days} days fetched successfully.`,
+      beneficiaries: newBeneficiaries,
+    });
+  } catch (error) {
+    console.error('Error fetching new beneficiaries:', error.message || error);
+    res.status(500).json({ message: 'Server error.', error: error.message });
   }
 };

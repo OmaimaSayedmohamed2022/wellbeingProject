@@ -82,7 +82,7 @@ export const categories = {
               'فحوص دورية',
               'عناية صحية'
     ],
-    skillsDevelopment: [
+    skillDevelopment: [
            'الاسترخاء',
             'تحمل الضغوط',
             'ضبط المشاعر',

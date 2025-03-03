@@ -122,52 +122,137 @@ export const getSessionById= async(req,res)=>{
   }
 }
 
-
-// get all sessions
-export const getSessions = async (req, res) => {
+export const getSessionsByStatus = async (req, res) => {
   try {
-    const scheduledSessions = await Session.find()
-      .select("sessionDate beneficiary")
-      .populate({
-        path: "beneficiary",
-        select: "firstName lastName age gender nationality profession",
-      });
+    const { status } = req.params;
+    const validStatuses = ["Scheduled", "Completed", "Pending", "Canceled"];
+
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ error: "Invalid session status" });
+    }
+
+    const sessions = await Session.find({ status }).populate("beneficiary specialist");
+
+    res.status(200).json({ sessions });
+  } catch (error) {
+    logger.error(`Error fetching ${status} sessions:`, error);
+    res.status(500).json({ error: "Server error", message: error.message });
+  }
+};
+
+
+// // Get Scheduled Sessions
+// export const getScheduledSessions = async (req, res) => {
+//   try {
+//     const scheduledSessions = await Session.find() // Query by status
+//       .select("sessionDate specialist")
+//       .populate({
+//         path: "specialist",
+//         select: "firstName lastName imageUrl",
+//       });
+
+//     res.status(200).json({ scheduledSessions });
+//   } catch (error) {
+//     logger.error("Error fetching scheduled sessions:", error);
+//     res.status(500).json({ error: "Server error", message: error.message });
+//   }
+// };
+
+// // Get Completed Sessions
+export const getCompletedSessions = async (req, res) => {
+  try {
     const completedSessions = await Session.find({ status: "Completed" })
       .select("sessionDate beneficiary")
       .populate({
         path: "beneficiary",
-        select: "firstName lastName age gender nationality profession",
+        select: "firstName lastName age gender nationality imageUrl",
       });
-    res.status(200).json({ scheduledSessions, completedSessions });
-  } catch (error) {
-    logger.error("Error in getSessions:", error);
-    res.status(500).json({ error: "Server error" });
-  }
-};
 
-// get scheduled sessions
-export const getScheduledSessions = async (req, res) => {
-  try {
-    const scheduledSessions = await Session.find({
-      status: "Scheduled",
-    }).select("sessionDate");
-    res.status(200).json({ scheduledSessions });
-  } catch (error) {
-    logger.error("Error in getSessions:", error);
-    res.status(500).json({ error: "Server error" });
-  }
-};
-
-// get completed sessions
-export const getCompletedSessions = async (req, res) => {
-  try {
-    const completedSessions = await Session.find({
-      status: "Completed",
-    }).select("sessionDate");
     res.status(200).json({ completedSessions });
   } catch (error) {
-    logger.error("Error in getSessions:", error);
+    logger.error("Error fetching completed sessions:", error);
     res.status(500).json({ error: "Server error" });
+  }
+};
+
+// // Get Pending Sessions
+// export const getPendingSessions = async (req, res) => {
+//   try {
+//     const pendingSessions = await Session.find({ status: "Pending" })
+//       .select("sessionDate beneficiary")
+//       .populate({
+//         path: "beneficiary",
+//         select: "firstName lastName age gender nationality imageUrl",
+//       });
+
+//     res.status(200).json({ pendingSessions });
+//   } catch (error) {
+//     logger.error("Error fetching pending sessions:", error);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// };
+
+// // Get Canceled Sessions
+// export const getCanceledSessions = async (req, res) => {
+//   try {
+//     const canceledSessions = await Session.find({ status: "Canceled" })
+//       .select("sessionDate beneficiary")
+//       .populate({
+//         path: "beneficiary",
+//         select: "firstName lastName age gender nationality imageUrl",
+//       });
+
+//     res.status(200).json({ canceledSessions });
+//   } catch (error) {
+//     logger.error("Error fetching canceled sessions:", error);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// };
+
+export const updatePendingToScheduled = async (req, res) => {
+  try {
+    const { sessionId } = req.params; 
+
+    const session = await Session.findOne({ _id: sessionId, status: "Pending" });
+
+    if (!session) {
+      return res.status(404).json({ message: "Session not found or not in 'Pending' status." });
+    }
+    session.status = "Scheduled";
+    await session.save();
+
+    // Return the updated session
+    res.status(200).json({ message: "Session status updated to 'Scheduled'.", session });
+  } catch (error) {
+    logger.error("Error updating session status:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+// caancel session
+export const cancelSession = async (req, res) => {
+  try {
+    const { id } = req.params; 
+    const session = await Session.findById(id);
+    if (!session) {
+      return res.status(404).json({ message: 'Session not found.' });
+    }
+
+    if (session.status === 'Canceled') {
+      return res.status(400).json({ message: 'Session is already canceled.' });
+    }
+    if (session.status === 'Completed') {
+      return res.status(400).json({ message: 'Session can not canceled.' });
+    }
+    session.status = 'Canceled';
+    await session.save();
+
+    res.status(200).json({
+      message: 'Session canceled successfully.',
+      session,
+    });
+  } catch (error) {
+    console.error('Error canceling session:', error.message || error);
+    res.status(500).json({ message: 'Server error.', error: error.message });
   }
 };
 

@@ -70,7 +70,7 @@ const specialistSchema = new mongoose.Schema({
         ],
       },
     ],
-    skillDevelopment: [
+    skillsDevelopment: [
       {
         type: String,
         enum: [
