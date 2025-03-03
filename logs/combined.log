@@ -856,3 +856,11 @@
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-03T00:05:04.579Z"}
 {"level":"info","message":"Treatment program \"Anxiety Treatment\" added successfully","timestamp":"2025-03-03T00:05:04.765Z"}
 {"level":"info","message":"::1 - - [03/Mar/2025:00:05:04 +0000] \"POST /api/treatment/add HTTP/1.1\" 201 425 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-03T00:05:04.886Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-03T00:12:08.038Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-03T00:12:09.677Z"}
+{"level":"info","message":"::1 - - [03/Mar/2025:00:12:11 +0000] \"GET /api/admin/cancel/newBeneficary HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-03T00:12:11.757Z"}
+{"level":"info","message":"::1 - - [03/Mar/2025:00:12:59 +0000] \"GET /api/admin/cancel/newBeneficary HTTP/1.1\" 404 169 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-03T00:12:59.193Z"}
+{"level":"info","message":"::1 - - [03/Mar/2025:00:13:12 +0000] \"GET /api/admin/newBeneficary HTTP/1.1\" 200 2670 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-03T00:13:12.765Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-03T00:14:51.827Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-03T00:14:53.586Z"}
+{"level":"info","message":"::1 - - [03/Mar/2025:00:14:54 +0000] \"GET /api/admin/newBeneficary HTTP/1.1\" 200 9203 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-03T00:14:54.647Z"}
