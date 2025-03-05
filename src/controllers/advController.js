@@ -1,5 +1,5 @@
 import Adv from '../models/advModel.js';
-
+import { uploadToCloudinary } from '../middlewares/cloudinaryUpload.js'; 
 
 export const addAdvertisement = async (req, res) => {
     try {
@@ -55,36 +55,26 @@ export const getAdvertisementById = async (req, res) => {
 };
 
 
-import { uploadToCloudinary } from '../middlewares/cloudinaryUpload.js'; // Import the Cloudinary utility
-
 export const updateAdvertisement = async (req, res) => {
   try {
-    const { id } = req.params; // Advertisement ID
-    const { title, type } = req.body; // Extract fields from form data
+    const { id } = req.params;
+    const { title, type } = req.body;
 
-    console.log('Request Params:', req.params); // Log the ID
-    console.log('Request Body:', req.body); // Log the form data
-    console.log('Uploaded File:', req.file); // Log the uploaded file
-
-    // Create an update object with only the provided fields
     const updateData = {};
     if (title) updateData.title = title;
     if (type) updateData.type = type;
-
-    // If a file is uploaded, upload it to Cloudinary and add the URL to the update data
     if (req.file) {
       const imageUrl = await uploadToCloudinary(req.file); // Upload to Cloudinary
-      updateData.photo = imageUrl; // Store the Cloudinary URL
+      updateData.photo = imageUrl; 
     }
-
-    // Update the advertisement and return the updated document
+    // update the advertisement 
     const updatedAdv = await Adv.findByIdAndUpdate(
       id,
       updateData,
-      { new: true } // Return the updated document
+      { new: true }
     );
 
-    // Check if the advertisement exists
+    // check if the advertisement exists
     if (!updatedAdv) {
       return res.status(404).json({ message: 'Advertisement not found.' });
     }

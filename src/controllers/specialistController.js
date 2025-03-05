@@ -2,9 +2,7 @@ import bcrypt from 'bcryptjs';
 import Specialist from '../models/specialistModel.js';
 import { uploadToCloudinary } from '../middlewares/cloudinaryUpload.js';
 import logger from '../config/logger.js';
-import { pagination } from '../middlewares/pagination.js';
-import jwt from "jsonwebtoken"
-
+import jwt from "jsonwebtoken";
 
 export const registerSpecialist = async (req, res) => {
   try {
@@ -70,29 +68,29 @@ export const registerSpecialist = async (req, res) => {
       yearsExperience,
       sessionDuration,
       specialties,
-      files:uploadedFiles,
+      files: uploadedFiles,
       sessions,
       isConfirmed: false,
       isAvailable       
     });
 
     await specialist.save();
-     const token = jwt.sign(
-          { userId: specialist._id, email: specialist.email }, 
-          process.env.JWT_SECRET,
-          { expiresIn: '1h' } 
-        );
+    const token = jwt.sign(
+      { userId: specialist._id, email: specialist.email }, 
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' } 
+    );
 
     res.status(201).json({
-      message: 'Specialist registered successfully.',specialist,token});
+      message: 'Specialist registered successfully.', specialist, token
+    });
   } catch (error) {
     console.error('Error registering specialist:', error.message || error);
     res.status(500).json({ message: error.message || 'Internal server error.' });
   }
 };
 
-
-// get specialist by his category
+// Get specialist by his category
 export const getSpecialistsByCategory = async (req, res) => {
   const { category, subcategory } = req.body;
 
@@ -122,17 +120,16 @@ export const getSpecialistsByCategory = async (req, res) => {
   }
 };
 
-
 export const updateSpecialist = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedData = await Specialist.findByIdAndUpdate(id,req.body,{ new: true });
+    const updatedData = await Specialist.findByIdAndUpdate(id, req.body, { new: true });
 
-    if (!updatedData ||!id) {
+    if (!updatedData || !id) {
       return res.status(404).json({ message: 'Specialist not found' });
     }
 
-    return res.status(200).json({message:"specilist updated sucessfully ",updatedData});
+    return res.status(200).json({ message: "Specialist updated successfully", updatedData });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -141,15 +138,16 @@ export const updateSpecialist = async (req, res) => {
 export const deleteSpecialist = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await Specialist.findByIdAndDelete(id)
+    const data = await Specialist.findByIdAndDelete(id);
 
-    if (!data ||!id) {
+    if (!data || !id) {
       return res.status(404).json({ message: 'Specialist not found' });
     }
 
     return res.status(200).json({
-      message:" specialist deleted successfully " ,
-      data});
+      message: "Specialist deleted successfully",
+      data
+    });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -160,7 +158,7 @@ export const addAvailableSlot = async (req, res) => {
     const { id } = req.params; 
     const { date } = req.body; 
     if (!date) {
-      return res.status(400).json({ message: "Date are required." });
+      return res.status(400).json({ message: "Date is required." });
     }
 
     const slotString = `${date}`;
@@ -178,24 +176,24 @@ export const addAvailableSlot = async (req, res) => {
       id,
       { $push: { availableSlots: slotString } },
       { new: true, runValidators: false } 
-)
+    );
+
     res.status(200).json({
-      message: "Added Slot ",
+      message: "Added Slot",
       availableSlots: updatedSpecialist.availableSlots,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error occured", error: error.message });
-    logger.error({message: "Error occured", error: error.message })
+    res.status(500).json({ message: "Error occurred", error: error.message });
+    logger.error({ message: "Error occurred", error: error.message });
   }
 };
-
 
 export const deleteAvailableSlot = async (req, res) => {
   try {
     const { id } = req.params;
     const { date } = req.body;
 
-    if (!date ) {
+    if (!date) {
       return res.status(400).json({ message: "Date is required." });
     }
 
@@ -225,10 +223,6 @@ export const deleteAvailableSlot = async (req, res) => {
   }
 };
 
-
-
-
-
 export const countSpecialist = async (req, res) => {
   try {
     const count = await Specialist.countDocuments(); 
@@ -238,17 +232,14 @@ export const countSpecialist = async (req, res) => {
   }
 };
 
-
 // All specialties
 export const getAllSpecialists = async (req, res) => {
   try {
-    const { page } = req.query;
-    
-    const data = await pagination(Specialist, { isConfirmed: true }, page);
+    const data = await Specialist.find({ isConfirmed: true });
 
     res.status(200).json({
       message: "Specialists fetched successfully.",
-      ...data
+      data
     });
   } catch (error) {
     logger.error(`Error fetching specialists: ${error.message}`);
@@ -256,20 +247,16 @@ export const getAllSpecialists = async (req, res) => {
   }
 };
 
-
-
 // Specialists [ sorted ]
-const getSortedSpecialists = async (sortOrder, page = 1) => {
-  return await pagination(Specialist, { isConfirmed: true }, page, 3, { sessions: sortOrder });
+const getSortedSpecialists = async (sortOrder) => {
+  return await Specialist.find({ isConfirmed: true }).sort({ sessions: sortOrder });
 };
 
 // Specialists [ descending ]
 export const getTopSpecialists = async (req, res) => {
   try {
-    const { page } = req.query;
-    const data = await getSortedSpecialists(-1, page);
-    res.status(200).json({ message: 'Top specialists fetched successfully.', ...data });
-
+    const data = await getSortedSpecialists(-1);
+    res.status(200).json({ message: 'Top specialists fetched successfully.', data });
   } catch (error) {
     logger.error(`Error fetching top specialists: ${error.message}`);
     res.status(500).json({ message: 'Error fetching top specialists.', error: error.message });
@@ -279,10 +266,8 @@ export const getTopSpecialists = async (req, res) => {
 // Specialists [ ascending ]
 export const getBottomSpecialists = async (req, res) => {
   try {
-    const { page } = req.query;
-    const data = await getSortedSpecialists(1, page);
-    res.status(200).json({ message: 'Bottom specialists fetched successfully.', ...data });
-
+    const data = await getSortedSpecialists(1);
+    res.status(200).json({ message: 'Bottom specialists fetched successfully.', data });
   } catch (error) {
     logger.error(`Error fetching bottom specialists: ${error.message}`);
     res.status(500).json({ message: 'Error fetching bottom specialists.', error: error.message });
@@ -292,7 +277,7 @@ export const getBottomSpecialists = async (req, res) => {
 // Search for specialists
 export const searchSpecialists = async (req, res) => {
   try {
-    const { name, specialty, status, page = 1 } = req.query;
+    const { name, specialty, status } = req.query;
     let query = {};
 
     if (name) {
@@ -310,14 +295,13 @@ export const searchSpecialists = async (req, res) => {
       query.isAvailable = status.toLowerCase() === 'available';
     }
 
-    const data = await pagination(Specialist, query, page, 3);
-    res.status(200).json({ message: 'Search completed successfully.', ...data });
+    const data = await Specialist.find(query);
+    res.status(200).json({ message: 'Search completed successfully.', data });
   } catch (error) {
     logger.error(`Error during search: ${error.message}`);
     res.status(500).json({ message: 'Error during search.', error: error.message });
   }
 };
-
 
 // Confirm Specialist
 export const confirmSpecialist = async (req, res) => {
@@ -334,7 +318,6 @@ export const confirmSpecialist = async (req, res) => {
     await specialist.save();
 
     res.status(200).json({ message: "Specialist confirmed successfully." });
-
   } catch (error) {
     logger.error("Error confirming specialist:", error);
     res.status(500).json({ message: "Server error", error: error.message });
@@ -365,43 +348,35 @@ export const updateSpecialistAvailability = async (req, res) => {
       message: `Specialist availability updated to ${isAvailable ? 'Available' : 'Not Available'}.`,
       specialist
     });
-
   } catch (error) {
     logger.error("Error updating specialist availability:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 
-
 // Specialists [ Unconfirmed ]
 export const getUnconfirmedSpecialists = async (req, res) => {
   try {
-    const { page } = req.query;
-    const data = await pagination(Specialist, { isConfirmed: false }, page, 2);
-    res.status(200).json({ message: 'Unconfirmed specialists fetched successfully.', ...data });
-    
+    const data = await Specialist.find({ isConfirmed: false });
+    res.status(200).json({ message: 'Unconfirmed specialists fetched successfully.', data });
   } catch (error) {
     logger.error(`Error getting unconfirmed specialists: ${error.message}`);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
 
+export const getSpecialistById = async (req, res) => {
+  const { id } = req.params;
 
-export const getSpecialistById = async(req,res)=>{
- 
-  const{id}=req.params;
-
-  try{
-   
+  try {
     const specialist = await Specialist.findById(id).select('-password');
     if (!specialist) {
-      return res.status(404).json({ error: 'Specialist not found.' })
+      return res.status(404).json({ error: 'Specialist not found.' });
     }
-      return res.status(201).json({message:'specialist gitting successfully',specialist})
-
-  }catch(error){
-    logger.error(`Error fetching specialist: ${error.message}`)
-    res.status(500).json({message:"error gitting specialist", error:error.message})
+    return res.status(201).json({ message: 'Specialist fetched successfully', specialist });
+  } catch (error) {
+    logger.error(`Error fetching specialist: ${error.message}`);
+    res.status(500).json({ message: "Error fetching specialist", error: error.message });
   }
 };
 
@@ -455,7 +430,6 @@ export const getAttendanceRate = async (req, res) => {
 };
 
 // Get Specialties Comparison
-
 export const getSpecialtiesComparison = async (req, res) => {
   try {
     const specialtiesData = await Specialist.aggregate([
@@ -537,8 +511,6 @@ export const getSpecialtiesComparison = async (req, res) => {
     res.status(500).json({ message: 'Error fetching specialties comparison.', error: error.message });
   }
 };
-
-
 
 export const updateLanguage = async (req, res) => {
   try {

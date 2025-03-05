@@ -3,25 +3,11 @@ export const categories = {
     ar: [
       {
         name: 'اضطرابات نفسية',
-        subcategory: [
-          'القلق',
-          'الاكتئاب',
-          'الرهاب',
-          'الوسواس',
-          'اضطراب جنسي',
-          'اضطراب الاكل',
-        ],
+        subcategory: ['القلق', 'الاكتئاب', 'الرهاب', 'الوسواس', 'اضطراب جنسي', 'اضطراب الاكل'],
       },
       {
         name: 'اضطراب شخصي',
-        subcategory: [
-          'حدي',
-          'نرجسي',
-          'وسواس',
-          'اعتمادي',
-          'رهابي',
-          'انحرافي',
-        ],
+        subcategory: ['حدي', 'نرجسي', 'وسواس', 'اعتمادي', 'رهابي', 'انحرافي'],
       },
       'الادمان',
       'اضطراب الصدمة',
@@ -57,14 +43,7 @@ export const categories = {
       },
       {
         name: 'حل مشكلات',
-        subcategory: [
-          'مشاكل أسريه',
-          'مشاكل علاقات',
-          'مشاكل ثنائية',
-          'غضب',
-          'مشاكل عمل',
-          'عنف',
-        ],
+        subcategory: ['مشاكل أسريه', 'مشاكل علاقات', 'مشاكل ثنائية', 'غضب', 'مشاكل عمل', 'عنف'],
       },
       'ارشاد وتوجيه',
       {
@@ -92,25 +71,11 @@ export const categories = {
     en: [
       {
         name: 'Psychological Disorders',
-        subcategory: [
-          'Anxiety',
-          'Depression',
-          'Phobia',
-          'Obsession',
-          'Sexual Disorder',
-          'Eating Disorder',
-        ],
+        subcategory: ['Anxiety', 'Depression', 'Phobia', 'Obsession', 'Sexual Disorder', 'Eating Disorder'],
       },
       {
         name: 'Personality Disorder',
-        subcategory: [
-          'Borderline',
-          'Narcissistic',
-          'Obsessive',
-          'Dependent',
-          'Phobic',
-          'Deviant',
-        ],
+        subcategory: ['Borderline', 'Narcissistic', 'Obsessive', 'Dependent', 'Phobic', 'Deviant'],
       },
       'Addiction',
       'Trauma Disorder',
@@ -146,14 +111,7 @@ export const categories = {
       },
       {
         name: 'Problem Solving',
-        subcategory: [
-          'Family Problems',
-          'Relationship Problems',
-          'Couple Problems',
-          'Anger',
-          'Work Problems',
-          'Violence',
-        ],
+        subcategory: ['Family Problems', 'Relationship Problems', 'Couple Problems', 'Anger', 'Work Problems', 'Violence'],
       },
       'Guidance and Counseling',
       {
@@ -169,8 +127,8 @@ export const categories = {
       {
         name: 'Rehabilitation and Support',
         subcategory: [
-          'For Parkinson\'s Disease',
-          'For Alzheimer\'s Disease',
+          "For Parkinson's Disease",
+          "For Alzheimer's Disease",
           'For Epilepsy',
           'Mental Illness',
           'Psychosis',
@@ -209,7 +167,46 @@ export const categories = {
   },
 };
 
-export const sessionTypes = {
-  ar: ['جلسة فورية', 'جلسة مجانية'],
-  en: ['Instant Session', 'Free Session'],
+export const getAllSubcategories = (category) => {
+  if (!categories[category]) return [];
+
+  let subcategories = new Set();
+
+  // Iterate over both 'ar' and 'en' languages
+  ['ar', 'en'].forEach((lang) => {
+    if (Array.isArray(categories[category][lang])) {
+      categories[category][lang].forEach((item) => {
+        if (typeof item === 'object' && item.name) {
+          // Add the main category name (e.g., "اضطرابات نفسية")
+          subcategories.add(item.name);
+
+          // Add nested subcategories (e.g., "القلق", "الاكتئاب")
+          if (item.subcategory && Array.isArray(item.subcategory)) {
+            item.subcategory.forEach((sub) => subcategories.add(sub));
+          }
+        } else if (typeof item === 'string') {
+          // Add direct subcategories (e.g., "الادمان")
+          subcategories.add(item);
+        }
+      });
+    }
+  });
+
+  return Array.from(subcategories);
 };
+
+// // Test the function
+// const category = 'mentalHealth';
+// const subcategory = 'Anxiety'; // Change this to test different subcategories
+
+// const validSubcategories = getAllSubcategories(category);
+// console.log('Valid Subcategories:', validSubcategories);
+
+// if (validSubcategories.includes(subcategory)) {
+//   console.log(`✅ Subcategory '${subcategory}' is valid for category '${category}'`);
+// } else {
+//   console.log(`❌ Subcategory '${subcategory}' is NOT valid for category '${category}'`);
+// }
+
+
+export const sessionTypes =  ['جلسة فورية', 'استشارة مجانية',"جلسة عادية"]

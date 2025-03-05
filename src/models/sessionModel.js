@@ -17,7 +17,7 @@ const sessionSchema = new mongoose.Schema(
     sessionType: {
       type: String,
       required: true,
-      enum: ['جلسة فورية', 'جلسة مجانية'],
+      enum: ['جلسة فورية', 'جلسة مجانية',"جلسة عادية"],
     },
     description: {
       type: String,
@@ -30,7 +30,7 @@ const sessionSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['Scheduled', 'Completed', 'Canceled', 'Pending'], 
+      enum: ['Scheduled', 'Completed', 'Canceled',"Requested", 'Pending'], 
       default: 'Pending',
     },
     beneficiary:{
@@ -49,9 +49,9 @@ const sessionSchema = new mongoose.Schema(
     amount: Number,
     method: String, // Visa, MasterCard, Audi Bank
   },
-
-  
-    createdAt: {
+  sessionDate: { type: Date, required: true },
+  requestedDate: { type: Date }, 
+  createdAt: {
       type: Date,
       default: Date.now,
     },
