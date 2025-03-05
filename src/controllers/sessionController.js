@@ -29,10 +29,10 @@ export const createSession = async (req, res) => {
   } = req.body;
 
   try {
-    // Function to normalize date format
+    // Function to normalize date format (remove milliseconds)
     const normalizeDate = (dateString) => {
       const parsedDate = new Date(dateString);
-      return isNaN(parsedDate) ? null : parsedDate.toISOString();
+      return isNaN(parsedDate) ? null : parsedDate.toISOString().split('.')[0] + "Z";
     };
 
     // Convert sessionDate to ISO format
@@ -55,7 +55,7 @@ export const createSession = async (req, res) => {
     if (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') {
       // Find an available specialist for the requested time slot
       const availableSpecialist = await Specialist.findOne({
-        availableSlots: parsedSessionDate,
+        availableSlots: { $in: [parsedSessionDate] }, // Use $in to match the date
         isAvailable: true,
       });
 
@@ -68,15 +68,29 @@ export const createSession = async (req, res) => {
         availableSpecialist.availableSlots = availableSpecialist.availableSlots.filter(
           (slot) => normalizeDate(slot) !== parsedSessionDate
         );
+
+        // Save the updated specialist
         await availableSpecialist.save();
+
+        console.log("Updated Specialist:", availableSpecialist); // Debugging log
       }
-    } else if (sessionType === 'جلسة عادية'|| sessionType === "Regular Session") {
+    } else if (sessionType === 'Regular Session') {
       // For regular sessions, require a specialist ID
       const { specialist } = req.body;
       if (!specialist) {
         return res.status(400).json({ error: "Specialist ID is required for regular sessions." });
       }
       specialistId = specialist;
+    }
+
+    // Check for conflicting sessions
+    const conflictingSession = await Session.findOne({
+      sessionDate: parsedSessionDate,
+      specialist: specialistId,
+    });
+
+    if (conflictingSession) {
+      return res.status(400).json({ error: "A session already exists at the requested time." });
     }
 
     // Create a new session
@@ -91,6 +105,8 @@ export const createSession = async (req, res) => {
     });
 
     await newSession.save();
+
+    console.log("Session created successfully:", newSession);
 
     res.status(201).json({
       message: "Session created successfully.",
