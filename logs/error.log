@@ -59,3 +59,25 @@
 {"level":"error","message":"Error adding treatment program: TreatmentProgram validation failed: beneficiary: Path `beneficiary` is required.","timestamp":"2025-03-03T00:03:16.315Z"}
 {"level":"error","message":"Error adding treatment program: TreatmentProgram validation failed: beneficiary: Path `beneficiary` is required.","timestamp":"2025-03-03T00:04:01.748Z"}
 {"level":"error","message":"Error: categories[category].map is not a function","timestamp":"2025-03-03T14:17:22.493Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:16:06.300Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:17:14.331Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:30:05.948Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:37:01.726Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:39:09.123Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:40:25.225Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:42:27.822Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:45:07.038Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:46:34.535Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:49:55.193Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:50:05.158Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-04T15:51:59.803Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-05T00:33:54.106Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-05T00:35:27.687Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-05T00:36:11.895Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-05T00:36:16.123Z"}
+{"level":"error","message":"Error: sessionTypes.includes is not a function","timestamp":"2025-03-05T00:36:48.007Z"}
+{"level":"error","message":"Error: Expected ',' or '}' after property value in JSON at position 197 (line 7 column 3)","timestamp":"2025-03-05T01:06:00.881Z"}
+{"level":"error","message":"Error: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/","timestamp":"2025-03-05T02:48:52.785Z"}
+{"level":"error","message":"Error: Expected double-quoted property name in JSON at position 236 (line 9 column 1)","timestamp":"2025-03-05T02:59:46.011Z"}
+{"level":"error","message":"Error: Expected double-quoted property name in JSON at position 236 (line 9 column 1)","timestamp":"2025-03-05T02:59:48.980Z"}
+{"level":"error","message":"Error: Expected double-quoted property name in JSON at position 224 (line 9 column 1)","timestamp":"2025-03-05T03:47:17.175Z"}

@@ -15,7 +15,7 @@ import {registerAdmin,getAdminById, countBeneficiary, countGender, calPayments, 
 } from "../controllers/adminController.js";
 
 import { getAllAdv } from '../controllers/advController.js';
-
+import {confirmSessionUpdate} from "../controllers/beneficaryController.js"
 
 const router=express.Router()
 
@@ -48,6 +48,8 @@ router.get('/calcPayments', calPayments)
 // statistics 
 router.get('/stat', getSessionStatistics);
 router.get('/allUpcomingSessions',getAllUpcomingSessions)
+
+router.patch("/confirmeSessionUpdate/:sessionId",confirmSessionUpdate)
 
 
 

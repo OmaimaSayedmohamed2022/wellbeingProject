@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import { uploadToCloudinary } from '../middlewares/cloudinaryUpload.js';
 import { uploadFiles } from '../middlewares/uploadFiles.js';
 import { Admin } from '../models/adminModel.js';
+import Session from '../models/sessionModel.js';
 import jwt from 'jsonwebtoken'
 
 // Create a new Beneficiary
@@ -249,5 +250,70 @@ export const getBeneficiarySessions = async (req, res) => {
 
   } catch (error) {
       res.status(500).json({ message: "Internal Server Error", error: error.message });
+  }
+};
+
+
+
+export const requestSessionDateUpdate = async (req, res) => {
+  try {
+    const { beneficiaryId, sessionId } = req.params;
+    const { newSessionDate } = req.body;
+
+    if (!newSessionDate) {
+      return res.status(400).json({ message: "New session date is required." });
+    }
+
+    const beneficiary = await Beneficiary.findById(beneficiaryId).populate({
+      path: "sessions",
+      populate: { path: "specialist" },
+    });
+    if (!beneficiary) {
+      return res.status(404).json({ message: "Beneficiary not found." });
+    }
+
+    const session = beneficiary.sessions.find(s => s._id.toString() === sessionId);
+    if (!session) {
+      return res.status(404).json({ message: "Session not found for this beneficiary." });
+    }
+
+    const specialist = session.specialist;
+    if (!specialist.availableSlots.includes(newSessionDate)) {
+      return res.status(400).json({ message: "Requested date is not available in specialist's slots." });
+    }
+
+    session.requestedDate = new Date(newSessionDate);
+    session.status = "Requested";
+    await session.save();
+
+    res.status(200).json({ message: "Session update requested. Awaiting specialist approval.", session });
+  } catch (error) {
+    console.error("Error requesting session date update:", error.message || error);
+    res.status(500).json({ message: "Internal Server Error", error: error.message });
+  }
+};
+
+export const confirmSessionUpdate = async (req, res) => {
+  try {
+    const { sessionId } = req.params;
+
+    const session = await Session.findById(sessionId).populate("specialist");
+    if (!session) {
+      return res.status(404).json({ message: "Session not found." });
+    }
+
+    if (!session.requestedDate) {
+      return res.status(400).json({ message: "No requested date change found." });
+    }
+
+    session.sessionDate = session.requestedDate;
+    session.status = "Scheduled"; 
+    session.requestedDate = null; 
+    await session.save();
+
+    res.status(200).json({ message: "Session update confirmed and scheduled.", session });
+  } catch (error) {
+    console.error("Error confirming session update:", error.message || error);
+    res.status(500).json({ message: "Internal Server Error", error: error.message });
   }
 };

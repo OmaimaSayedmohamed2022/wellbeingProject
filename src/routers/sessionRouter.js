@@ -17,7 +17,7 @@ const router = express.Router();
 // Route to fetch session types
 router.get('/types', getSessionTypes);
 
-router.post('/create', verifyToken , sessionMiddleware , createSession)
+router.post('/create', verifyToken ,  createSession)
 router.get("/:id",getSessionById)
 // router.post('/payment',processPayment)
 
@@ -33,5 +33,7 @@ router.get("/specialist/:specialistId", getSpecialistSessions);
 
 router.patch("/update/:sessionId", updateSessionStatus),
 router.patch("/update/pendingToScheduled/:sessionId",updatePendingToScheduled)
+
+
 
 export default router;
