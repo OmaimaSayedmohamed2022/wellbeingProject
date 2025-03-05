@@ -17,7 +17,7 @@ const sessionSchema = new mongoose.Schema(
     sessionType: {
       type: String,
       required: true,
-      enum: ['جلسة فورية', 'جلسة مجانية',"جلسة عادية"],
+      enum:['Instant Session','Free Session' ,"Regular Session"],
     },
     description: {
       type: String,

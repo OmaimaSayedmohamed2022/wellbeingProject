@@ -26,28 +26,7 @@ export const createSession = async (req, res) => {
     category,
     subcategory,
     beneficiary,
-    specialist,
   } = req.body;
-
-  console.log('Request Body:', JSON.stringify(req.body, null, 2)); // Log the entire request body
-  console.log('Requested Category:', category);
-  console.log('Requested Subcategory:', subcategory);
-
-  // Validate category
-  if (!categories[category]) {
-    console.log(`⚠️ ERROR: Category '${category}' does not exist.`);
-    return res.status(400).json({ error: `Invalid category '${category}'` });
-  }
-
-  // Get valid subcategories
-  const validSubcategories = getAllSubcategories(category);
-  console.log('Extracted Valid Subcategories:', JSON.stringify(validSubcategories, null, 2));
-
-  // Validate subcategory
-  if (!validSubcategories.includes(subcategory)) {
-    console.log(`⚠️ ERROR: Subcategory '${subcategory}' is not valid for category '${category}'`);
-    return res.status(400).json({ error: `Invalid subcategory '${subcategory}' for category '${category}'` });
-  }
 
   try {
     // Function to normalize date format
@@ -59,49 +38,45 @@ export const createSession = async (req, res) => {
     // Convert sessionDate to ISO format
     const parsedSessionDate = normalizeDate(sessionDate);
     if (!parsedSessionDate) {
-      console.log('⚠️ ERROR: Invalid date format');
-      return res.status(400).json({ error: 'Invalid date format' });
+      return res.status(400).json({ error: "Invalid date format" });
     }
 
     let sessionDateObj = moment.utc(parsedSessionDate).toDate();
 
     // Validate sessionType
-    const sessionTypes =  ['جلسة فورية', 'استشارة مجانية',"جلسة عادية"]
-
+    const sessionTypes = ['Instant Session', 'جلسة فورية', 'Regular Session'];
     if (!sessionTypes.includes(sessionType)) {
-      console.log('⚠️ ERROR: Invalid session type');
-      return res.status(400).json({ error: 'Invalid session type.' });
+      return res.status(400).json({ error: "Invalid session type." });
     }
 
-    // Skip specialist check for 'Instant Session'
-    if (sessionType !== 'جلسة فورية') {
+    let specialistId = null;
+
+    // Handle instant sessions
+    if (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') {
+      // Find an available specialist for the requested time slot
+      const availableSpecialist = await Specialist.findOne({
+        availableSlots: parsedSessionDate,
+        isAvailable: true,
+      });
+
+      console.log("Available Specialist:", availableSpecialist); // Debugging log
+
+      if (availableSpecialist) {
+        specialistId = availableSpecialist._id;
+
+        // Remove the booked slot from the specialist's available slots
+        availableSpecialist.availableSlots = availableSpecialist.availableSlots.filter(
+          (slot) => normalizeDate(slot) !== parsedSessionDate
+        );
+        await availableSpecialist.save();
+      }
+    } else if (sessionType === 'جلسة عادية'|| sessionType === "Regular Session") {
+      // For regular sessions, require a specialist ID
+      const { specialist } = req.body;
       if (!specialist) {
-        console.log('⚠️ ERROR: Specialist ID is required for this session type');
-        return res.status(400).json({ error: 'Specialist ID is required for this session type.' });
+        return res.status(400).json({ error: "Specialist ID is required for regular sessions." });
       }
-
-      const specialistDoc = await Specialist.findById(specialist);
-      if (!specialistDoc) {
-        console.log('⚠️ ERROR: Specialist not found');
-        return res.status(404).json({ error: 'Specialist not found.' });
-      }
-
-      // Normalize available slots
-      const normalizedSlots = specialistDoc.availableSlots
-        .map((slot) => normalizeDate(slot))
-        .filter((slot) => slot !== null);
-
-      // Check if the requested date is in available slots
-      if (!normalizedSlots.includes(parsedSessionDate)) {
-        console.log('⚠️ ERROR: Selected date is not available');
-        return res.status(400).json({ error: 'Selected date is not available.' });
-      }
-
-      // Remove booked slot from available slots
-      specialistDoc.availableSlots = specialistDoc.availableSlots.filter(
-        (slot) => normalizeDate(slot) !== parsedSessionDate
-      );
-      await specialistDoc.save();
+      specialistId = specialist;
     }
 
     // Create a new session
@@ -112,26 +87,18 @@ export const createSession = async (req, res) => {
       subcategory,
       description,
       beneficiary,
-      specialist: sessionType === 'جلسة فورية' ? null : specialist,
+      specialist: specialistId, // Set to specialist ID or null
     });
 
     await newSession.save();
 
-    // Add session to beneficiary's session list
-    await Beneficiary.findByIdAndUpdate(
-      beneficiary,
-      { $push: { sessions: newSession._id } },
-      { new: true, runValidators: false }
-    );
-
-    console.log('✅ Session created successfully:', newSession);
     res.status(201).json({
-      message: 'Session created successfully.',
+      message: "Session created successfully.",
       session: newSession,
     });
   } catch (error) {
-    console.error('❌ Error creating session:', error);
-    res.status(500).json({ error: 'Internal server error', details: error.message });
+    console.error("Error creating session:", error);
+    res.status(500).json({ error: "Internal server error", details: error.message });
   }
 };
 // get session by id
