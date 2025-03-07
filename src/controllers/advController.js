@@ -110,3 +110,73 @@ export const updateAdvertisement = async (req, res) => {
     }
   };
 
+// add view to advertisement
+export const addViewToAd = async (req, res) => {
+  try {
+      const { id } = req.params; 
+      const ad = await Adv.findById(id);
+      
+      if (!ad) {
+          return res.status(404).json({ message: "Ad not found." });
+      }
+
+      ad.views += 1; 
+      await ad.save();
+
+      res.status(200).json({ message: "View added successfully.", views: ad.views });
+  } catch (error) {
+      logger.error("Error adding view:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// get advertisement interactions
+export const getAdInteractions = async (req, res) => {
+  try {
+      const interactions = await Adv.aggregate([
+          { $group: { _id: "$type", totalViews: { $sum: "$views" } } }
+      ]);
+
+      res.status(200).json({ interactions });
+  } catch (error) {
+      logger.error("Error fetching ad interaction statistics:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// get advertisement views per day all time
+export const getAdEngagementRate = async (req, res) => {
+  try {
+      const engagement = await Adv.aggregate([
+          { 
+              $group: { 
+                  _id: { $dayOfMonth: "$createdAt" }, 
+                  totalViews: { $sum: "$views" } 
+              } 
+          },
+          { $sort: { _id: 1 } }
+      ]);
+
+      res.status(200).json({ engagement });
+  } catch (error) {
+      logger.error("Error fetching ad engagement rate:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// get advertisement views per day for the last 7 days
+export const getAdViewsPerDay = async (req, res) => {
+  try {
+      const dailyStats = await Adv.aggregate([
+          { $match: { createdAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } } }, 
+          { $group: { _id: { $dayOfMonth: "$createdAt" }, totalViews: { $sum: "$views" } } },
+          { $sort: { "_id": 1 } }
+      ]);
+
+      res.status(200).json({ dailyStats });
+  } catch (error) {
+      logger.error("Error fetching ad views statistics:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+

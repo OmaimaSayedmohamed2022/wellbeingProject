@@ -2,8 +2,11 @@ import { addAdvertisement,
          deleteAdvertisement,
          getAllAdv,
          updateAdvertisement ,
-         getAdvertisementById
-
+         getAdvertisementById,
+         addViewToAd,
+         getAdInteractions,
+         getAdEngagementRate,
+         getAdViewsPerDay
        }
 from '../controllers/advController.js';
 import express from 'express';
@@ -33,5 +36,11 @@ router.put('/update/:id',verifyToken,
           updateAdvertisement)
 
 router.delete('/delete/:id',deleteAdvertisement)
+
+router.patch('/addView/:id', addViewToAd);
+
+router.get("/getAdViewsPerDay", getAdViewsPerDay);
+router.get("/getAdEngagementRate", getAdEngagementRate);
+router.get("/getAdInteractions", getAdInteractions);
 
 export default router;
