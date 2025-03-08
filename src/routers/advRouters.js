@@ -1,10 +1,13 @@
 import { addAdvertisement, 
-         deleteAdvertisement,
-         getAllAdv,
-         updateAdvertisement ,
-         getAdvertisementById
-
-       }
+  deleteAdvertisement,
+  getAllAdv,
+  updateAdvertisement ,
+  getAdvertisementById,
+  addViewToAd,
+  getAdInteractions,
+  getAdEngagementRate,
+  getAdViewsPerDay
+}
 from '../controllers/advController.js';
 import express from 'express';
 import upload from '../middlewares/uploadMiddleware.js';
@@ -14,24 +17,29 @@ const router = express.Router();
 
 
 router.post('/add',
-    verifyToken, authorizeRole(['admin']),
-     upload.single('photo'),
-      uploadImageMiddleware, 
-      addAdvertisement);
+verifyToken, authorizeRole(['admin']),
+upload.single('photo'),
+uploadImageMiddleware, 
+addAdvertisement);
 
 router.get(
-  '/getAll' , getAllAdv
+'/getAll' , getAllAdv
 )
 router.get(
-    '/get/:id' , getAdvertisementById
-  )
-  
+'/get/:id' , getAdvertisementById
+)
+
 router.put('/update/:id',verifyToken, 
-          authorizeRole(['admin']),
-          upload.single('photo'),
-          uploadImageMiddleware, 
-          updateAdvertisement)
+   authorizeRole(['admin']),
+   upload.single('photo'),
+   uploadImageMiddleware, 
+   updateAdvertisement)
 
 router.delete('/delete/:id',deleteAdvertisement)
+
+router.patch('/addView/:id', addViewToAd);
+router.get("/getAdViewsPerDay", getAdViewsPerDay);
+router.get("/getAdvEngagementRate", getAdEngagementRate);
+router.get("/getAdvInteractions", getAdInteractions);
 
 export default router;

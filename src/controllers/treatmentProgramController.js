@@ -1,7 +1,6 @@
 import TreatmentProgram from '../models/treatmentProgramModel.js';
 import logger from '../config/logger.js';
 import {validateTreatmentProgram} from "../validations/treatmentProgramValidation.js";
-import mongoose from "mongoose";
 
 export const addTreatmentProgram = async (req, res) => {
     try {
@@ -11,7 +10,7 @@ export const addTreatmentProgram = async (req, res) => {
             return res.status(400).json({ error: "Validation error", details: errors });
         }
 
-        const { name, importance, treatmentPlan, goals, stages, techniques, skillTraining } = req.body;
+        const { name, importance, treatmentPlan, goals, stages, techniques, skillTraining ,sessions} = req.body;
 
         const newProgram = new TreatmentProgram({
             name, 
@@ -21,6 +20,7 @@ export const addTreatmentProgram = async (req, res) => {
             stages, 
             techniques, 
             skillTraining,
+            sessions
         });
 
         await newProgram.save();

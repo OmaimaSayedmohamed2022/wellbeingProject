@@ -10,6 +10,7 @@ import advRouter from './advRouters.js';
 import TreatmentProgram from '../routers/treatmentProgramRouter.js';
 import { verifyToken,authorizeRole } from '../middlewares/authMiddleware.js';
 import reviewRouter from './reviewRouter.js'
+import notificationRouter from './notificationRouter.js'
 
 const router = express.Router();
 
@@ -23,5 +24,6 @@ router.use('/admin',verifyToken, authorizeRole(['admin']),adminRouter)
 router.use('/adv',advRouter)
 router.use('/treatment',TreatmentProgram)
 router.use('/review',reviewRouter)
+router.use('/notification',notificationRouter)
 
 export default router;

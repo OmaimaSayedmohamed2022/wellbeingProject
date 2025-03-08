@@ -3,9 +3,9 @@ import logger from "../config/logger.js";
 import Session from "../models/sessionModel.js";
 import mongoose from "mongoose";
 import { categories,sessionTypes, getAllSubcategories } from '../constants/categories.js'; 
-import Specialist from "../models/specialistModel.js";
-import { Beneficiary } from "../models/beneficiaryModel.js";
-import moment from "moment"; 
+// import Specialist from "../models/specialistModel.js";
+// import { Beneficiary } from "../models/beneficiaryModel.js"
+import { Notification } from "../models/notificationModel.js";
 
 
 export const getSessionTypes= async (req, res) => {
@@ -19,88 +19,119 @@ export const getSessionTypes= async (req, res) => {
 }
 // create session
 export const createSession = async (req, res) => {
-  const {
-    description,
-    sessionDate,
-    sessionType,
-    category,
-    subcategory,
-    beneficiary,
-  } = req.body;
+  const { description, sessionType, category, subcategory, beneficiary, sessionDate, specialist } = req.body;
 
   try {
-    // Function to normalize date format
-    const normalizeDate = (dateString) => {
-      const parsedDate = new Date(dateString);
-      return isNaN(parsedDate) ? null : parsedDate.toISOString();
-    };
+    const sessionTypes = ['Instant Session', 'Free Session', 'Regular Session', 'Group Therapy'];
 
-    // Convert sessionDate to ISO format
-    const parsedSessionDate = normalizeDate(sessionDate);
-    if (!parsedSessionDate) {
-      return res.status(400).json({ error: "Invalid date format" });
-    }
-
-    let sessionDateObj = moment.utc(parsedSessionDate).toDate();
-
-    // Validate sessionType
-    const sessionTypes = ['Instant Session', 'جلسة فورية', 'Regular Session'];
     if (!sessionTypes.includes(sessionType)) {
       return res.status(400).json({ error: "Invalid session type." });
     }
 
-    let specialistId = null;
-
-    // Handle instant sessions
-    if (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') {
-      // Find an available specialist for the requested time slot
-      const availableSpecialist = await Specialist.findOne({
-        availableSlots: parsedSessionDate,
-        isAvailable: true,
-      });
-
-      console.log("Available Specialist:", availableSpecialist); // Debugging log
-
-      if (availableSpecialist) {
-        specialistId = availableSpecialist._id;
-
-        // Remove the booked slot from the specialist's available slots
-        availableSpecialist.availableSlots = availableSpecialist.availableSlots.filter(
-          (slot) => normalizeDate(slot) !== parsedSessionDate
-        );
-        await availableSpecialist.save();
-      }
-    } else if (sessionType === 'جلسة عادية'|| sessionType === "Regular Session") {
-      // For regular sessions, require a specialist ID
-      const { specialist } = req.body;
-      if (!specialist) {
-        return res.status(400).json({ error: "Specialist ID is required for regular sessions." });
-      }
-      specialistId = specialist;
+    // ✅ Validate category and subcategory
+    if (!categories.includes(category)) {
+      return res.status(400).json({ error: "Invalid category." });
     }
 
-    // Create a new session
-    const newSession = new Session({
-      sessionDate: sessionDateObj,
-      sessionType,
-      category,
-      subcategory,
-      description,
-      beneficiary,
-      specialist: specialistId, // Set to specialist ID or null
-    });
+    const validSubcategories = getAllSubcategories(category);
+    if (!validSubcategories.includes(subcategory)) {
+      return res.status(400).json({ error: "Invalid subcategory for the selected category." });
+    }
 
-    await newSession.save();
+    let sessionDateObj = sessionDate ? new Date(sessionDate) : null;
 
-    res.status(201).json({
-      message: "Session created successfully.",
-      session: newSession,
-    });
+    // ✅ Group Therapy Logic (No Time, No Date, No Specialist)
+    if (sessionType === "Group Therapy") {
+      let existingSession = await Session.findOne({ sessionType: "Group Therapy", category, subcategory });
+
+      if (existingSession) {
+        if (existingSession.beneficiary.includes(beneficiary)) {
+          return res.status(400).json({ error: "User is already in this group." });
+        }
+        if (existingSession.beneficiary.length >= 3) {
+          return res.status(400).json({ error: "Group is full." });
+        }
+
+        existingSession.beneficiary.push(beneficiary);
+        await existingSession.save();
+
+        // 🔔 Notify when the group reaches 3 members
+        if (existingSession.beneficiary.length === 3) {
+          const notification = new Notification({
+            userId: existingSession.beneficiary, 
+            message: `Group therapy session is now ready.`,
+          });
+          await notification.save();
+
+          const io = getIo();
+          io.emit("newNotification", {
+            userId: existingSession.beneficiary,
+            message: `Group therapy session is now ready.`,
+          });
+        }
+
+        return res.status(200).json({ message: "User added to existing group therapy session.", session: existingSession });
+      } else {
+        // Create a new group session
+        const newSession = new Session({
+          sessionType,
+          category,
+          subcategory,
+          description,
+          beneficiary: [beneficiary], // First user joins
+        });
+
+        await newSession.save();
+        return res.status(201).json({ message: "New group therapy session created.", session: newSession });
+      }
+    }
+
+    // ✅ Instant Session (No Specialist Required)
+    if (sessionType === "Instant Session" || sessionType === "جلسة فورية") {
+      let session = new Session({
+        sessionType,
+        category,
+        subcategory,
+        description,
+        beneficiary,
+        sessionDate: sessionDateObj || new Date(), // Default to now if not provided
+        specialist: specialist || null, // Optional
+      });
+
+      await session.save();
+      return res.status(201).json({ message: "Instant session created successfully.", session });
+    }
+
+    // ✅ Regular Session (Requires Date & Specialist)
+    if (sessionType === "Regular Session") {
+      if (!sessionDate || !specialist) {
+        return res.status(400).json({ error: "Regular sessions require a date and specialist." });
+      }
+
+      const conflictingSession = await Session.findOne({ sessionDate: sessionDateObj, specialist });
+      if (conflictingSession) return res.status(400).json({ error: "A session already exists at the requested time." });
+
+      const newSession = new Session({
+        sessionDate: sessionDateObj,
+        sessionType,
+        category,
+        subcategory,
+        description,
+        beneficiary,
+        specialist,
+      });
+
+      await newSession.save();
+      return res.status(201).json({ message: "Regular session created successfully.", session: newSession });
+    }
+
   } catch (error) {
-    console.error("Error creating session:", error);
+    console.error("❌ Error creating session:", error);
     res.status(500).json({ error: "Internal server error", details: error.message });
   }
 };
+
+
 // get session by id
 export const getSessionById= async(req,res)=>{
   const {id} = req.params
@@ -167,40 +198,7 @@ export const getCompletedSessions = async (req, res) => {
   }
 };
 
-// // Get Pending Sessions
-// export const getPendingSessions = async (req, res) => {
-//   try {
-//     const pendingSessions = await Session.find({ status: "Pending" })
-//       .select("sessionDate beneficiary")
-//       .populate({
-//         path: "beneficiary",
-//         select: "firstName lastName age gender nationality imageUrl",
-//       });
-
-//     res.status(200).json({ pendingSessions });
-//   } catch (error) {
-//     logger.error("Error fetching pending sessions:", error);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
-
-// // Get Canceled Sessions
-// export const getCanceledSessions = async (req, res) => {
-//   try {
-//     const canceledSessions = await Session.find({ status: "Canceled" })
-//       .select("sessionDate beneficiary")
-//       .populate({
-//         path: "beneficiary",
-//         select: "firstName lastName age gender nationality imageUrl",
-//       });
-
-//     res.status(200).json({ canceledSessions });
-//   } catch (error) {
-//     logger.error("Error fetching canceled sessions:", error);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
-
+// // Get Pending Session
 export const updatePendingToScheduled = async (req, res) => {
   try {
     const { sessionId } = req.params; 
@@ -297,7 +295,18 @@ export const getSpecialistSessions = async (req, res) => {
       specialist: specialistId,
     }).populate("beneficiary");
 
-    res.status(200).json({ instantSessions, freeConsultations });
+    const scheduledSessions = await Session.find({
+      status: "Scheduled",
+      specialist: specialistId,
+    }).select("sessionDate").populate("beneficiary");
+
+    const completedSessions = await Session.find({
+      status: "Completed",
+      specialist: specialistId,
+    }).select("sessionDate").populate("beneficiary");
+
+
+    res.status(200).json({ instantSessions, freeConsultations,scheduledSessions,completedSessions });
   } catch (error) {
     logger.error("Error in getspecialistSessions:", error);
     res.status(500).json({ error: "Server error" });
@@ -337,7 +346,25 @@ export const updateSessionStatus = async (req, res) => {
 };
 
 
+export const getAllSpecialistSessions = async (req, res) => {
+  try {
+    // Fetch all instant sessions
+    const instantSessions = await Session.find({
+      sessionType: "جلسة فورية"||"Instant Session",
+    }).populate("beneficiary specialist");
 
+    // Fetch all free consultations
+    const freeConsultations = await Session.find({
+      sessionType: "جلسة مجانية"|| "Free Session",
+    }).populate("beneficiary specialist");
+
+    // Return the results
+    res.status(200).json({ instantSessions, freeConsultations });
+  } catch (error) {
+    logger.error("Error in getAllSpecialistSessions:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
 
 
 
