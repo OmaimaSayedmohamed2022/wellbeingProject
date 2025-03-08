@@ -195,18 +195,32 @@ export const getAllSubcategories = (category) => {
   return Array.from(subcategories);
 };
 
-// // Test the function
-// const category = 'mentalHealth';
-// const subcategory = 'Anxiety'; // Change this to test different subcategories
 
-// const validSubcategories = getAllSubcategories(category);
-// console.log('Valid Subcategories:', validSubcategories);
-
-// if (validSubcategories.includes(subcategory)) {
-//   console.log(`✅ Subcategory '${subcategory}' is valid for category '${category}'`);
-// } else {
-//   console.log(`❌ Subcategory '${subcategory}' is NOT valid for category '${category}'`);
-// }
-
+export const subcategoryToCategoryMapping = {
+  psychologicalDisorders: 'mentalHealth',
+  personalityDisorder: 'mentalHealth',
+  addiction: 'mentalHealth',
+  traumaDisorder: 'mentalHealth',
+  therapeuticPrograms: 'mentalHealth',
+  groupTherapy: 'mentalHealth',
+  childhoodDisorders: 'mentalHealth',
+  problemSolving: 'mentalHealth',
+  guidanceAndCounseling: 'mentalHealth',
+  preventionAndPsychologicalFollowUp: 'mentalHealth',
+  rehabilitationAndSupport: 'mentalHealth',
+  dietPlan: 'physicalHealth',
+  exercisePlan: 'physicalHealth',
+  regularCheckUps: 'physicalHealth',
+  healthCare: 'physicalHealth',
+  relaxation: 'skillDevelopment',
+  stressManagement: 'skillDevelopment',
+  emotionalControl: 'skillDevelopment',
+  dialecticalStrategies: 'skillDevelopment',
+  achievingBalance: 'skillDevelopment',
+  improvingConfidence: 'skillDevelopment',
+  achievingGoals: 'skillDevelopment',
+  achievingSuccess: 'skillDevelopment',
+  effectiveRelationships: 'skillDevelopment',
+};
 
 export const sessionTypes =  ['جلسة فورية', 'استشارة مجانية',"جلسة عادية"]

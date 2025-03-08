@@ -3,6 +3,8 @@ import Specialist from '../models/specialistModel.js';
 import { uploadToCloudinary } from '../middlewares/cloudinaryUpload.js';
 import logger from '../config/logger.js';
 import jwt from "jsonwebtoken";
+import { categories,subcategoryToCategoryMapping  } from '../constants/categories.js';
+
 
 export const registerSpecialist = async (req, res) => {
   try {
@@ -90,7 +92,69 @@ export const registerSpecialist = async (req, res) => {
   }
 };
 
-// Get specialist by his category
+
+
+
+// Function to get all subcategories for a given category
+const getAllSubcategories = (category) => {
+  if (!categories[category]) return [];
+
+  let subcategories = new Set();
+
+  // Iterate over both 'ar' and 'en' languages
+  ['ar', 'en'].forEach((lang) => {
+    if (Array.isArray(categories[category][lang])) {
+      categories[category][lang].forEach((item) => {
+        if (typeof item === 'object' && item.name) {
+          // Add the main category name (e.g., "اضطرابات نفسية")
+          subcategories.add(item.name);
+
+          // Add nested subcategories (e.g., "القلق", "الاكتئاب")
+          if (item.subcategory && Array.isArray(item.subcategory)) {
+            item.subcategory.forEach((sub) => subcategories.add(sub));
+          }
+        } else if (typeof item === 'string') {
+          // Add direct subcategories (e.g., "الادمان")
+          subcategories.add(item);
+        }
+      });
+    }
+  });
+
+  return Array.from(subcategories);
+};
+
+// Function to normalize category
+const normalizeCategory = (input) => {
+  // Check if the input matches any category in Arabic or English
+  for (const [key, value] of Object.entries(categories)) {
+    if (value.ar.includes(input) || value.en.includes(input)) {
+      return key; // Return the English key (e.g., "mentalHealth")
+    }
+  }
+  return input; // Default to input if not found
+};
+
+// Function to normalize subcategory
+const normalizeSubcategory = (input) => {
+  // Check if the input matches any subcategory in Arabic or English
+  for (const category of Object.values(categories)) {
+    for (const lang of ['ar', 'en']) {
+      if (Array.isArray(category[lang])) {
+        for (const item of category[lang]) {
+          if (typeof item === 'object' && item.subcategory && item.subcategory.includes(input)) {
+            return input; // Return the input as it matches a subcategory
+          } else if (item === input) {
+            return input; // Return the input as it matches a direct subcategory
+          }
+        }
+      }
+    }
+  }
+  return input; // Default to input if not found
+};
+
+// Get specialists by category
 export const getSpecialistsByCategory = async (req, res) => {
   const { category, subcategory } = req.body;
 
@@ -99,12 +163,31 @@ export const getSpecialistsByCategory = async (req, res) => {
       return res.status(400).json({ message: 'Category and subcategory are required.' });
     }
 
-    const categoryField = `specialties.${category[0]}`; 
+    // Normalize category and subcategory
+    const normalizedCategory = normalizeCategory(category);
+    const normalizedSubcategory = normalizeSubcategory(subcategory);
 
-    const matchingSpecialists = await Specialist.find({
-      [categoryField]: { $in: subcategory }}, 
-      '-files'
-    );
+    // Validate category
+    if (!categories[normalizedCategory]) {
+      return res.status(400).json({ error: `Invalid category '${category}'` });
+    }
+
+    // Get valid subcategories for the normalized category
+    const validSubcategories = getAllSubcategories(normalizedCategory);
+
+    console.log("Valid Subcategories:", validSubcategories); 
+    // Validate subcategory
+    if (!validSubcategories.includes(normalizedSubcategory)) {
+      return res.status(400).json({ error: `Invalid subcategory '${subcategory}' for category '${category}'` });
+    }
+
+
+    // Construct the query
+    const query = {
+      [`specialties.${normalizedCategory}`]: { $in: [normalizedSubcategory] },
+    };
+
+    const matchingSpecialists = await Specialist.find(query, '-files');
 
     if (matchingSpecialists.length === 0) {
       return res.status(404).json({ message: 'No specialists found for the selected category and subcategory.' });

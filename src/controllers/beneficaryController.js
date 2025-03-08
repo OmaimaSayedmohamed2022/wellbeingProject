@@ -206,18 +206,23 @@ export const addImageToUser = async (req, res) => {
 };
 
 
-export const getAllBeneficary = async(req,res)=>{
-try{
-  beneficiaries= await Beneficiary.findAll()
-  res.status(200).json({message: "Beneficiaries get successfully",beneficiaries })
-}
-catch(error){
-console.error('Error gatting beneficiary:', error.message || error);
-res.status(500).json({ message: error.message || 'Internal server error.' });
-}
-}
+export const getAllBeneficary = async (req, res) => {
+  try {
+    const beneficiaries = await Beneficiary.find()
+      .populate({
+        path: 'sessions',
+        populate: {
+          path: 'specialist',
+          select: 'firstName lastName',
+        },
+      });
 
-
+    res.status(200).json({ message: "Beneficiaries fetched successfully", beneficiaries });
+  } catch (error) {
+    console.error('Error getting beneficiaries:', error.message || error);
+    res.status(500).json({ message: error.message || 'Internal server error.' });
+  }
+};
 export const getBeneficiarySessions = async (req, res) => {
   try {
       const id = req.params.id;

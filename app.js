@@ -8,6 +8,8 @@ import logger from './src/config/logger.js';
 import connectDB from './src/config/mongoDb.js';
 import routes from './src/routers/index.js';
 import { errorHandler } from './src/middlewares/errorHandler.js';
+import http from "http";
+import {initSocket}  from "./src/config/socketio.js"
 
 const app = express();
 
@@ -21,6 +23,11 @@ app.use(
     stream: { write: (message) => logger.info(message.trim()) },
   })
 );
+
+const server = http.createServer(app);
+
+// Initialize Socket.io
+initSocket(server);
 
 // Rate Limiting
 const limiter = rateLimit({

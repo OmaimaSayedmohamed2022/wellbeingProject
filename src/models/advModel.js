@@ -10,7 +10,12 @@ const advSchema= new mongoose.Schema({
     } ,
     type:{
         type:String ,
-        required:true
+        required:true,
+        enum: ["عروض", "تنبيهات", "ترويج"]
+    },
+    views: {
+      type: Number,
+      default: 0, 
     },
     createdAt: {
         type: Date,
