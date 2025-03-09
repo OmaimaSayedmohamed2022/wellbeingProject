@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSessionTypes ,createSession, countSessions} from '../controllers/sessionController.js';
+import { getSessionTypes ,createSession, countSessions, getTodaysSessions} from '../controllers/sessionController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 import { sessionMiddleware } from '../middlewares/sessionMiddleware.js';
 
@@ -10,7 +10,8 @@ router.get('/', getSessionTypes);
 
 router.post('/create', 
     verifyToken , sessionMiddleware ,
-     createSession)
+    createSession)
 // router.post('/payment',processPayment)
 router.get('/count', countSessions)
+router.post('/today',getTodaysSessions)
 export default router;

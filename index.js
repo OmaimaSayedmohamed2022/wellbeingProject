@@ -12,9 +12,9 @@ import logger from './src/config/logger.js';
 import adminRouter from './src/routers/adminRouter.js'
 import cors from 'cors'
 import advertisementRouter from './src/routers/advRouter.js'
-import notificationRoutes from './src/routers/notificationRouter.js'
+
 import { Server } from "socket.io";
-import { initSocket } from './src/config/socketIo.js';
+// import { initSocket } from './src/config/socketIo.js';
 import http from 'http';
 
 dotenv.config();
@@ -35,7 +35,7 @@ app.use(morgan('combined', {
   const server = http.createServer(app);
 
 
-  initSocket(server);
+  // initSocket(server);
 connectDB();
 
 app.use('/api/beneficiaries', beneficiaryRouter);
@@ -49,7 +49,6 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/sessions', sessionRouter);
 app.use('/api/advertisement',advertisementRouter)
 
-app.use("/api/notifications", notificationRoutes);
 
 const PORT = process.env.PORT || 5005;
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
