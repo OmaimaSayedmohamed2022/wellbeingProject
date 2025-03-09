@@ -48,7 +48,7 @@ export const createBeneficiary = async (req, res) => {
     );
     res.status(201).json({ message: 'Beneficiary created successfully',newBeneficiary ,token});
   } catch (error) {
-    logger.error('Error in createBeneficiary:', error);
+   
     res.status(500).json({ error: 'Server error' });
   }
 };

@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import { categories,sessionTypes, getAllSubcategories } from '../constants/categories.js'; 
 import Specialist from "../models/specialistModel.js";
 import { Beneficiary } from "../models/beneficiaryModel.js"
+
 import moment from "moment";
 
 
@@ -46,7 +47,6 @@ export const createSession = async (req, res) => {
 
     let sessionDateObj = moment.utc(parsedSessionDate).toDate();
 
-  
     if (!sessionTypes.includes(sessionType)) {
       return res.status(400).json({ error: "Invalid session type." });
     }
@@ -99,8 +99,8 @@ export const createSession = async (req, res) => {
     const newSession = new Session({
       sessionDate: sessionDateObj,
       sessionType,
-      category,
-      subcategory,
+      category: (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') ? null : category,
+      subcategory: (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') ? null : subcategory,
       description,
       beneficiary,
       specialist: specialistId, // Set to specialist ID or null

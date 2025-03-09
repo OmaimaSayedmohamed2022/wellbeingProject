@@ -2396,3 +2396,44 @@
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:27:35.043Z"}
 {"level":"info","message":"::1 - - [09/Mar/2025:04:27:49 +0000] \"GET /api/notification/67867198a44a468528ee8950 HTTP/1.1\" 200 187 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:27:49.871Z"}
 {"level":"info","message":"::1 - - [09/Mar/2025:04:29:51 +0000] \"GET /api/notification/67867198a44a468528ee8950 HTTP/1.1\" 200 187 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:29:51.408Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T17:09:41.471Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T17:09:43.215Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T17:09:55.278Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T17:09:56.885Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T17:10:54.003Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T17:10:55.490Z"}
+{"level":"info","message":"User logged in successfully as Beneficiary: omaimasayed2029@gmail.com","timestamp":"2025-03-09T17:10:56.686Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:17:10:56 +0000] \"POST /api/auth/login HTTP/1.1\" 200 354 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T17:10:56.696Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:17:11:29 +0000] \"POST /api/sessions/create HTTP/1.1\" 500 111 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T17:11:29.295Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T20:27:04.457Z"}
+{"level":"error","message":"Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.earod.mongodb.net","timestamp":"2025-03-09T20:27:04.480Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T20:27:11.991Z"}
+{"level":"error","message":"Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.earod.mongodb.net","timestamp":"2025-03-09T20:27:12.020Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T20:31:25.695Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T20:31:27.480Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T20:36:09.202Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T20:36:12.138Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:36:39 +0000] \"POST /api/sessions/create HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:36:39.872Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T20:36:46.082Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T20:36:47.596Z"}
+{"level":"info","message":"User logged in successfully as Beneficiary: omaimasayed2029@gmail.com","timestamp":"2025-03-09T20:38:18.297Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:38:18 +0000] \"POST /api/auth/login HTTP/1.1\" 200 354 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:38:18.316Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:38:36 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 59 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:38:36.377Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:39:02 +0000] \"POST /api/specialist/addSlots/67a4a7a716033e66a957deb6 HTTP/1.1\" 200 544 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:39:02.779Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:40:31 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 31 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:40:31.196Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:41:06 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 31 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:41:06.047Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:41:27 +0000] \"POST /api/specialist/addSlots/67a4a7a716033e66a957deb6 HTTP/1.1\" 200 571 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:41:27.636Z"}
+{"level":"error","message":"Error: Expected ',' or '}' after property value in JSON at position 86 (line 3 column 44)","timestamp":"2025-03-09T20:41:51.203Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:41:57 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 476 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:41:57.136Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T20:45:30.063Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T20:45:31.609Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:45:36 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 59 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:45:36.358Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:46:02 +0000] \"POST /api/specialist/addSlots/67a4a7a716033e66a957deb6 HTTP/1.1\" 200 598 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:46:02.519Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:46:15 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 476 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:46:15.042Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:46:43 +0000] \"POST /api/specialist/addSlots/67a4a7a716033e66a957deb6 HTTP/1.1\" 200 625 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:46:43.760Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:46:57 +0000] \"POST /api/sessions/create HTTP/1.1\" 500 111 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:46:57.480Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T20:47:38.260Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T20:47:39.695Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T20:47:47.752Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T20:47:49.168Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:20:47:56 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 423 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T20:47:56.146Z"}

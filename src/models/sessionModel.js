@@ -9,8 +9,9 @@ const sessionSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: true,
+      required: false,
       enum: ["mentalHealth", "physicalHealth", "skillsDevelopment"],
+
     },
     subcategory: {
       type: String,
