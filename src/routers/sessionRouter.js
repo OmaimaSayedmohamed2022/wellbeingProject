@@ -8,7 +8,9 @@ import {
   getSessionById,
   updatePendingToScheduled,
  getSessionsByStatus,
- cancelSession
+ cancelSession,
+ joinGroupTherapy,
+ getGroupTherapyForSpecialist
 } from '../controllers/sessionController.js';
 import { verifyToken } from '../middlewares/authMiddleware.js';
 import { sessionMiddleware } from '../middlewares/sessionMiddleware.js';
@@ -19,6 +21,10 @@ router.get('/types', getSessionTypes);
 
 router.post('/create', verifyToken ,  createSession)
 router.get("/:id",getSessionById)
+
+// group therapy
+router.post("/joingroup", joinGroupTherapy);
+router.get('/groupTherapy/:specialistId', getGroupTherapyForSpecialist)
 // router.post('/payment',processPayment)
 
 

@@ -44,7 +44,7 @@ const sessionSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Specialist",
       required: function () {
-        return this.sessionType === "Regular Session"; // Required for regular sessions
+        return this.sessionType === "Regular Session"; 
       },
     },
     maxParticipants: {

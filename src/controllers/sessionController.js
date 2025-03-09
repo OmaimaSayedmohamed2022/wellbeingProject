@@ -3,12 +3,14 @@ import logger from "../config/logger.js";
 import Session from "../models/sessionModel.js";
 import mongoose from "mongoose";
 import { categories,sessionTypes, getAllSubcategories } from '../constants/categories.js'; 
-// import Specialist from "../models/specialistModel.js";
-// import { Beneficiary } from "../models/beneficiaryModel.js"
-import { Notification } from "../models/notificationModel.js";
+import Specialist from "../models/specialistModel.js";
+import { Beneficiary } from "../models/beneficiaryModel.js"
+import moment from "moment";
+
 
 
 export const getSessionTypes= async (req, res) => {
+
   try {
       res.status(200).json({ sessionTypes });
       
@@ -17,133 +19,131 @@ export const getSessionTypes= async (req, res) => {
       res.status(500).json({ error: "Internal server error" });
   }
 }
+
 // create session
 export const createSession = async (req, res) => {
-  const { description, sessionType, category, subcategory, beneficiary, sessionDate, specialist } = req.body;
+  const {
+    description,
+    sessionDate,
+    sessionType,
+    category,
+    subcategory,
+    beneficiary,
+  } = req.body;
 
   try {
-    const sessionTypes = ['Instant Session', 'Free Session', 'Regular Session', 'Group Therapy'];
+    // Function to normalize date format (remove milliseconds)
+    const normalizeDate = (dateString) => {
+      const parsedDate = new Date(dateString);
+      return isNaN(parsedDate) ? null : parsedDate.toISOString().split('.')[0] + "Z";
+    };
 
+    // Convert sessionDate to ISO format
+    const parsedSessionDate = normalizeDate(sessionDate);
+    if (!parsedSessionDate) {
+      return res.status(400).json({ error: "Invalid date format" });
+    }
+
+    let sessionDateObj = moment.utc(parsedSessionDate).toDate();
+
+  
     if (!sessionTypes.includes(sessionType)) {
       return res.status(400).json({ error: "Invalid session type." });
     }
 
-    // ✅ Validate category and subcategory
-    if (!categories.includes(category)) {
-      return res.status(400).json({ error: "Invalid category." });
-    }
+    let specialistId = null;
 
-    const validSubcategories = getAllSubcategories(category);
-    if (!validSubcategories.includes(subcategory)) {
-      return res.status(400).json({ error: "Invalid subcategory for the selected category." });
-    }
-
-    let sessionDateObj = sessionDate ? new Date(sessionDate) : null;
-
-    // ✅ Group Therapy Logic (No Time, No Date, No Specialist)
-    if (sessionType === "Group Therapy") {
-      let existingSession = await Session.findOne({ sessionType: "Group Therapy", category, subcategory });
-
-      if (existingSession) {
-        if (existingSession.beneficiary.includes(beneficiary)) {
-          return res.status(400).json({ error: "User is already in this group." });
-        }
-        if (existingSession.beneficiary.length >= 3) {
-          return res.status(400).json({ error: "Group is full." });
-        }
-
-        existingSession.beneficiary.push(beneficiary);
-        await existingSession.save();
-
-        // 🔔 Notify when the group reaches 3 members
-        if (existingSession.beneficiary.length === 3) {
-          const notification = new Notification({
-            userId: existingSession.beneficiary, 
-            message: `Group therapy session is now ready.`,
-          });
-          await notification.save();
-
-          const io = getIo();
-          io.emit("newNotification", {
-            userId: existingSession.beneficiary,
-            message: `Group therapy session is now ready.`,
-          });
-        }
-
-        return res.status(200).json({ message: "User added to existing group therapy session.", session: existingSession });
-      } else {
-        // Create a new group session
-        const newSession = new Session({
-          sessionType,
-          category,
-          subcategory,
-          description,
-          beneficiary: [beneficiary], // First user joins
-        });
-
-        await newSession.save();
-        return res.status(201).json({ message: "New group therapy session created.", session: newSession });
-      }
-    }
-
-    // ✅ Instant Session (No Specialist Required)
-    if (sessionType === "Instant Session" || sessionType === "جلسة فورية") {
-      let session = new Session({
-        sessionType,
-        category,
-        subcategory,
-        description,
-        beneficiary,
-        sessionDate: sessionDateObj || new Date(), // Default to now if not provided
-        specialist: specialist || null, // Optional
+    // Handle instant sessions
+    if (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') {
+      // Find an available specialist for the requested time slot
+      const availableSpecialist = await Specialist.findOne({
+        availableSlots: { $in: [parsedSessionDate] }, // Use $in to match the date
+        isAvailable: true,
       });
 
-      await session.save();
-      return res.status(201).json({ message: "Instant session created successfully.", session });
-    }
+      console.log("Available Specialist:", availableSpecialist); // Debugging log
 
-    // ✅ Regular Session (Requires Date & Specialist)
-    if (sessionType === "Regular Session") {
-      if (!sessionDate || !specialist) {
-        return res.status(400).json({ error: "Regular sessions require a date and specialist." });
+      if (availableSpecialist) {
+        specialistId = availableSpecialist._id;
+
+        // Remove the booked slot from the specialist's available slots
+        availableSpecialist.availableSlots = availableSpecialist.availableSlots.filter(
+          (slot) => normalizeDate(slot) !== parsedSessionDate
+        );
+
+        // Save the updated specialist
+        await availableSpecialist.save();
+
+        console.log("Updated Specialist:", availableSpecialist); // Debugging log
       }
-
-      const conflictingSession = await Session.findOne({ sessionDate: sessionDateObj, specialist });
-      if (conflictingSession) return res.status(400).json({ error: "A session already exists at the requested time." });
-
-      const newSession = new Session({
-        sessionDate: sessionDateObj,
-        sessionType,
-        category,
-        subcategory,
-        description,
-        beneficiary,
-        specialist,
-      });
-
-      await newSession.save();
-      return res.status(201).json({ message: "Regular session created successfully.", session: newSession });
+    } else if (sessionType === 'Regular Session') {
+      // For regular sessions, require a specialist ID
+      const { specialist } = req.body;
+      if (!specialist) {
+        return res.status(400).json({ error: "Specialist ID is required for regular sessions." });
+      }
+      specialistId = specialist;
     }
 
+    // Check for conflicting sessions
+    const conflictingSession = await Session.findOne({
+      sessionDate: parsedSessionDate,
+      specialist: specialistId,
+    });
+
+    if (conflictingSession) {
+      return res.status(400).json({ error: "A session already exists at the requested time." });
+    }
+
+    // Create a new session
+    const newSession = new Session({
+      sessionDate: sessionDateObj,
+      sessionType,
+      category,
+      subcategory,
+      description,
+      beneficiary,
+      specialist: specialistId, // Set to specialist ID or null
+    });
+
+    await newSession.save();
+
+    console.log("Session created successfully:", newSession);
+
+    res.status(201).json({
+      message: "Session created successfully.",
+      session: newSession,
+    });
   } catch (error) {
-    console.error("❌ Error creating session:", error);
+    console.error("Error creating session:", error);
     res.status(500).json({ error: "Internal server error", details: error.message });
   }
 };
 
-
 // get session by id
-export const getSessionById= async(req,res)=>{
-  const {id} = req.params
-  try{
-  const session = await Session.findById(id)
-  res.status(200).json({message:"session fetched successfuly",session})
-  }catch(error){
-    logger.error("Error in getSession:", error);
-    res.status(500).json({ error: "Server error" });
+export const getSessionById = async (req, res) => {
+  const { id } = req.params;
 
+  // Validate the ID
+  if (!isValidObjectId(id)) {
+    return res.status(400).json({ error: "Invalid session ID" });
   }
-}
+
+  try {
+    const session = await Session.findById(id).populate("beneficiary");
+
+    // Handle case where session is not found
+    if (!session) {
+      return res.status(404).json({ error: "Session not found" });
+    }
+
+    // Return the session data
+    res.status(200).json({ message: "Session fetched successfully", session });
+  } catch (error) {
+    logger.error("Error in getSessionById:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
 
 export const getSessionsByStatus = async (req, res) => {
   try {
@@ -418,3 +418,181 @@ export const getAllSpecialistSessions = async (req, res) => {
 //     return res.status(500).send({ error: 'Internal server error' });
 //   }
 // };
+// group therapy 
+
+import { sendNotification } from "../middlewares/notificationMiddleware.js";
+const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
+const checkSpecialistAvailability = async (specialistId, sessionDate) => {
+  const existingSession = await Session.findOne({ specialist: specialistId, sessionDate });
+  return !existingSession; // Returns true if the specialist is available
+};
+
+ // ✅ Import Socket Notification
+
+export const joinGroupTherapy = async (req, res) => {
+  try {
+    const { description, sessionDate, category, subcategory, beneficiary, specialist } = req.body;
+
+    console.log("📥 Group Therapy API Request Received:", req.body);
+
+    // ✅ Validate Beneficiary ID
+    if (!mongoose.Types.ObjectId.isValid(beneficiary)) {
+      console.log("❌ Invalid Beneficiary ID:", beneficiary);
+      return res.status(400).json({ error: "Invalid Beneficiary ID" });
+    }
+
+    // ✅ Validate Specialist ID
+    if (specialist && !mongoose.Types.ObjectId.isValid(specialist)) {
+      console.log("❌ Invalid Specialist ID:", specialist);
+      return res.status(400).json({ error: "Invalid Specialist ID" });
+    }
+
+    // ✅ Find an existing session with available space
+    let existingSession = await Session.findOne({
+      sessionType: "Group Therapy",
+      category,
+      subcategory,
+      $expr: { $lt: [{ $size: "$beneficiary" }, 3] }, // ✅ Ensure group has space
+    });
+
+    if (existingSession) {
+      if (existingSession.beneficiary.includes(beneficiary)) {
+        console.log("❌ User already in group.");
+        return res.status(400).json({ error: "User is already in this group." });
+      }
+
+      existingSession.beneficiary.push(new mongoose.Types.ObjectId(beneficiary));
+      console.log(`✅ Added beneficiary ${beneficiary} to existing session.`);
+
+      // ✅ If the group is full, assign a specialist
+      if (existingSession.beneficiary.length === 3) {
+        console.log("🎯 Group is now full! Assigning specialist...");
+
+        let assignedSpecialist = specialist
+          ? await Specialist.findById(specialist)
+          : await Specialist.findOne({ role: "specialist" });
+
+        if (!assignedSpecialist) {
+          console.log("❌ No available specialist found.");
+          return res.status(400).json({ error: "No available specialist found." });
+        }
+
+        existingSession.specialist = assignedSpecialist._id;
+        console.log(`✅ Assigned Specialist: ${assignedSpecialist._id}`);
+
+        // ✅ Send notifications
+        let notificationMessage = "Your group therapy session is now ready!";
+        existingSession.beneficiary.forEach(async (userId) => {
+          await sendNotification(userId, notificationMessage);
+        });
+        await sendNotification(
+          assignedSpecialist._id,
+          "You have been assigned to a new group therapy session."
+        );
+
+        console.log("📩 Real-time notifications sent to all participants and specialist.");
+      }
+
+      await existingSession.save();
+      return res.status(200).json({
+        message: "User added to group therapy session.",
+        session: existingSession,
+      });
+    }
+
+    // ✅ If NO session exists, create a NEW session
+    console.log("🆕 No available session found. Creating a new group therapy session...");
+
+    // **Check specialist availability before assigning**
+    if (specialist) {
+      const isSpecialistAvailable = await checkSpecialistAvailability(specialist, sessionDate);
+      if (!isSpecialistAvailable) {
+        console.log("❌ Specialist is not available at the requested time.");
+        return res.status(400).json({ error: "Specialist is not available at the requested time." });
+      }
+    }
+
+    let newSession = new Session({
+      description,
+      sessionDate,
+      sessionType: "Group Therapy",
+      category,
+      subcategory,
+      specialist: specialist ? new mongoose.Types.ObjectId(specialist) : null,
+      beneficiary: [new mongoose.Types.ObjectId(beneficiary)],
+    });
+
+    await newSession.save();
+    console.log("✅ New group therapy session created.");
+
+    return res.status(201).json({
+      message: "New group therapy session created.",
+      session: newSession,
+    });
+  } catch (error) {
+    console.error("❌ Error in Group Therapy API:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+// 
+export const getAllGroupTherapySessions = async (req, res) => {
+  try {
+    console.log("📥 Fetching all group therapy sessions...");
+
+    // Find all sessions where sessionType is "Group Therapy"
+    const groupTherapySessions = await Session.find({ sessionType: "Group Therapy" })
+      .populate("beneficiary") 
+      .populate("specialist")  
+      .sort({ sessionDate: 1 }); 
+
+    if (groupTherapySessions.length === 0) {
+      console.log("⚠️ No group therapy sessions found.");
+      return res.status(404).json({ message: "No group therapy sessions found." });
+    }
+
+    console.log(`✅ Found ${groupTherapySessions.length} group therapy sessions.`);
+    return res.status(200).json({ sessions: groupTherapySessions });
+
+  } catch (error) {
+    console.error("❌ Error fetching group therapy sessions:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// specalist group  therapy
+export const getGroupTherapyForSpecialist = async (req, res) => {
+  try {
+    const { specialistId } = req.params;
+    
+    console.log(`📥 Fetching group therapy sessions for specialist: ${specialistId}`);
+
+    // Validate specialist ID
+    if (!mongoose.Types.ObjectId.isValid(specialistId)) {
+      console.log("❌ Invalid Specialist ID:", specialistId);
+      return res.status(400).json({ error: "Invalid Specialist ID" });
+    }
+
+    // Find group therapy sessions assigned to the given specialist
+    const sessions = await Session.find({ 
+      sessionType: "Group Therapy", 
+      specialist: specialistId 
+    })
+      .populate("beneficiary", "name email") // Populate beneficiary details
+      .populate("specialist", "name email")  // Populate specialist details
+      .sort({ sessionDate: 1 }); // Sort by date (oldest to newest)
+
+    if (sessions.length === 0) {
+      console.log("⚠️ No group therapy sessions found for this specialist.");
+      return res.status(404).json({ message: "No group therapy sessions found for this specialist." });
+    }
+
+    console.log(`✅ Found ${sessions.length} group therapy sessions for specialist.`);
+    return res.status(200).json({ sessions });
+
+  } catch (error) {
+    console.error("❌ Error fetching group therapy sessions for specialist:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};

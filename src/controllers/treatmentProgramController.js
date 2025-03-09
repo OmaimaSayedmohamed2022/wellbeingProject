@@ -54,3 +54,27 @@ export const getTreatmentProgram = async (req, res) => {
     }
 };
 
+export const getTreatmentProgramByName = async (req, res) => {
+    try {
+        const { name } = req.params; 
+        if (!name) {
+            return res.status(400).json({ error: "Program name is required" });
+        }
+
+        const program = await TreatmentProgram.findOne({ name: new RegExp(name, "i") }) 
+            .populate({
+                path: "sessions",
+                select: "sessionType description sessionDate status",
+            })
+            .lean();
+
+        if (!program) {
+            return res.status(404).json({ message: "No treatment program found with this name" });
+        }
+
+        res.status(200).json({ program });
+    } catch (error) {
+        logger.error(`Error fetching treatment program by name: ${error.message}`);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};

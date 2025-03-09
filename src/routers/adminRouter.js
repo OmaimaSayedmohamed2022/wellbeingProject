@@ -4,7 +4,7 @@ import {countSpecialist,confirmSpecialist,updateSpecialistAvailability,
     getTopSpecialists,getBottomSpecialists,getUnconfirmedSpecialists,
     getSpecialistsAttendanceRate,getAttendanceRate,getSpecialtiesComparison
 }from '../controllers/specialistController.js'
-import {getAllSpecialistSessions} from '../controllers/sessionController.js'
+import {getAllGroupTherapySessions, getAllSpecialistSessions} from '../controllers/sessionController.js'
 
 import {registerAdmin,getAdminById, countBeneficiary, countGender, calPayments, countAdv, countCompletedSessions,
        getAllUpcomingSessions, getSessionStatistics, getUsersAtMonth ,
@@ -52,6 +52,7 @@ router.get('/allUpcomingSessions',getAllUpcomingSessions)
 
 router.patch("/confirmeSessionUpdate/:sessionId",confirmSessionUpdate)
 router.get('/Instant/Free',getAllSpecialistSessions)
+router.get('/groupTherapy',getAllGroupTherapySessions)
 
 
 

@@ -59,11 +59,7 @@ const BeneficiarySchema = new mongoose.Schema({
     type: Date, 
     default: Date.now
    },
-  sessions:[{
-      type: mongoose.Schema.Types.ObjectId, 
-      ref:'Session'
-    }]
-
+   sessions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Session" }],
 
 });
 
