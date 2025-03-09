@@ -6,6 +6,7 @@ const notificationSchema = new mongoose.Schema({
   userId: {type: mongoose.Schema.Types.ObjectId, ref: "Beneficiary" ,required:false},
   createdAt: {type: Date, default: Date.now },
   meetingLink:{type:String},
+  ADMIN_ID:{type: mongoose.Schema.Types.ObjectId, ref: "Admin" ,required:false},
   isRead:{default :false , type: Boolean}
 });
 

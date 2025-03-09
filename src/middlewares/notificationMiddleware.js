@@ -3,6 +3,8 @@ import { Notification } from "../models/notificationModel.js";
 import Session from "../models/sessionModel.js";
 import {getIo,onlineUsers} from "../config/socketio.js"
 
+const ADMIN_ID = "67a7ed1765eebdbbbc6982f7";
+
 // ✅ Fetch Notifications
 export const getNotifications = async (req, res) => {
   try {
@@ -24,25 +26,37 @@ export const markAsRead = async (req, res) => {
   }
 };
 
-// ✅ Function to Send Notifications
 export const sendNotification = async (userId, message) => {
     try {
-        const socketId = onlineUsers.get(userId);
-
-        if (socketId) {
-            // User is online, send real-time notification
-            io.to(socketId).emit("newNotification", { message });
-            console.log(`📢 Sent real-time notification to User ${userId}`);
-        } else {
-            // User is offline, save notification in the database
-            const notification = new Notification({ userId, message });
-            await notification.save();
-            console.log(`⚠️ User ${userId} is offline, notification saved in DB.`);
-        }
+      // Save notification for the user
+      const userNotification = new Notification({ userId, message });
+      await userNotification.save();
+  
+      // Save notification for the admin (admin receives all notifications)
+      const adminNotification = new Notification({ userId: ADMIN_ID, message });
+      await adminNotification.save();
+  
+      // Send real-time notification to the user
+      const userSocketId = onlineUsers.get(userId);
+      if (userSocketId) {
+        io.to(userSocketId).emit("newNotification", { message });
+        console.log(`📢 Sent real-time notification to User ${userId}`);
+      } else {
+        console.log(`⚠️ User ${userId} is offline, notification saved only in DB.`);
+      }
+  
+      // Send real-time notification to the admin
+      const adminSocketId = onlineUsers.get(ADMIN_ID);
+      if (adminSocketId) {
+        io.to(adminSocketId).emit("newNotification", { message });
+        console.log(`📢 Sent real-time notification to Admin`);
+      } else {
+        console.log(`⚠️ Admin is offline, notification saved only in DB.`);
+      }
     } catch (error) {
-        console.error("❌ Error sending notification:", error);
+      console.error("❌ Error sending notification:", error);
     }
-};
+  };
 
 // ✅ Add Participant and Notify
 export const addParticipant = async (req, res) => {

@@ -68,4 +68,5 @@ router.get("/newBeneficary",getNewBeneficiaries)
 
 router.get('/getAdv',getAllAdv)
 
+
 export default router
