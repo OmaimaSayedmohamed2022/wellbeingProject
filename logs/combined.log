@@ -2355,3 +2355,44 @@
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T03:52:02.948Z"}
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T03:52:04.405Z"}
 {"level":"info","message":"::1 - - [09/Mar/2025:03:52:05 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 21530 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T03:52:05.649Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:00:28.204Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:00:29.730Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:02:06.264Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:02:07.778Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:02:28 +0000] \"POST /api/notification/send HTTP/1.1\" 201 45 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:02:28.962Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:02:32.960Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:02:34.372Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:05:32.413Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:05:33.894Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:06:17.796Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:06:19.311Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:07:40.630Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:07:42.362Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:18:28.401Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:18:29.971Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:19:12.901Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:19:14.327Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:19:28.534Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:19:29.943Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:19:36.541Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:19:37.873Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:20:20.353Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:20:21.809Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:20:35 +0000] \"GET /api/notification/67a7ed1765eebdbbbc6982f7 HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:20:35.987Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:20:46 +0000] \"POST /api/notification/send HTTP/1.1\" 201 45 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:20:46.262Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:20:53 +0000] \"GET /api/notification/67a7ed1765eebdbbbc6982f7 HTTP/1.1\" 200 244 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:20:53.193Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:21:35 +0000] \"POST /api/sessions/joingroup HTTP/1.1\" 400 62 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:21:35.726Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:21:45 +0000] \"POST /api/sessions/joingroup HTTP/1.1\" 400 62 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:21:45.048Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:22:11 +0000] \"POST /api/specialist/addSlots/67a4a7a716033e66a957deb6 HTTP/1.1\" 200 517 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:22:11.995Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:22:36 +0000] \"POST /api/sessions/joingroup HTTP/1.1\" 201 504 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:22:36.836Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:23:00 +0000] \"POST /api/sessions/joingroup HTTP/1.1\" 200 533 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:23:00.392Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:23:35 +0000] \"POST /api/sessions/joingroup HTTP/1.1\" 200 560 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:23:35.066Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:25:58 +0000] \"GET /api/notification/67cd058b674f1c39a6266b97 HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:25:58.729Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:26:02 +0000] \"GET /api/notification/67cd058b674f1c39a6266b97 HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:26:02.246Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:26:09 +0000] \"GET /api/notification/67cd058b674f1c39a6266b97 HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:26:09.591Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:26:50 +0000] \"GET /api/notification/67cd17c67432c06e22085937 HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:26:50.492Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:26:53 +0000] \"GET /api/notification/67cd17c67432c06e22085937 HTTP/1.1\" 200 2 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:26:53.406Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-09T04:27:33.435Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-09T04:27:35.043Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:27:49 +0000] \"GET /api/notification/67867198a44a468528ee8950 HTTP/1.1\" 200 187 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:27:49.871Z"}
+{"level":"info","message":"::1 - - [09/Mar/2025:04:29:51 +0000] \"GET /api/notification/67867198a44a468528ee8950 HTTP/1.1\" 200 187 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-09T04:29:51.408Z"}
