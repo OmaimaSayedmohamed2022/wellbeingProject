@@ -39,6 +39,14 @@ const sessionSchema = new mongoose.Schema(
       required:true
 
     },
+
+    // added for today sessions
+    specialist:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:'Specialist',
+      required:true
+
+    },
   paymentStatus: { type: String, enum: ['Unpaid', 'Pending', 'Paid'], default: 'Unpaid' },
   paymentDetails: {
     transactionId: String,

@@ -5,6 +5,7 @@ import moment from 'moment'
 import { categories } from '../constants/categories.js';
 import axios from 'axios';
 import { Beneficiary } from './../models/beneficiaryModel.js';
+import Specialist from './../models/specialistModel.js';
 // Mocked session types
 const sessionTypes = ['جلسة فورية', 'جلسة مجانية'];
 
@@ -66,35 +67,51 @@ export const countSessions = async (req, res) => {
   }
 };
 
-
-
 export const getTodaysSessions = async (req, res) => {
   try {
-    const userId = req.body.id;
+    const { beneficiaryId, specialistId } = req.body;
 
-    if (!userId) {
-      return res.status(403).json({ error: 'Unauthorized request. No beneficiary found.' });
+    if (!specialistId && !beneficiaryId) {
+      return res.status(403).json({ error: 'Unauthorized request. No valid identifier provided.' });
     }
 
-    
-    const today = moment().startOf('day'); // Start of today
-    const tomorrow = moment().add(1, 'day').startOf('day'); // Start of next day
+    const today = moment().startOf('day');
+    const tomorrow = moment().add(1, 'day').startOf('day');
 
+    const filter = {};
+
+    // Check for specialistId
+    if (specialistId) {
+      const specialist = await Specialist.findById(specialistId);
+      if (!specialist) {
+        return res.status(404).json({ error: 'Specialist not found.' });
+      }
+      filter.specialist = specialistId;
+    }
+
+    // Check for beneficiaryId
+    if (beneficiaryId) {
+      const beneficiary = await Beneficiary.findById(beneficiaryId);
+      if (!beneficiary) {
+        return res.status(404).json({ error: 'Beneficiary not found.' });
+      }
+      filter.beneficiary = beneficiaryId;
+    }
+
+    // Fetch sessions based on the filter
     const sessions = await Session.find({
-      beneficiary: userId,
+      ...filter,
       sessionDate: { $gte: today.toDate(), $lt: tomorrow.toDate() }
-    });
+    })
+    .populate('specialist')  // Ensure these match the field names in your model
+    .populate('beneficiary');
 
-      res.status(200).json({ sessions });
-    
-    
+    res.status(200).json({ sessions });
   } catch (error) {
     console.error('Error fetching today’s sessions:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 };
-
-
 
 
 
