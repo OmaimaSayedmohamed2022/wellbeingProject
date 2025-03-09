@@ -1,7 +1,7 @@
 import { Admin } from "../models/adminModel.js";
 import { Notification } from "../models/notificationModel.js";
 import Session from "../models/sessionModel.js";
-import {getIo} from "../config/socketio.js"
+import {getIo,onlineUsers} from "../config/socketio.js"
 
 // ✅ Fetch Notifications
 export const getNotifications = async (req, res) => {
@@ -25,14 +25,23 @@ export const markAsRead = async (req, res) => {
 };
 
 // ✅ Function to Send Notifications
-const sendNotification = async (userId, message) => {
-  try {
-    const notification = new Notification({ userId, message });
-    await notification.save();
-    io.emit(`notification-${userId}`, { message }); // Send via WebSocket
-  } catch (error) {
-    console.error("❌ Error sending notification:", error);
-  }
+export const sendNotification = async (userId, message) => {
+    try {
+        const socketId = onlineUsers.get(userId);
+
+        if (socketId) {
+            // User is online, send real-time notification
+            io.to(socketId).emit("newNotification", { message });
+            console.log(`📢 Sent real-time notification to User ${userId}`);
+        } else {
+            // User is offline, save notification in the database
+            const notification = new Notification({ userId, message });
+            await notification.save();
+            console.log(`⚠️ User ${userId} is offline, notification saved in DB.`);
+        }
+    } catch (error) {
+        console.error("❌ Error sending notification:", error);
+    }
 };
 
 // ✅ Add Participant and Notify

@@ -223,4 +223,4 @@ export const subcategoryToCategoryMapping = {
   effectiveRelationships: 'skillDevelopment',
 };
 
-export const sessionTypes =  ['جلسة فورية', 'استشارة مجانية',"جلسة عادية"]
+export const sessionTypes =  ['جلسة فورية', 'استشارة مجانية',"جلسة عادية","علاج جماعي","Instant Session", "Free Session", "Regular Session", "Group Therapy"]
