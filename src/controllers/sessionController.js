@@ -54,7 +54,7 @@ export const createSession = async (req, res) => {
     let specialistId = null;
 
     // Handle instant/free sessions
-    if (sessionType === 'Instant Session' || sessionType === 'جلسة فورية' || sessionType === 'Free Session') {
+    if (sessionType === 'Instant Session' || sessionType === 'استشارة مجانية'|| sessionType === 'Free Session'|| sessionType === 'جلسة فورية') {
       // Find an available specialist
       const availableSpecialist = await Specialist.findOne({
         isAvailable: true,
@@ -288,12 +288,12 @@ export const getSpecialistSessions = async (req, res) => {
     }
 
     const instantSessions = await Session.find({
-      sessionType: "جلسة فورية",
+      sessionType: "جلسة فورية"||"Instant Session",
       specialist: specialistId,
     }).populate("beneficiary");
 
     const freeConsultations = await Session.find({
-      sessionType: "جلسة مجانية",
+      sessionType:"استشارة مجانية"||"Free Session",
       specialist: specialistId,
     }).populate("beneficiary");
 
@@ -357,7 +357,7 @@ export const getAllSpecialistSessions = async (req, res) => {
 
     // Fetch all free consultations
     const freeConsultations = await Session.find({
-      sessionType: "جلسة مجانية"|| "Free Session",
+      sessionType: "استشارة مجانية"|| "Free Session",
     }).populate("beneficiary specialist");
 
     // Return the results
