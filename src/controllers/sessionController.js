@@ -53,31 +53,18 @@ export const createSession = async (req, res) => {
 
     let specialistId = null;
 
-    // Handle instant sessions
-    if (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') {
-      // Find an available specialist for the requested time slot
+    // Handle instant/free sessions
+    if (sessionType === 'Instant Session' || sessionType === 'جلسة فورية' || sessionType === 'Free Session') {
+      // Find an available specialist
       const availableSpecialist = await Specialist.findOne({
-        availableSlots: { $in: [parsedSessionDate] }, // Use $in to match the date
         isAvailable: true,
       });
 
-      console.log("Available Specialist:", availableSpecialist); // Debugging log
-
       if (availableSpecialist) {
         specialistId = availableSpecialist._id;
-
-        // Remove the booked slot from the specialist's available slots
-        availableSpecialist.availableSlots = availableSpecialist.availableSlots.filter(
-          (slot) => normalizeDate(slot) !== parsedSessionDate
-        );
-
-        // Save the updated specialist
-        await availableSpecialist.save();
-
-        console.log("Updated Specialist:", availableSpecialist); // Debugging log
       }
     } else if (sessionType === 'Regular Session') {
-      // For regular sessions, require a specialist ID
+      // Require a specialist for regular sessions
       const { specialist } = req.body;
       if (!specialist) {
         return res.status(400).json({ error: "Specialist ID is required for regular sessions." });
@@ -95,18 +82,31 @@ export const createSession = async (req, res) => {
       return res.status(400).json({ error: "A session already exists at the requested time." });
     }
 
-    // Create a new session
+    // Create the session
     const newSession = new Session({
       sessionDate: sessionDateObj,
       sessionType,
-      category: (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') ? null : category,
-      subcategory: (sessionType === 'Instant Session' || sessionType === 'جلسة فورية') ? null : subcategory,
+      category: (sessionType === 'Instant Session' || sessionType === 'جلسة فورية' || sessionType === 'Free Session') ? null : category,
+      subcategory: (sessionType === 'Instant Session' || sessionType === 'جلسة فورية' || sessionType === 'Free Session') ? null : subcategory,
       description,
       beneficiary,
-      specialist: specialistId, // Set to specialist ID or null
+      specialist: specialistId,
     });
 
     await newSession.save();
+
+  
+    if (beneficiary) {
+      await Beneficiary.findByIdAndUpdate(beneficiary, { 
+        $push: { sessions: newSession._id } 
+      }, { new: true });
+    }
+    
+    if (specialistId) {
+      await Specialist.findByIdAndUpdate(specialistId, { 
+        $push: { sessions: newSession._id } 
+      }, { new: true });
+    }
 
     console.log("Session created successfully:", newSession);
 
@@ -119,6 +119,8 @@ export const createSession = async (req, res) => {
     res.status(500).json({ error: "Internal server error", details: error.message });
   }
 };
+
+
 
 // get session by id
 export const getSessionById = async (req, res) => {

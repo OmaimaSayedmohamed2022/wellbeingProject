@@ -203,42 +203,36 @@ export const addImageToUser = async (req, res) => {
     console.error("Error adding image to user:", error.message || error);
     res.status(500).json({ message: error.message || "Internal server error." });
   }
-}
-
-
-
-export const getAllBeneficiary = async (req, res) => {
-  try {
-    // Fetch all beneficiaries
-    const beneficiaries = await Beneficiary.find();
-
-    if (beneficiaries.length === 0) {
-      return res.status(404).json({ message: "No beneficiaries found." });
-    }
-
-    // Fetch sessions for each beneficiary
-    const beneficiariesWithSessions = await Promise.all(
-      beneficiaries.map(async (beneficiary) => {
-        const sessions = await Session.find({ beneficiary: beneficiary._id })
-          .populate("specialist", "firstName lastName email");
-        
-        return {
-          _id: beneficiary._id,
-          name: beneficiary.name,
-          email: beneficiary.email,
-          phone: beneficiary.phone,
-          sessions: sessions.length > 0 ? sessions : "No sessions found",
-        };
-      })
-    );
-
-    res.status(200).json({ beneficiaries: beneficiariesWithSessions });
-  } catch (error) {
-    console.error("❌ Error fetching beneficiaries and sessions:", error);
-    res.status(500).json({ error: "Internal server error", details: error.message });
-  }
 };
 
+
+export const getAllBeneficary = async (req, res) => {
+  try {
+    // Count total beneficiaries
+    const totalBeneficiaries = await Beneficiary.countDocuments();
+
+    // Fetch beneficiaries with sessions and specialists
+    const beneficiaries = await Beneficiary.find()
+      .populate({
+        path: "sessions",
+        populate: {
+          path: "specialist",
+          select: "firstName lastName email phone workAddress",
+        },
+      });
+console.log("Beneficiaries before population:", beneficiaries);
+
+
+    res.status(200).json({
+      message: "Beneficiaries fetched successfully",
+      totalBeneficiaries, // ✅ Total count included
+      beneficiaries,
+    });
+  } catch (error) {
+    console.error("Error getting beneficiaries:", error.message || error);
+    res.status(500).json({ message: error.message || "Internal server error." });
+  }
+};
 
 
 export const getBeneficiarySessions = async (req, res) => {

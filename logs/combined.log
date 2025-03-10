@@ -2564,3 +2564,95 @@
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T01:48:39.590Z"}
 {"level":"info","message":"::1 - - [10/Mar/2025:01:48:41 +0000] \"GET /api/admin/currentSessions HTTP/1.1\" 200 3644 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T01:48:41.161Z"}
 {"level":"info","message":"::1 - - [10/Mar/2025:01:48:52 +0000] \"GET /api/admin/currentSessions HTTP/1.1\" 200 3644 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T01:48:52.348Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T01:52:58.987Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T01:53:01.072Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:01:53:12 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T01:53:12.672Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:01:54:01 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22543 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T01:54:01.254Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:00:44 +0000] \"POST /api/sessions/create HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:00:44.176Z"}
+{"level":"info","message":"User logged in successfully as Beneficiary: omaimasayed2029@gmail.com","timestamp":"2025-03-10T02:01:20.754Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:01:20 +0000] \"POST /api/auth/login HTTP/1.1\" 200 354 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:01:20.756Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:01:59 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 59 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:01:59.390Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:03:07 +0000] \"POST /api/specialist/addSlots/67c458c34c9b2a8b2063997e HTTP/1.1\" 200 70 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:03:07.514Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:03:21 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 59 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:03:21.010Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:03:59 +0000] \"POST /api/specialist/addSlots/67c458c34c9b2a8b2063997e HTTP/1.1\" 200 97 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:03:59.349Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:04:16 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 476 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:04:16.047Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:04:54 +0000] \"POST /api/specialist/addSlots/67c458c34c9b2a8b2063997e HTTP/1.1\" 200 124 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:04:54.507Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:05:02 +0000] \"POST /api/specialist/addSlots/67c458c34c9b2a8b2063997e HTTP/1.1\" 400 64 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:05:02.427Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:05:12 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 501 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:05:12.870Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:06:39 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22543 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:06:39.192Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:06:43 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22543 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:06:43.007Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:09:23 +0000] \"PATCH /api/admin/confirmeSessionUpdate/67abe84dcf3a396475ee242b HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:09:23.987Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:14:10 +0000] \"PATCH /api/admin/confirmeSessionUpdate/67abe84dcf3a396475ee242b HTTP/1.1\" 500 159 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:14:10.804Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:29:13 +0000] \"PATCH /api/admin/confirmeSessionUpdate/679111c4e45a77f1780c523e HTTP/1.1\" 400 45 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:29:13.022Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:32:45 +0000] \"PATCH /api/beneficiaries/updateSessionDate/67a9f7f55f1a1323e9f7936a/67abe84dcf3a396475ee242b HTTP/1.1\" 500 159 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:32:45.620Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:38:57 +0000] \"POST /api/specialist/register HTTP/1.1\" 201 1038 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:38:57.870Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:40:00 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 501 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:40:00.113Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:40:46 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22543 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:40:46.719Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:49:13.666Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:49:19.161Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T02:49:21.443Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:51:25.014Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T02:51:27.245Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:52:02 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:52:02.551Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:52:23.108Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T02:52:25.279Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:52:27 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 59 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:52:27.274Z"}
+{"level":"info","message":"User logged in successfully as Beneficiary: omaimasayed2029@gmail.com","timestamp":"2025-03-10T02:52:45.319Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:52:45 +0000] \"POST /api/auth/login HTTP/1.1\" 200 354 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:52:45.323Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:53:09 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 59 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:53:09.285Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:53:33 +0000] \"POST /api/specialist/addSlots/67c458c34c9b2a8b2063997e HTTP/1.1\" 200 151 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:53:33.901Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:53:41 +0000] \"POST /api/specialist/addSlots/67c458c34c9b2a8b2063997e HTTP/1.1\" 200 178 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:53:41.362Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:54:09 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 501 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:54:09.193Z"}
+{"level":"info","message":"User logged in successfully as Admin: doctor@gmail.com","timestamp":"2025-03-10T02:54:54.680Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:54:54 +0000] \"POST /api/auth/login HTTP/1.1\" 200 322 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:54:54.682Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:55:20 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22569 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:55:20.112Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:56:27 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 59 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:56:27.503Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:56:34 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 501 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:56:34.776Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:56:50 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22596 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:56:50.004Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:57:04 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22596 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:57:04.575Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:57:29.492Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T02:57:31.687Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:57:48.920Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:58:06.441Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T02:58:08.341Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:58:10 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22596 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:58:10.426Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:02:58:18 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22596 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T02:58:18.482Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:59:32.821Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T02:59:34.744Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T02:59:52.137Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T02:59:54.138Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:00:09.232Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:00:11.085Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:00:29.402Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:00:31.299Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:00:34 +0000] \"POST /api/sessions/create HTTP/1.1\" 400 59 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:00:34.983Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:00:55 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22596 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:00:55.348Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:01:02 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22596 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:01:02.185Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:01:21.288Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:01:23.054Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:01:28.895Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:01:30.808Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:01:37.582Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:01:53 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:01:53.033Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:02:18.050Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:02:54 +0000] \"GET /api/admin/allBeneficary HTTP/1.1\" 200 22596 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:02:54.913Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:06:47.411Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:06:54.457Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:07:32.617Z"}
+{"level":"info","message":"Beneficiary profile retrieved for ID: 678072b6cfecb1c2eaf9dcc9","timestamp":"2025-03-10T03:13:24.720Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:13:24 +0000] \"GET /api/beneficiaries/beneficiary/678072b6cfecb1c2eaf9dcc9 HTTP/1.1\" 200 261 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:13:24.839Z"}
+{"level":"info","message":"Beneficiary profile retrieved for ID: 678072b6cfecb1c2eaf9dcc9","timestamp":"2025-03-10T03:15:00.645Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:15:00 +0000] \"GET /api/beneficiaries/beneficiary/678072b6cfecb1c2eaf9dcc9 HTTP/1.1\" 200 261 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:15:00.676Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:16:00 +0000] \"POST /api/sessions/create HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:16:00.300Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:16:45 +0000] \"POST /api/sessions/create HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:16:45.327Z"}
+{"level":"info","message":"User logged in successfully as Beneficiary: omaimasayed2029@gmail.com","timestamp":"2025-03-10T03:17:41.794Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:17:41 +0000] \"POST /api/auth/login HTTP/1.1\" 200 354 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:17:41.798Z"}
+{"level":"info","message":"::1 - - [10/Mar/2025:03:18:10 +0000] \"POST /api/sessions/create HTTP/1.1\" 201 501 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-10T03:18:10.654Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:30:40.251Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:30:42.203Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:31:52.249Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:32:00.406Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:32:02.235Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:33:59.736Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T03:35:21.019Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T03:35:27.039Z"}
