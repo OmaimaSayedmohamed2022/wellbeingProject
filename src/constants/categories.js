@@ -42,7 +42,7 @@ export const categories = {
         ],
       },
       {
-        name: 'حل مشكلات',
+        name:'تشخيص وتحفيز',
         subcategory: ['مشاكل أسريه', 'مشاكل علاقات', 'مشاكل ثنائية', 'غضب', 'مشاكل عمل', 'عنف'],
       },
       'ارشاد وتوجيه',
@@ -110,7 +110,7 @@ export const categories = {
         ],
       },
       {
-        name: 'Problem Solving',
+        name: 'Diagnose and motivate',
         subcategory: ['Family Problems', 'Relationship Problems', 'Couple Problems', 'Anger', 'Work Problems', 'Violence'],
       },
       'Guidance and Counseling',
