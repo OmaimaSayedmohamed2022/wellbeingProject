@@ -5,7 +5,7 @@ const sessionSchema = new mongoose.Schema(
     sessionType: {
       type: String,
       required: true,
-      enum: ["Instant Session", "Free Session", "Regular Session", "Group Therapy"],
+      enum:  ['جلسة فورية', 'استشارة مجانية',"جلسة عادية","علاج جماعي","Instant Session", "Free Session", "Regular Session", "Group Therapy"],
     },
     category: {
       type: String,

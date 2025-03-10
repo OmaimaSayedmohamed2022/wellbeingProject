@@ -366,6 +366,29 @@ export const getAllSpecialistSessions = async (req, res) => {
   }
 };
 
+export const getTodaysSessions = async (req, res) => {
+  try {
+    // Get the start and end of today
+    const today = moment().startOf('day');
+    const tomorrow = moment().add(1, 'day').startOf('day');
+
+    // Fetch all sessions for today
+    const sessions = await Session.find({
+      sessionDate: { $gte: today.toDate(), $lt: tomorrow.toDate() }
+    })
+    .populate("specialist", "firstName lastName email")  
+    .populate("beneficiary", "name email phone");
+
+    if (sessions.length === 0) {
+      return res.status(404).json({ message: "No sessions found for today." });
+    }
+
+    res.status(200).json({ sessions });
+  } catch (error) {
+    console.error("❌ Error fetching today’s sessions:", error);
+    res.status(500).json({ error: "Internal server error", details: error.message });
+  }
+};
 
 
 // export const processPayment = async (req, res) => {
