@@ -21,6 +21,7 @@ router.delete('/deleteSlots/:id',deleteAvailableSlot)
 
 router.patch("/updateLanguage/:id", updateLanguage);
 
+
 export default router;
 
 
