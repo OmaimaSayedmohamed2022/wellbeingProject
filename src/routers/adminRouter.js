@@ -2,7 +2,7 @@ import express from 'express'
 
 import {countSpecialist,confirmSpecialist,updateSpecialistAvailability,
     getTopSpecialists,getBottomSpecialists,getUnconfirmedSpecialists,
-    getSpecialistsAttendanceRate,getAttendanceRate,getSpecialtiesComparison
+    getSpecialistsAttendanceRate,getAttendanceRate,getSpecialtiesComparison,searchSpecialists
 }from '../controllers/specialistController.js'
 import {getAllGroupTherapySessions, getAllSpecialistSessions, getTodaysSessions} from '../controllers/sessionController.js'
 
@@ -39,6 +39,7 @@ router.get('/specialtiesComparison', getSpecialtiesComparison);
 router.get('/countSession',getSessionsCount)
 router.patch('/confirm/:specialistId', confirmSpecialist);
 router.put('/isAvailable/:specialistId', updateSpecialistAvailability);
+router.get('/searchSpecalist',searchSpecialists)
 
 //sessions
 router.get('/countComplete',countCompletedSessions)

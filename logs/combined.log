@@ -2677,3 +2677,34 @@
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T14:50:14.653Z"}
 {"level":"info","message":"Server running on port 5005","timestamp":"2025-03-10T15:33:04.398Z"}
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-10T15:33:05.872Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-15T13:42:57.318Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-15T13:43:01.586Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-15T13:43:03.626Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:44:23 +0000] \"GET /api/admin/searchSpecalist HTTP/1.1\" 401 47 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:44:23.885Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-15T13:45:32.930Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-15T13:45:35.039Z"}
+{"level":"warn","message":"Login failed for email: doctor2022@gmail.com - User not found.","timestamp":"2025-03-15T13:45:36.680Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:45:36 +0000] \"POST /api/auth/login HTTP/1.1\" 404 29 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:45:36.709Z"}
+{"level":"info","message":"User logged in successfully as Admin: doctor2020@gmail.com","timestamp":"2025-03-15T13:47:01.951Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:47:01 +0000] \"POST /api/auth/login HTTP/1.1\" 200 331 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:47:01.957Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:47:32 +0000] \"GET /api/admin/searchSpecalist HTTP/1.1\" 200 179061 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:47:32.172Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:48:10 +0000] \"GET /api/admin/searchSpecalist HTTP/1.1\" 200 179061 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:48:10.956Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:52:39 +0000] \"GET /api/admin/searchSpecalist/name=mazen HTTP/1.1\" 404 175 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:52:39.807Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:52:56 +0000] \"GET /api/admin/searchSpecalist?name=mazen HTTP/1.1\" 200 1295 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:52:56.995Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:53:11 +0000] \"GET /api/admin/searchSpecalist?name=salma HTTP/1.1\" 200 1190 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:53:11.231Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:53:26 +0000] \"GET /api/admin/searchSpecalist?name=salwa HTTP/1.1\" 200 54 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:53:26.915Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:53:38 +0000] \"GET /api/admin/searchSpecalist?name=mariam HTTP/1.1\" 200 54 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:53:38.906Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:53:48 +0000] \"GET /api/admin/searchSpecalist?name=omaima HTTP/1.1\" 200 50584 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:53:48.474Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:54:15 +0000] \"GET /api/admin/searchSpecalist?status=confirmed HTTP/1.1\" 200 101130 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:54:15.348Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:13:54:49 +0000] \"GET /api/admin/searchSpecalist?name=omaima HTTP/1.1\" 200 50584 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T13:54:49.960Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:04:25 +0000] \"GET /api/sessions/status/Confirmed HTTP/1.1\" 400 34 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:04:25.037Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:04:50 +0000] \"PATCH /api/admin/confirmeSessionUpdate/679111c4e45a77f1780c523e HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:04:50.597Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:05:16 +0000] \"PATCH /api/admin/confirmeSessionUpdate/679111c4e45a77f1780c523e HTTP/1.1\" 400 45 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:05:16.773Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:06:15 +0000] \"POST /api/specialist/addSlots/67c458c34c9b2a8b2063997e HTTP/1.1\" 200 205 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:06:15.705Z"}
+{"level":"error","message":"Error: Expected ',' or '}' after property value in JSON at position 16 (line 2 column 14)","timestamp":"2025-03-15T14:06:44.425Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:07:03 +0000] \"PATCH /api/admin/confirmeSessionUpdate/679111c4e45a77f1780c523e HTTP/1.1\" 400 45 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:07:03.161Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:17:13 +0000] \"PATCH /api/admin/confirmeSessionUpdate/679111c4e45a77f1780c523e HTTP/1.1\" 400 45 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:17:13.900Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:18:14 +0000] \"PATCH /api/beneficiaries/updateSessionDate/67a9f7f55f1a1323e9f7936a/67abe84dcf3a396475ee242b HTTP/1.1\" 400 68 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:18:14.543Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:19:35 +0000] \"PATCH /api/beneficiaries/updateSessionDate/67a9f7f55f1a1323e9f7936a/67c458c34c9b2a8b2063997e HTTP/1.1\" 404 53 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:19:35.011Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:19:52 +0000] \"PATCH /api/beneficiaries/updateSessionDate/67a9f7f55f1a1323e9f7936a/67abe84dcf3a396475ee242b HTTP/1.1\" 400 68 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:19:52.298Z"}
+{"level":"info","message":"::1 - - [15/Mar/2025:14:21:13 +0000] \"POST /api/sessions/create HTTP/1.1\" 401 28 \"-\" \"PostmanRuntime/7.43.0\"","timestamp":"2025-03-15T14:21:13.360Z"}
