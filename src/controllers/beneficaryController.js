@@ -206,33 +206,33 @@ export const addImageToUser = async (req, res) => {
 };
 
 
-export const getAllBeneficary = async (req, res) => {
-  try {
-    // Count total beneficiaries
-    const totalBeneficiaries = await Beneficiary.countDocuments();
+// export const getAllBeneficary = async (req, res) => {
+//   try {
+//     // Count total beneficiaries
+//     const totalBeneficiaries = await Beneficiary.countDocuments();
 
-    // Fetch beneficiaries with sessions and specialists
-    const beneficiaries = await Beneficiary.find()
-      .populate({
-        path: "sessions",
-        populate: {
-          path: "specialist",
-          select: "firstName lastName email phone workAddress",
-        },
-      });
-console.log("Beneficiaries before population:", beneficiaries);
+//     // Fetch beneficiaries with sessions and specialists
+//     const beneficiaries = await Beneficiary.find()
+//       .populate({
+//         path: "sessions",
+//         populate: {
+//           path: "specialist",
+//           select: "firstName lastName email phone workAddress",
+//         },
+//       });
+// console.log("Beneficiaries before population:", beneficiaries);
 
 
-    res.status(200).json({
-      message: "Beneficiaries fetched successfully",
-      totalBeneficiaries, // ✅ Total count included
-      beneficiaries,
-    });
-  } catch (error) {
-    console.error("Error getting beneficiaries:", error.message || error);
-    res.status(500).json({ message: error.message || "Internal server error." });
-  }
-};
+//     res.status(200).json({
+//       message: "Beneficiaries fetched successfully",
+//       totalBeneficiaries, // ✅ Total count included
+//       beneficiaries,
+//     });
+//   } catch (error) {
+//     console.error("Error getting beneficiaries:", error.message || error);
+//     res.status(500).json({ message: error.message || "Internal server error." });
+//   }
+// };
 
 
 export const getBeneficiarySessions = async (req, res) => {

@@ -520,18 +520,32 @@ export const getSessionsCount = async (req, res) => {
 
 // all beneficaries
 export const getAllBeneficiary = async (req, res) => {
-  try {
-    const beneficiaries = await Beneficiary.find().select("-password");
-    // console.log("Beneficiaries:", beneficiaries);
+   try {
+     // Count total beneficiaries
+     const totalBeneficiaries = await Beneficiary.countDocuments();
+ 
+     // Fetch beneficiaries with sessions and specialists
+     const beneficiaries = await Beneficiary.find()
+       .populate({
+         path: "sessions",
+         populate: {
+           path: "specialist",
+           select: "firstName lastName email phone workAddress",
+         },
+       });
 
-    res.status(200).json({ message: "Beneficiaries fetched successfully", beneficiaries });
-  } catch (error) {
-    console.error('Error getting beneficiaries:', error.message || error);
 
-    // Send an error response
-    res.status(500).json({ message: error.message || 'Internal server error.' });
-  }
-};
+     res.status(200).json({
+       message: "Beneficiaries fetched successfully",
+       totalBeneficiaries, // ✅ Total count included
+       beneficiaries,
+     });
+   } catch (error) {
+     console.error("Error getting beneficiaries:", error.message || error);
+     res.status(500).json({ message: error.message || "Internal server error." });
+   }
+ };
+ 
 
 // get new beneficary 
 export const getNewBeneficiaries = async (req, res) => {
