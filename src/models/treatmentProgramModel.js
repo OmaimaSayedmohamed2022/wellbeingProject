@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const treatmentProgramSchema = new mongoose.Schema(
   {
-    name: { type: ["Anxiety Treatment","Depression Treatment", "Group Therapy"], required: true, trim: true },
+    name: { type: ["Anxiety Treatment","Depression Treatment", "Group Therapy","Diagnose and motivate"], required: true, trim: true },
     importance: { type: String, required: true, trim: true },
     treatmentPlan: { type: String, required: true, trim: true },
     goals: { type: String, trim: true },
