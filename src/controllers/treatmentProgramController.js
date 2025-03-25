@@ -2,6 +2,11 @@ import TreatmentProgram from '../models/treatmentProgramModel.js';
 import logger from '../config/logger.js';
 import {validateTreatmentProgram} from "../validations/treatmentProgramValidation.js";
 
+
+
+
+
+
 export const addTreatmentProgram = async (req, res) => {
     try {
         const errors = validateTreatmentProgram(req.body);

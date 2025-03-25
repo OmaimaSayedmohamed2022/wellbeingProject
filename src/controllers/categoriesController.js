@@ -1,6 +1,7 @@
 import {categories} from '../constants/categories.js';
 
 import { sessionTypes } from '../constants/categories.js';
+import { TEXT_CONSTANTS } from '../constants/privacyPolicy.js';
 
 export const getSessionTypes = (req, res) => {
   const { lang } = req.params;
@@ -69,3 +70,16 @@ export const getsubSubcategories = (req, res) => {
 
   res.status(200).send(category);
 };
+
+
+//privacy and policy 
+export const privacyAndPolicy =async (req, res) => {
+    const lang = req.params.lang.toUpperCase(); 
+    const response = {};
+
+    Object.keys(TEXT_CONSTANTS).forEach((key) => {
+        response[key] = TEXT_CONSTANTS[key][lang] || TEXT_CONSTANTS[key]["AR"];
+    });
+
+    res.json(response);
+}
