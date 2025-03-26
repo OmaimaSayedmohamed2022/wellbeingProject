@@ -2782,3 +2782,37 @@
 {"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-25T12:57:13.965Z"}
 {"level":"info","message":"::1 - - [25/Mar/2025:12:57:19 +0000] \"GET /api/categories/privacyPolicy/en HTTP/1.1\" 200 3447 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-25T12:57:19.048Z"}
 {"level":"info","message":"::1 - - [25/Mar/2025:12:57:21 +0000] \"GET /api/categories/privacyPolicy/en HTTP/1.1\" 200 3447 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-25T12:57:21.147Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-25T20:24:01.917Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-25T20:24:05.166Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-25T20:24:06.832Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-25T20:32:01.061Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-25T20:32:02.638Z"}
+{"level":"info","message":"::1 - - [25/Mar/2025:20:33:49 +0000] \"GET /api/categories/privacyPolicy/en HTTP/1.1\" 200 3471 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-25T20:33:49.436Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:43:50.741Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:43:56.035Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-26T12:43:59.680Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:12:44:11 +0000] \"GET /api/categories/privacyPolicy/en HTTP/1.1\" 200 592 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-26T12:44:11.666Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:12:44:48 +0000] \"GET /body HTTP/1.1\" 404 143 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-26T12:44:48.958Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:12:45:33 +0000] \"GET /api/categories/privacyPolicy/en HTTP/1.1\" 200 592 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36\"","timestamp":"2025-03-26T12:45:33.390Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:12:45:33 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36\"","timestamp":"2025-03-26T12:45:33.622Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:55:00.909Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:55:12.358Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:55:22.436Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-26T12:55:27.037Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:55:34.326Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:55:41.293Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:55:46.460Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:56:06.769Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:56:12.138Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T12:56:25.398Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:12:56:29 +0000] \"GET /api/categories/privacyPolicy/en HTTP/1.1\" 200 663 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-26T12:56:29.028Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:12:56:33 +0000] \"GET /api/categories/privacyPolicy/en HTTP/1.1\" 200 663 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-26T12:56:33.278Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:12:56:39 +0000] \"GET /api/categories/privacyPolicy HTTP/1.1\" 404 167 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-26T12:56:39.388Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:12:56:45 +0000] \"GET /api/categories/privacyPolicy/en HTTP/1.1\" 200 663 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-26T12:56:45.691Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-26T12:59:08.744Z"}
+{"level":"info","message":"Server running on port 5005","timestamp":"2025-03-26T13:03:58.682Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-03-26T13:04:00.092Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:13:04:18 +0000] \"GET /api/categories/privacyPolicy/AR HTTP/1.1\" 200 6128 \"-\" \"PostmanRuntime/7.43.2\"","timestamp":"2025-03-26T13:04:18.881Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:13:04:35 +0000] \"GET /api/categories/privacyPolicy/AR HTTP/1.1\" 200 6128 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36\"","timestamp":"2025-03-26T13:04:35.556Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:13:06:52 +0000] \"GET /api/categories/privacyPolicy/EN HTTP/1.1\" 200 4985 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36\"","timestamp":"2025-03-26T13:06:52.907Z"}
+{"level":"info","message":"::1 - - [26/Mar/2025:13:12:17 +0000] \"GET /api/categories/privacyPolicy/EN HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36\"","timestamp":"2025-03-26T13:12:17.847Z"}
