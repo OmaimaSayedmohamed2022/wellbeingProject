@@ -43,7 +43,9 @@ export const registerSpecialist = async (req, res) => {
     }
     
     if (req.files?.certificates) {
-      uploadedFiles.certificates = await Promise.all(req.files.certificates.map(file => uploadToCloudinary(file)));
+      uploadedFiles.certificates = await Promise.all(
+        req.files.certificates.map(file => uploadToCloudinary(file))
+      );
     }
     
     if (req.files?.ministryLicense?.[0]) {
@@ -53,6 +55,7 @@ export const registerSpecialist = async (req, res) => {
     if (req.files?.associationMembership?.[0]) {
       uploadedFiles.associationMembership = await uploadToCloudinary(req.files.associationMembership[0]);
     }
+    
   
     // Create and save the specialist in the database
     const specialist = new Specialist({
@@ -82,9 +85,10 @@ export const registerSpecialist = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '1h' } 
     );
+    console.log(req.files)
 
     res.status(201).json({
-      message: 'Specialist registered successfully.', specialist, token
+      message: 'Specialist registered successfully.', specialist,uploadedFiles, token
     });
   } catch (error) {
     console.error('Error registering specialist:', error.message || error);
