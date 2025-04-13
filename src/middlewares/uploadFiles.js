@@ -26,10 +26,9 @@ const upload = multer({
 });
 
 export const uploadFiles = upload.fields([
-    {name:'Image',maxCount:1},
-    { name: 'idOrPassport', maxCount: 1 },
-    { name: 'resume', maxCount: 1 },
-    { name: 'certificates', maxCount: 5 },
-    { name: 'ministryLicense', maxCount: 1 },
-    { name: 'associationMembership', maxCount: 1 },
-  ]);
+  { name: 'idOrPassport', maxCount: 1 },
+  { name: 'resume', maxCount: 1 },
+  { name: 'certificates', maxCount: 5 },
+  { name: 'ministryLicense', maxCount: 1 },
+  { name: 'associationMembership', maxCount: 1 }
+]);
